@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', 'AdminController@index');
+Route::get('/login', 'AdminController@Index');
+Route::get('/admin-signup', 'AdminController@SignUp');
+Route::post('/do-signup', 'AdminController@DoSignUp');
+Route::post('/do-login', 'AdminController@DoLogin');
+Route::get('/dashboard', 'AdminController@ShowDashbord');
