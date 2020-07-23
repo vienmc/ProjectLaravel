@@ -139,6 +139,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </ul>
                     </li>
 
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-book"></i>
+                            <span>Quản lý tài khoản</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{{URL::to('/account/create')}}">Thêm tài khoản</a></li>
+                            <li><a href="{{URL::to('/account')}}">Danh sách tài khoản</a></li>
+                        </ul>
+                    </li>
+
+
                 </ul>
             </div>
             <!-- sidebar menu end-->
@@ -148,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            @yield('admin_content')
+            @yield('content')
         </section>
     </section>
     <!--main content end-->
