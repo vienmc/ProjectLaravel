@@ -29,3 +29,7 @@ Route::get('/active-account/{account_id}', 'AccountController@Active_account');
 Route::get('/edit-account/{account_id}', 'AccountController@Edit_account');
 Route::post('/update-account/{account_id}', 'AccountController@Update_account');
 Route::get('/find-by-email', 'AccountController@FindByEmail');
+
+
+//product
+Route::resource('/product', 'ProductController');
