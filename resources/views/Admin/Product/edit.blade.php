@@ -17,7 +17,9 @@
                     ?>
                     <div class="position-center">
                         <form role="form" action="{{URL::to('/product/'.$obj->id)}}" method="post">
+
                             {{csrf_field()}}
+                            @method('put')
                             <div class="form-group">
                                 <label for="product_name">Tên sản phẩm</label>
                                 <input type="text" class="form-control"

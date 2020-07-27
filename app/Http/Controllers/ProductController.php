@@ -6,7 +6,9 @@ use App\Brand;
 use App\Category;
 use App\Http\Requests\ProductValidate;
 use App\Product;
+use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ProductController extends Controller
 {
@@ -17,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $list = Product::all();
+        $list = Product::where('product_status', '=', 1)->get();
         return view('Admin.Product.list')->with(compact('list'));
     }
 
@@ -64,7 +66,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -113,6 +115,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $obj = Product::find($id);
+        $obj->product_status = 0;
+        $obj->save();
+        return Response::json([], 200);
     }
 }
