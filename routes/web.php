@@ -34,5 +34,12 @@ Route::resource('brand', 'BrandController');
 Route::get('/unactive-brand/{brand_id}', 'BrandController@Unactive_brand');
 Route::get('/active-brand/{brand_id}', 'BrandController@active_brand');
 
+Route::resource('categories','CategoryController');
+Route::get('/unactive-categories/{categories_id}', 'CategoryController@Unactive_categories');
+Route::get('/active-categories/{categories_id}', 'CategoryController@Active_categories');
+Route::get('/edit-categories/{categories_id}', 'CategoryController@Edit_categories');
+Route::post('/update-categories/{categories_id}', 'CategoryController@Update_categories');
+Route::get('/find-by-name', 'CategoryController@FindByName');
+
 //product
 Route::resource('/product', 'ProductController');
