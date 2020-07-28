@@ -74,7 +74,7 @@
                                         class="fa fa-pencil-square-o text-success text-active"></i>
                                 </a>
                                 <a onclick="return confirm('Bạn có muốn xóa không?')"
-                                   href="{{URL::to('/delete-brand-product/'.$item->id)}}"
+                                   href="{{URL::to('/categories'.$item->id)}}"
                                    class="active styling-delete" ui-toggle-class="">
                                     <i
                                         class="fa fa-times text-danger text"></i>
@@ -88,4 +88,24 @@
             {{$list->links()}}
         </div>
     </div>
+    <script>
+        var btnDeletes = document.getElementsByClassName('active styling-delete');
+        for(var i = 0; i < btnDeletes.length; i++){
+            btnDeletes[i].onclick = function(){
+                if(confirm('Are you sure?')){
+                    var id = this.getAttribute('title');
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('DELETE', '/categories/' + id);
+                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{csrf_token()}}');
+                    xhr.onreadystatechange = function(){
+                        if(xhr.readyState == 4 && xhr.status == 200) {
+                            alert('Delete success');
+                            window.location.reload();
+                        }
+                    }
+                    xhr.send();
+                }
+            }
+        }
+    </script>
 @endsection
