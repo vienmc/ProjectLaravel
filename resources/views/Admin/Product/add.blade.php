@@ -31,28 +31,28 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="product_category">Danh mục sản phẩm</label>
-                                <select name="product_category" class="form-control input-sm m-bot15">
+                                <select name="category_id" class="form-control input-sm m-bot15">
+                                    <label for="category_id">Danh mục sản phẩm</label>
                                     @foreach($category as $cate)
                                         <option value="{{$cate->id}}">{{$cate->name}}</option>
                                     @endforeach
                                 </select>
-                                @if($errors -> has('product_category'))
+                                @if($errors -> has('category_id'))
                                     <span class="error" style="color: red">
-                                {{$errors -> first('product_category')}}
+                                {{$errors -> first('category_id')}}
                                     </span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="product_brand">Thương hiệu sản phẩm</label>
-                                <select name="product_brand" class="form-control input-sm m-bot15">
+                                <label for="brand_id">Thương hiệu sản phẩm</label>
+                                <select name="brand_id" class="form-control input-sm m-bot15">
                                     @foreach($brand as $bran)
-                                        <option value="{{$bran->brand_id}}">{{$bran->brand_name}}</option>
+                                        <option value="{{$bran->id}}">{{$bran->brand_name}}</option>
                                     @endforeach
                                 </select>
-                                @if($errors -> has('product_brand'))
+                                @if($errors -> has('brand_id'))
                                     <span class="error" style="color: red">
-                                {{$errors -> first('product_brand')}}
+                                {{$errors -> first('brand_id')}}
                                     </span>
                                 @endif
                             </div>

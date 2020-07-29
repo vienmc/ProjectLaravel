@@ -44,15 +44,15 @@
                         <th>Quản lý</th>
                     </tr>
                     </thead>
-                    <tbody>
                     @foreach($list as $item)
+                    <tbody>
                         <td>{{$item->product_name}}</td>
-                        <td>{{$item->category['category_name']}}</td>
-                        <td>{{$item->brand['brand_name']}}</td>
+                        <td>{{$item->category->name}}</td>
+                        <td>{{$item->brand->brand_name}}</td>
                         <td>{{$item->product_price}}</td>
                         <td><img src="{{$item->product_image}}" width="100px"></td>
-                        <td>{{$item->product_desc}}</td>
-                        <td>{{$item->product_content}}</td>
+                        <td>{!! $item->product_desc !!}</td>
+                        <td>{!! $item->product_content !!}</td>
                         <td>
                             @if($item->product_status==1)
                                 <span class="text-primary">Hiện</span>
@@ -60,12 +60,13 @@
                                 <span class="text-danger">Ẩn</span>
                             @endif
                         </td>
-                        <td ><a
-                                href="{{ URL::to('/product/edit'.$product_list -> product_id)}}">Sửa</a>
-                            | <a href="{{ URL::to('/delete-product/'.$product_list -> product_id)}}">Xóa</a>
+                        <td>
+                            <a href="/product/{{$item->id}}/edit" class="text-primary">Sửa</a>
+                            | <a href="" class="text-danger">Xóa</a>
                         </td>
-                    @endforeach
+
                     </tbody>
+                    @endforeach
                 </table>
             </div>
             {{--            {{$list->links()}}--}}

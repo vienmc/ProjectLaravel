@@ -16,8 +16,7 @@
                     }
                     ?>
                     <div class="position-center">
-                        <form role="form" action="{{URL::to('/product/'.$obj->id)}}" method="post">
-
+                        <form role="form" action="/product/{{$obj->id}}" method="post">
                             {{csrf_field()}}
                             @method('put')
                             <div class="form-group">
@@ -35,30 +34,30 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="product_category">Danh mục sản phẩm</label>
-                                <select name="product_category" class="form-control input-sm m-bot15">
+                                <label for="category_id">Danh mục sản phẩm</label>
+                                <select name="category_id" class="form-control input-sm m-bot15">
                                     @foreach($category as $cate)
-                                        <option {{($cate ->id == $obj->id) ? 'selected' : ''}}
-                                        value="{{$cate->id}}">{{$cate->name}}</option>
+                                        <option {{($cate ->id == $obj -> category_id) ? 'selected' : ''}}
+                                                value="{{$cate -> id}}"> {{$cate ->name}}</option>
                                     @endforeach
                                 </select>
-                                @if($errors -> has('product_category'))
+                                @if($errors -> has('category_id'))
                                     <span class="error" style="color: red">
-                                {{$errors -> first('product_category')}}
+                                {{$errors -> first('category_id')}}
                                     </span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="product_brand">Thương hiệu sản phẩm</label>
-                                <select name="product_brand" class="form-control input-sm m-bot15">
+                                <label for="brand_id">Thương hiệu sản phẩm</label>
+                                <select name="brand_id" class="form-control input-sm m-bot15">
                                     @foreach($brand as $bran)
                                         <option {{($bran ->id == $obj->brand_id) ? 'selected' : ''}}
                                                 value="{{$bran->id}}">{{$bran->brand_name}}</option>
                                     @endforeach
                                 </select>
-                                @if($errors -> has('product_brand'))
+                                @if($errors -> has('brand_id'))
                                     <span class="error" style="color: red">
-                                {{$errors -> first('product_brand')}}
+                                {{$errors -> first('brand_id')}}
                                     </span>
                                 @endif
                             </div>
@@ -78,7 +77,7 @@
                                 <label for="product_image">Ảnh</label>
                                 <input type="text" class="form-control"
                                        placeholder="Ảnh" name="product_image" required>
-                                <img src="{{$product_edit -> product_image}}" width="100px">
+                                <img src="{{$obj -> product_image}}" width="100px">
                                 @if($errors -> has('product_image'))
                                     <span class="error" style="color: red">
                                 {{$errors -> first('product_image')}}
@@ -90,7 +89,7 @@
                                 <textarea style="resize: none" rows="5" class="form-control"
                                           id="ckeditor1"
                                           placeholder="Mô tả sản phẩm" name="product_desc"
-                                          value="{{$obj->product_desc}}"></textarea>
+                                          value="">{{$obj->product_desc}}</textarea>
                                 @if($errors -> has('product_desc'))
                                     <span class="error" style="color: red">
                                 {{$errors -> first('product_desc')}}
@@ -102,8 +101,7 @@
                                 <textarea style="resize: none" rows="5" class="form-control"
                                           id="ckeditor2"
                                           placeholder="Nội dung sản phẩm" name="product_content"
-                                          value="{{$obj->product_content}}"
-                                ></textarea>
+                                          value="">{{$obj->product_content}}</textarea>
                                 @if($errors -> has('product_content'))
                                     <span class="error" style="color: red">
                                 {{$errors -> first('product_content')}}

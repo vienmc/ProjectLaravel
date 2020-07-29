@@ -19,8 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $list = Product::where('product_status', '=', 1)->get();
-        return view('Admin.Product.list')->with(compact('list'));
+
+        $list = Product::all();
+        return view('Admin.Product.list')->with('list',$list);
     }
 
     /**
@@ -30,8 +31,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = Category::all();
-        $brand = Brand::all();
+        $category = Category::where('status','=',1)->get();
+        $brand = Brand::where('brand_status','=',1)->get();
         return view('Admin.Product.add')->with(compact('category','brand'));
     }
 
@@ -54,8 +55,8 @@ class ProductController extends Controller
         $obj->product_image = $request->get('product_image');
         $obj->product_status = $request->get('product_status');
         $obj->save();
-        session::put('message', 'Thêm mới sản phẩm thành công');
-        return response('/product/create');
+
+        return redirect('/product/create');
     }
 
     /**
@@ -80,6 +81,9 @@ class ProductController extends Controller
         $category = Category::all();
         $brand = Brand::all();
         $obj = Product::find($id);
+        if ($obj == null) {
+            return 'loi';
+        }
         return view('Admin.Product.edit')->with(compact('obj','category','brand'));
     }
 
@@ -103,8 +107,7 @@ class ProductController extends Controller
         $obj->product_image = $request->get('product_image');
         $obj->product_status = $request->get('product_status');
         $obj->save();
-        session::put('message', 'Sửa sản phẩm thành công');
-        return response('/product');
+        return redirect('/product');
     }
 
     /**

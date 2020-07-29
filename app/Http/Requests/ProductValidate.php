@@ -24,13 +24,19 @@ class ProductValidate extends FormRequest
     public function rules()
     {
         return [
-            'product_name'=>'required|email',
+            'product_name'=>'required',
             'category_id'=>'required',
             'brand_id'=>'required',
             'product_desc'=>'required',
             'product_content'=>'required',
             'product_price'=>'required',
-            'product_image'=>'url',
+            'product_image'=>'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'required'=>'Không được để trống',
         ];
     }
 }
