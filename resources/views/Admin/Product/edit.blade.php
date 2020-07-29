@@ -17,7 +17,9 @@
                     ?>
                     <div class="position-center">
                         <form role="form" action="{{URL::to('/product/'.$obj->id)}}" method="post">
+
                             {{csrf_field()}}
+                            @method('put')
                             <div class="form-group">
                                 <label for="product_name">Tên sản phẩm</label>
                                 <input type="text" class="form-control"
@@ -36,8 +38,8 @@
                                 <label for="product_category">Danh mục sản phẩm</label>
                                 <select name="product_category" class="form-control input-sm m-bot15">
                                     @foreach($category as $cate)
-                                        <option {{($cate ->id == $obj->category_id) ? 'selected' : ''}}
-                                        value="{{$cate->id}}">{{$cate->category_name}}</option>
+                                        <option {{($cate ->id == $obj->id) ? 'selected' : ''}}
+                                        value="{{$cate->id}}">{{$cate->name}}</option>
                                     @endforeach
                                 </select>
                                 @if($errors -> has('product_category'))
