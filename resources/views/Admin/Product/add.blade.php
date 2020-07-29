@@ -34,7 +34,7 @@
                                 <label for="product_category">Danh mục sản phẩm</label>
                                 <select name="product_category" class="form-control input-sm m-bot15">
                                     @foreach($category as $cate)
-                                        <option value="{{$cate->category_id}}">{{$cate->category_name}}</option>
+                                        <option value="{{$cate->id}}">{{$cate->name}}</option>
                                     @endforeach
                                 </select>
                                 @if($errors -> has('product_category'))
