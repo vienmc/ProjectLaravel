@@ -29,7 +29,17 @@ Route::get('/active-account/{account_id}', 'AccountController@Active_account');
 Route::get('/edit-account/{account_id}', 'AccountController@Edit_account');
 Route::post('/update-account/{account_id}', 'AccountController@Update_account');
 Route::get('/find-by-email', 'AccountController@FindByEmail');
+//brand
+Route::resource('brand', 'BrandController');
+Route::get('/unactive-brand/{brand_id}', 'BrandController@Unactive_brand');
+Route::get('/active-brand/{brand_id}', 'BrandController@active_brand');
 
+Route::resource('categories','CategoryController');
+Route::get('/unactive-categories/{categories_id}', 'CategoryController@Unactive_categories');
+Route::get('/active-categories/{categories_id}', 'CategoryController@Active_categories');
+Route::get('/edit-categories/{categories_id}', 'CategoryController@Edit_categories');
+Route::post('/update-categories/{categories_id}', 'CategoryController@Update_categories');
+Route::get('/find-by-name', 'CategoryController@FindByName');
 
 //product
 Route::resource('/product', 'ProductController');
