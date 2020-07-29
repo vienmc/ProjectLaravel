@@ -64,7 +64,6 @@
                             <a href="/product/{{$item->id}}/edit" class="text-primary">Sửa</a>
                             | <a href="" class="text-danger">Xóa</a>
                         </td>
-
                     </tbody>
                     @endforeach
                 </table>
