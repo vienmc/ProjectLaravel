@@ -125,7 +125,8 @@ class CategoryController extends Controller
     }
     public function FindByName(Request $request){
         $keyword = $request->keyword;
-        $list = Category::where('name', 'like', '%' . $keyword . '%')->orderby('created_at', 'desc')->paginate(10);
+        $list = Category::where('name', 'like', '%' . $keyword . '%')->orderby('created_at', 'desc')->paginate(10)
+            ->appends($request->only('keyword'));
         return view('Admin.Category.list')->with('list', $list);
     }
 }
