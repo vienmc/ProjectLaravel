@@ -92,13 +92,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-
         $obj =Category::find($id);
-        if ($obj==null){
-            return view('error')->with('msg', 'Categories is not found or has been deleted!');
-        }
-        $obj->status = 0;
-        $obj->save();
+        $obj->delete();
         return Response::json([],200);
     }
     public function Unactive_categories($categories_id){

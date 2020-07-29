@@ -43,8 +43,6 @@
                     <tbody>
                     @foreach($list as $item)
                         <tr>
-                            {{--                            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label>--}}
-                            {{--                            </td>--}}
                             <td>{{$item->id}}
                             </td>
                             <td>{{$item->name}}
@@ -73,39 +71,38 @@
                                    class="active styling-edit" ui-toggle-class=""><i
                                         class="fa fa-pencil-square-o text-success text-active"></i>
                                 </a>
-                                <a onclick="return confirm('Bạn có muốn xóa không?')"
-                                   href="{{URL::to('/categories'.$item->id)}}"
-                                   class="active styling-delete" ui-toggle-class="">
+                                <a href="#" class="active styling-delete" title="{{$item->id}}" ui-toggle-class="">
                                     <i
                                         class="fa fa-times text-danger text"></i>
                                 </a>
                             </td>
                         </tr>
                     @endforeach
+                    <script>
+                        var btnDeletes = document.getElementsByClassName('active styling-delete');
+                        for(var i = 0; i < btnDeletes.length; i++){
+                            btnDeletes[i].onclick = function(){
+                                if(confirm('Are you sure?')){
+                                    var id = this.getAttribute('title');
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('DELETE', '/categories/' + id);
+                                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{csrf_token()}}');
+                                    xhr.onreadystatechange = function(){
+                                        if(xhr.readyState == 4 && xhr.status == 200) {
+                                            alert('Delete success');
+                                            window.location.reload();
+                                        }
+                                    }
+                                    xhr.send();
+                                }
+                            }
+                        }
+                    </script>
                     </tbody>
                 </table>
             </div>
             {{$list->links()}}
         </div>
     </div>
-    <script>
-        var btnDeletes = document.getElementsByClassName('active styling-delete');
-        for(var i = 0; i < btnDeletes.length; i++){
-            btnDeletes[i].onclick = function(){
-                if(confirm('Are you sure?')){
-                    var id = this.getAttribute('title');
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('DELETE', '/categories/' + id);
-                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{csrf_token()}}');
-                    xhr.onreadystatechange = function(){
-                        if(xhr.readyState == 4 && xhr.status == 200) {
-                            alert('Delete success');
-                            window.location.reload();
-                        }
-                    }
-                    xhr.send();
-                }
-            }
-        }
-    </script>
+
 @endsection
