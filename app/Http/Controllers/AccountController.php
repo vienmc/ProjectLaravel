@@ -150,7 +150,7 @@ class AccountController extends Controller
 
     public function FindByEmail(Request $request){
         $keyword = $request->keyword;
-        $list = Account::where('email', 'like', '%' . $keyword . '%')->orderby('created_at', 'desc')->paginate(10);
+        $list = Account::where('email', 'like', '%' . $keyword . '%')->orderby('created_at', 'desc')->paginate(10)->appends($request->only('keyword'));
         return view('Admin.Account.list')->with('list', $list);
     }
 
