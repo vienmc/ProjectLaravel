@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    private static $cloudinary_link = 'https://res.cloudinary.com/trinhlh96/image/upload/';
+    private static $cloudinary_link = 'https://res.cloudinary.com/hoadaica/image/upload/';
 
     //start hiện 1 ảnh
     public function getSmallPhotoAttribute()
