@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $list = Product::all();
+        $list = Product::orderby('created_at', 'desc')->paginate(2);
         return view('Admin.Product.list')->with('list',$list);
     }
 
@@ -50,13 +50,19 @@ class ProductController extends Controller
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $obj->product_content = $request->get('product_content');
         $obj->product_price = $request->get('product_price');
-        $obj->product_image = $request->get('product_image');
         $obj->product_status = $request->get('product_status');
-        $obj->save();
+        $thumbnails = $request->get('thumbnails');
+        foreach ($thumbnails as $thumbnail) {
+            $obj->thumbnail .= $thumbnail . ',';
+        }
 
-        return redirect('/product/create');
+        $obj->save();
+        $request->session()->flash('message', 'Thêm mới sản phẩm thành công!');
+        return redirect('/product');
+//        echo "<pre>";
+//        print_r($obj);
+//        echo "</pre>";
     }
 
     /**
@@ -102,11 +108,15 @@ class ProductController extends Controller
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $obj->product_content = $request->get('product_content');
         $obj->product_price = $request->get('product_price');
-        $obj->product_image = $request->get('product_image');
         $obj->product_status = $request->get('product_status');
+        $thumbnails = $request->get('thumbnails');
+        $obj->thumbnail = '';
+        foreach ($thumbnails as $thumbnail) {
+            $obj->thumbnail .= $thumbnail . ',';
+        }
         $obj->save();
+        $request->session()->flash('message', 'Sửa sản phẩm thành công!');
         return redirect('/product');
     }
 

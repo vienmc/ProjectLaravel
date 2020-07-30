@@ -38,8 +38,7 @@
                         <th>Thương hiệu sản phẩm</th>
                         <th>Giá</th>
                         <th>Ảnh</th>
-                        <th>Mô tả sản phẩm</th>
-                        <th>Nội dung sản phẩm</th>
+{{--                        <th>Mô tả sản phẩm</th>--}}
                         <th>Trạng thái</th>
                         <th>Quản lý</th>
                     </tr>
@@ -50,9 +49,12 @@
                         <td>{{$item->category->name}}</td>
                         <td>{{$item->brand->brand_name}}</td>
                         <td>{{$item->product_price}}</td>
-                        <td><img src="{{$item->product_image}}" width="100px"></td>
-                        <td>{!! $item->product_desc !!}</td>
-                        <td>{!! $item->product_content !!}</td>
+                        <td>
+                            @foreach($item->small_photos as $p)
+                                <img src="{{$p}}" alt="" class="rounded-circle">
+                            @endforeach
+                          </td>
+{{--                        <td>{!! $item->product_desc  !!}</td>--}}
                         <td>
                             @if($item->product_status==1)
                                 <span class="text-primary">Hiện</span>
@@ -68,7 +70,8 @@
                     @endforeach
                 </table>
             </div>
-            {{--            {{$list->links()}}--}}
+            <br>
+                <span class="text-center">{{$list->links()}}</span>
         </div>
     </div>
 @endsection

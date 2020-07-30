@@ -16,7 +16,7 @@
                     }
                     ?>
                     <div class="position-center">
-                        <form role="form" action="{{URL::to('/product')}}" method="post">
+                        <form role="form" action="{{URL::to('/product')}}" method="post" id="product_form">
                             {{csrf_field()}}
 
                             <div class="form-group">
@@ -67,15 +67,15 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                <label for="product_image">Ảnh</label>
-                                <input type="text" class="form-control"
-                                       placeholder="Ảnh" name="product_image" required>
-                                @if($errors -> has('product_image'))
-                                    <span class="error" style="color: red">
-                                {{$errors -> first('product_image')}}
-                                    </span>
-                                @endif
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label >Hình ảnh</label>
+                                    <div class="form-group">
+                                        <button type="button" id="upload_widget" class="btn btn-primary">Thêm ảnh
+                                        </button>
+                                        <div class="thumbnails"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="product_desc">Mô tả sản phẩm</label>
@@ -88,18 +88,6 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                <label for="product_content">Nội dung sản phẩm</label>
-                                <textarea style="resize: none" rows="5" class="form-control"
-                                          id="ckeditor2"
-                                          placeholder="Nội dung sản phẩm" name="product_content"></textarea>
-                                @if($errors -> has('product_content'))
-                                    <span class="error" style="color: red">
-                                {{$errors -> first('product_content')}}
-                                    </span>
-                                @endif
-                            </div>
-
 
                             <div class="form-group">
                                 <label for="product_status">Trạng thái</label>
@@ -121,4 +109,36 @@
 
         </div>
     </div>
+@endsection
+@section('script')
+    <script type="text/javascript">
+        var myWidget = cloudinary.createUploadWidget(
+            {
+                cloudName: 'trinhlh96',
+                uploadPreset: 'lqislhgd',
+                multiple: true,
+                form: '#product_form',
+                fieldName: 'thumbnails[]',
+                thumbnails: '.thumbnails'
+            }, function (error, result) {
+                if (!error && result && result.event === "success") {
+                    console.log('Done! Here is the image info: ', result.info.url);
+                    var arrayThumnailInputs = document.querySelectorAll('input[name="thumbnails[]"]');
+                    for (let i = 0; i < arrayThumnailInputs.length; i++) {
+                        arrayThumnailInputs[i].value = arrayThumnailInputs[i].getAttribute('data-cloudinary-public-id');
+                    }
+                }
+            }
+        );
+        $('#upload_widget').click(function () {
+            myWidget.open();
+        })
+        // xử lý js trên dynamic content.
+        $('body').on('click', '.cloudinary-delete', function () {
+            var splittedImg = $(this).parent().find('img').attr('src').split('/');
+            var imgName = splittedImg[splittedImg.length - 1];
+            imgName = imgName.replace('.jpg', '');
+            $('input[data-cloudinary-public-id="' + imgName + '"]').remove();
+        });
+    </script>
 @endsection
