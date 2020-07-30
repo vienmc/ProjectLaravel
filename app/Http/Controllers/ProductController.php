@@ -7,7 +7,9 @@ use App\Category;
 use App\Http\Requests\ProductValidate;
 use App\Product;
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 
 class ProductController extends Controller
@@ -131,6 +133,21 @@ class ProductController extends Controller
         $obj = Product::find($id);
         $obj->product_status = 0;
         $obj->save();
-        return Response::json([], 200);
+        return 'Response::json([], 200)';
     }
+    public function Unactive_product($id){
+        $obj = Product::where('id','=',$id)->first();
+        $obj->product_status = 0;
+        $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+        $obj->save();
+        return Redirect::to('/product/');
+    }
+    public function Active_product($id){
+        $obj = Product::where('id','=',$id)->first();
+        $obj->product_status = 1;
+        $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+        $obj->save();
+        return Redirect::to('/product/');
+    }
+
 }

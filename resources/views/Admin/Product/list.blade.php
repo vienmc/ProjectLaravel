@@ -55,16 +55,43 @@
                             @endforeach
                           </td>
 {{--                        <td>{!! $item->product_desc  !!}</td>--}}
-                        <td>
-                            @if($item->product_status==1)
-                                <span class="text-primary">Hiện</span>
-                            @else ($item->product_status==0)
-                                <span class="text-danger">Ẩn</span>
-                            @endif
+{{--                        <td>--}}
+{{--                            @if($item->product_status==1)--}}
+{{--                                <span class="text-primary">Hiện</span>--}}
+{{--                            @else ($item->product_status==0)--}}
+{{--                                <span class="text-danger">Ẩn</span>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            <a href="/product/{{$item->id}}/edit" class="text-primary">Sửa</a>--}}
+{{--                            | <a href="" class="text-danger">Xóa</a>--}}
+{{--                        </td>--}}
+                        <td><span class="text-ellipsis">
+                                    <?php
+                                /** @var TYPE_NAME $item */
+                                if ($item->product_status == 1) {
+                                ?>
+                                        <a href="{{URL::to('/unactive-product/'.$item->id)}}"><span
+                                                class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                                    <?php
+                                }else{
+                                ?>
+                                    <a href="{{URL::to('/active-product/'.$item->id)}}"><span
+                                            class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                                    <?php
+                                }
+                                ?>
+                                </span>
                         </td>
                         <td>
-                            <a href="/product/{{$item->id}}/edit" class="text-primary">Sửa</a>
-                            | <a href="" class="text-danger">Xóa</a>
+                            <a href="{{URL::to('/product/'.$item->id.'/edit')}}"
+                               class="active styling-edit" ui-toggle-class=""><i
+                                    class="fa fa-pencil-square-o text-success text-active"></i>
+                            </a>
+                            <a href="#" class="active styling-delete" title="{{$item->id}}" ui-toggle-class="">
+                                <i
+                                    class="fa fa-times text-danger text"></i>
+                            </a>
                         </td>
                     </tbody>
                     @endforeach
@@ -74,4 +101,25 @@
                 <span class="text-center">{{$list->links()}}</span>
         </div>
     </div>
+    <script>
+        var btnDeletes = document.getElementsByClassName('active styling-delete');
+        for(var i = 0; i < btnDeletes.length; i++){
+            btnDeletes[i].onclick = function(){
+                if(confirm('Bạn có chắc muốn xóa sản phẩm này?')){
+                    var id = this.getAttribute('title');
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('DELETE', '/product/' + id);
+                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{csrf_token()}}');
+                    xhr.onreadystatechange = function(){
+                        if(xhr.readyState == 4 && xhr.status == 200) {
+                            alert('Xóa thành công');
+                            window.location.reload();
+                        }
+                    }
+                    xhr.send();
+                }
+            }
+        }
+    </script>
 @endsection
+

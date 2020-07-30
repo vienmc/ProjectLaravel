@@ -43,3 +43,5 @@ Route::get('/find-by-name', 'CategoryController@FindByName');
 
 //product
 Route::resource('/product', 'ProductController');
+Route::get('/unactive-product/{id}', 'ProductController@Unactive_product');
+Route::get('/active-product/{id}', 'ProductController@Active_product');
