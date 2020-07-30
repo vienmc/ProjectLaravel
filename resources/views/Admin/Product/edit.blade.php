@@ -157,8 +157,8 @@
     <script type="text/javascript">
         var myWidget = cloudinary.createUploadWidget(
             {
-                cloudName: 'trinhlh96',
-                uploadPreset: 'lqislhgd',
+                cloudName: 'hoadaica',
+                uploadPreset: 'hoadaica',
                 multiple: true,
                 form: '#product_form',
                 fieldName: 'thumbnails[]',
