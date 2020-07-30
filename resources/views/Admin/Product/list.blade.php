@@ -1,21 +1,50 @@
 @extends('Admin.layout')
 @section('content')
     <div class="table-agile-info">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/product" method="get" id="product_form">
+                            @csrf
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-3">
+                                            <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>
+                                            <select name="category_id" class="form-control" id="categorySelect">
+                                                <option value="0">Tất cả</option>
+                                                @foreach($categories as $cate)
+                                                    <option value="{{$cate->id}}" {{$cate->id == $category_id ? 'selected':''}}>{{$cate->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Tìm kiếm theo tên sản phẩm</label>
+                                            <input value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Search by keyword">
+                                            <input type="submit" style="visibility: hidden;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Tìm kiếm theo thời gian</label>
+                                            <input type="text" name="dates" class="form-control">
+                                            <input type="hidden" name="start">
+                                            <input type="hidden" name="end">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 Danh sách sản phẩm
-            </div>
-            <div class="row w3-res-tb" style="text-align: center; margin-bottom: 5px">
-                <form class="form-inline" action="{{URL::to('/find-by-email')}}" method="get">
-                    {{csrf_field()}}
-                    <div class="form-group mb-2">
-                        <label>Tìm theo tên</label>
-                    </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" name="keyword" class="form-control" id="inputPassword2">
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-2">Tìm</button>
-                </form>
             </div>
             <div class="table-responsive">
                 <?php
@@ -28,11 +57,6 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
-                        {{--                                                <th style="width:20px;">--}}
-                        {{--                                                    <label class="i-checks m-b-none">--}}
-                        {{--                                                        <input type="checkbox"><i></i>--}}
-                        {{--                                                    </label>--}}
-                        {{--                                                </th>--}}
                         <th>Tên sản phẩm</th>
                         <th>Danh mục sản phẩm</th>
                         <th>Thương hiệu sản phẩm</th>
@@ -43,40 +67,29 @@
                         <th>Quản lý</th>
                     </tr>
                     </thead>
-                    @foreach($list as $item)
+                    @foreach($list as $product_list)
                     <tbody>
-                        <td>{{$item->product_name}}</td>
-                        <td>{{$item->category->name}}</td>
-                        <td>{{$item->brand->brand_name}}</td>
-                        <td>{{$item->product_price}}</td>
+                        <td>{{$product_list->product_name}}</td>
+                        <td>{{$product_list->category->name}}</td>
+                        <td>{{$product_list->brand->brand_name}}</td>
+                        <td>{{$product_list->product_price}}</td>
                         <td>
-                            @foreach($item->small_photos as $p)
+                            @foreach($product_list->small_photos as $p)
                                 <img src="{{$p}}" alt="" class="rounded-circle">
                             @endforeach
                           </td>
 {{--                        <td>{!! $item->product_desc  !!}</td>--}}
-{{--                        <td>--}}
-{{--                            @if($item->product_status==1)--}}
-{{--                                <span class="text-primary">Hiện</span>--}}
-{{--                            @else ($item->product_status==0)--}}
-{{--                                <span class="text-danger">Ẩn</span>--}}
-{{--                            @endif--}}
-{{--                        </td>--}}
-{{--                        <td>--}}
-{{--                            <a href="/product/{{$item->id}}/edit" class="text-primary">Sửa</a>--}}
-{{--                            | <a href="" class="text-danger">Xóa</a>--}}
-{{--                        </td>--}}
                         <td><span class="text-ellipsis">
                                     <?php
-                                /** @var TYPE_NAME $item */
-                                if ($item->product_status == 1) {
+                                /** @var TYPE_NAME $product_list */
+                                if ($product_list->product_status == 1) {
                                 ?>
-                                        <a href="{{URL::to('/unactive-product/'.$item->id)}}"><span
+                                        <a href="{{URL::to('/unactive-product/'.$product_list->id)}}"><span
                                                 class="fa-thumb-styling fa fa-thumbs-up"></span></a>
                                     <?php
                                 }else{
                                 ?>
-                                    <a href="{{URL::to('/active-product/'.$item->id)}}"><span
+                                    <a href="{{URL::to('/active-product/'.$product_list->id)}}"><span
                                             class="fa-thumb-styling fa fa-thumbs-down"></span></a>
                                     <?php
                                 }
@@ -84,11 +97,11 @@
                                 </span>
                         </td>
                         <td>
-                            <a href="{{URL::to('/product/'.$item->id.'/edit')}}"
+                            <a href="{{URL::to('/product/'.$product_list->id.'/edit')}}"
                                class="active styling-edit" ui-toggle-class=""><i
                                     class="fa fa-pencil-square-o text-success text-active"></i>
                             </a>
-                            <a href="#" class="active styling-delete" title="{{$item->id}}" ui-toggle-class="">
+                            <a href="#" class="active styling-delete" title="{{$product_list->id}}" ui-toggle-class="">
                                 <i
                                     class="fa fa-times text-danger text"></i>
                             </a>
@@ -98,7 +111,7 @@
                 </table>
             </div>
             <br>
-                <span class="text-center">{{$list->links()}}</span>
+{{--                <span class="text-center">{{$list->links()}}</span>--}}
         </div>
     </div>
     <script>
@@ -121,5 +134,33 @@
             }
         }
     </script>
+@section('script')
+    <script>
+        $('input[name="dates"]').daterangepicker(
+            {
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }
+        );
+        $('#categorySelect').change(function () {
+            $('#product_form').submit();
+        })
+        $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+            $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
+            $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
+            $('#product_form').submit();
+        });
+    </script>
 @endsection
+@endsection
+
 
