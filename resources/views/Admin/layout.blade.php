@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <li class="sub-menu">
                         <a href="javascript:;">
-                            <i class="fa fa-book"></i>
+                            <i class="fa fa-product-hunt"></i>
                             <span>Sản phẩm</span>
                         </a>
                         <ul class="sub">
@@ -143,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <li class="sub-menu">
                         <a href="javascript:;">
-                            <i class="fa fa-book"></i>
+                            <i class="fa fa-users"></i>
                             <span>Quản lý tài khoản</span>
                         </a>
                         <ul class="sub">

@@ -58,12 +58,12 @@
                                     if ($item->status == 1) {
                                     ?>
                                         <a href="{{URL::to('/unactive-account/'.$item->id)}}"><span
-                                                class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                                                class="fa-thumb-styling fa fa-check"></span></a>
                                     <?php
                                     }else{
                                     ?>
                                     <a href="{{URL::to('/active-account/'.$item->id)}}"><span
-                                            class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                                            class="fa-thumb-styling fa fa-times"></span></a>
                                     <?php
                                     }
                                     ?>
