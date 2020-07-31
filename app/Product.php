@@ -37,7 +37,7 @@ class Product extends Model
         $list_photos = array();
         $photos = explode(',', $this->thumbnail);
         foreach ($photos as $p) {
-            if (strlen($p) > 0) {
+            if (strlen($p) > 0 && sizeof($list_photos) <2) {
                 array_push($list_photos, self::$cloudinary_link . 'w_100,c_scale/' . $p . '.jpg');
             }
         }

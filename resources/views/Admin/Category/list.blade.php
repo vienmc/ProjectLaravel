@@ -71,10 +71,10 @@
                                    class="active styling-edit" ui-toggle-class=""><i
                                         class="fa fa-pencil-square-o text-success text-active"></i>
                                 </a>
-                                <a href="#" class="active styling-delete" title="{{$item->id}}" ui-toggle-class="">
-                                    <i
-                                        class="fa fa-times text-danger text"></i>
-                                </a>
+{{--                                <a href="#" class="active styling-delete" title="{{$item->id}}" ui-toggle-class="">--}}
+{{--                                    <i--}}
+{{--                                        class="fa fa-times text-danger text"></i>--}}
+{{--                                </a>--}}
                             </td>
                         </tr>
                     @endforeach

@@ -73,12 +73,12 @@
                                    class="active styling-edit" ui-toggle-class=""><i
                                         class="fa fa-pencil-square-o text-success text-active"></i>
                                 </a>
-                                <a onclick="return confirm('Bạn có muốn xóa không?')"
-                                   href="{{URL::to('/delete-brand-product/'.$item->id)}}"
-                                   class="active styling-delete" ui-toggle-class="">
-                                    <i
-                                        class="fa fa-times text-danger text"></i>
-                                </a>
+{{--                                <a onclick="return confirm('Bạn có muốn xóa không?')"--}}
+{{--                                   href="{{URL::to('/delete-brand-product/'.$item->id)}}"--}}
+{{--                                   class="active styling-delete" ui-toggle-class="">--}}
+{{--                                    <i--}}
+{{--                                        class="fa fa-times text-danger text"></i>--}}
+{{--                                </a>--}}
                             </td>
                         </tr>
                     @endforeach
