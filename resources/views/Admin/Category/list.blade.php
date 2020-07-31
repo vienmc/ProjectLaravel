@@ -38,7 +38,7 @@
                         <th>Tên</th>
                         <th>Mô tả</th>
                         <th>Kích hoạt / Khóa</th>
-                        <th style="width:30px;">Sửa</th>
+                        <th style="width:30px">Sửa</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,12 +56,12 @@
                                     if ($item->status == 1) {
                                     ?>
                                         <a href="{{URL::to('/unactive-categories/'.$item->id)}}"><span
-                                                class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                                                class="fa-thumb-styling fa fa-check"></span></a>
                                     <?php
                                     }else{
                                     ?>
                                     <a href="{{URL::to('/active-categories/'.$item->id)}}"><span
-                                            class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                                            class="fa-thumb-styling fa fa-times"></span></a>
                                     <?php
                                     }
                                     ?>
