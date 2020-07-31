@@ -24,9 +24,13 @@ class AdminController extends Controller
     public function DoLogin(Request $request)
     {
         $email = $request->email;
-        $account = Account::where('email','=',$email)->first();
+      $account = Account::where('email','=',$email)->first();
 //        echo "<pre>";
-//        print_r($account);
+//        print_r($account->password);
+//        print_r('|||||');
+//
+//        print_r(md5($account->salt . '123'));
+//
 //        echo "</pre>";
         if ($account) {
             $passwordHash = $account->password;
