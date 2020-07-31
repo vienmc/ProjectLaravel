@@ -38,12 +38,12 @@
                                     <label for="brand_product_name">Số điện thoại</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
                                            placeholder="Số điện thoại" value="{{$account->phone}}"
-                                           name="phone" required>
+                                           name="phone" required style="max-width: 150px">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="roles">Quyền</label>
-                                    <select name="roles" class="form-control input-sm m-bot15">
+                                    <select name="roles" class="form-control input-sm m-bot15" style="max-width: 100px">
                                         <?php
                                         /** @var TYPE_NAME $account */
                                         if ($account->role == 1) {
