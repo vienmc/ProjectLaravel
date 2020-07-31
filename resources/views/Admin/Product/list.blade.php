@@ -50,16 +50,16 @@
                 <?php
                 $message = Session::get('message');
                 if ($message) {
-                    echo '<span style="color:red;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
+                    echo '<span style="color:#1b6d85;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
                     Session::put('message', null);
                 }
                 ?>
-                <table class="table table-striped b-t b-light">
+                    <table class="table table-striped b-t b-light" >
                     <thead>
                     <tr>
-                        <th>Tên sản phẩm</th>
-                        <th>Danh mục sản phẩm</th>
-                        <th>Thương hiệu sản phẩm</th>
+                        <th style="width:200px">Tên sản phẩm</th>
+                        <th style="width:150px">Danh mục sản phẩm</th>
+                        <th style="width:100px">Thương hiệu sản phẩm</th>
                         <th>Giá</th>
                         <th>Ảnh</th>
 {{--                        <th>Mô tả sản phẩm</th>--}}

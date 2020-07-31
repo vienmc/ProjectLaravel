@@ -161,6 +161,7 @@ class ProductController extends Controller
         $obj->product_status = 0;
         $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $obj->save();
+        session()->flash('message', 'Ẩn sản phẩm thành công!');
         return Redirect::to('/product/');
     }
     public function Active_product($id){
@@ -168,6 +169,7 @@ class ProductController extends Controller
         $obj->product_status = 1;
         $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $obj->save();
+        session()->flash('message', 'Hiện sản phẩm thành công!');
         return Redirect::to('/product/');
     }
 

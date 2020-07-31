@@ -30,9 +30,9 @@
                                 @endif
                             </div>
 
-                            <div class="form-group" style="max-width: 150px">
+                            <div class="form-group" >
                                 <label for="category_id">Danh mục sản phẩm</label>
-                                <select name="category_id" class="form-control input-sm m-bot15">
+                                <select name="category_id" class="form-control input-sm m-bot15" style="max-width: 150px">
                                     @foreach($category as $cate)
                                         <option value="{{$cate->id}}">{{$cate->name}}</option>
                                     @endforeach

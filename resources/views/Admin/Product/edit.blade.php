@@ -11,7 +11,7 @@
                     <?php
                     $message = Session::get('message');
                     if ($message) {
-                        echo '<span style="color:red;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
+                        echo '<span style="color:#1b6d85;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
                         Session::put('message', null);
                     }
                     ?>
@@ -35,7 +35,7 @@
 
                             <div class="form-group">
                                 <label for="category_id">Danh mục sản phẩm</label>
-                                <select name="category_id" class="form-control input-sm m-bot15">
+                                <select name="category_id" class="form-control input-sm m-bot15" style="max-width: 150px">
                                     @foreach($category as $cate)
                                         <option {{($cate ->id == $obj -> category_id) ? 'selected' : ''}}
                                                 value="{{$cate -> id}}"> {{$cate ->name}}</option>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="brand_id">Thương hiệu sản phẩm</label>
-                                <select name="brand_id" class="form-control input-sm m-bot15">
+                                <select name="brand_id" class="form-control input-sm m-bot15" style="max-width: 150px">
                                     @foreach($brand as $bran)
                                         <option {{($bran ->id == $obj->brand_id) ? 'selected' : ''}}
                                                 value="{{$bran->id}}">{{$bran->brand_name}}</option>
@@ -62,7 +62,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="max-width: 150px">
                                 <label for="product_price">Giá</label>
                                 <input type="text" class="form-control" onChange="format_curency(this);"
                                        placeholder="Giá" name="product_price" required
@@ -124,7 +124,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="max-width: 150px">
                                 <label for="product_status">Trạng thái</label>
                                 <select name="product_status" class="form-control input-sm m-bot15">
                                     @if($obj -> product_status ==1)
