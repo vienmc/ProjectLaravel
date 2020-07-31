@@ -35,7 +35,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group"style="max-width: 150px">
                                 <label for="status">Trạng thái</label>
                                 <select name="status" class="form-control input-sm m-bot15">
                                     <option value="1">Kích hoạt</option>
