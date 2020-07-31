@@ -30,9 +30,9 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="max-width: 150px">
+                                <label for="category_id">Danh mục sản phẩm</label>
                                 <select name="category_id" class="form-control input-sm m-bot15">
-                                    <label for="category_id">Danh mục sản phẩm</label>
                                     @foreach($category as $cate)
                                         <option value="{{$cate->id}}">{{$cate->name}}</option>
                                     @endforeach
@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="brand_id">Thương hiệu sản phẩm</label>
-                                <select name="brand_id" class="form-control input-sm m-bot15">
+                                <select name="brand_id" class="form-control input-sm m-bot15"  style="max-width: 150px">
                                     @foreach($brand as $bran)
                                         <option value="{{$bran->id}}">{{$bran->brand_name}}</option>
                                     @endforeach
@@ -57,9 +57,9 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group"  style="max-width: 150px">
                                 <label for="product_price">Giá</label>
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control" onChange="format_curency(this);"
                                        placeholder="Giá" name="product_price" required>
                                 @if($errors -> has('product_price'))
                                     <span class="error" style="color: red">
@@ -89,7 +89,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="max-width: 150px">
                                 <label for="product_status">Trạng thái</label>
                                 <select name="product_status" class="form-control input-sm m-bot15">
                                     <option value="1">Hiện</option>
@@ -141,4 +141,9 @@
             $('input[data-cloudinary-public-id="' + imgName + '"]').remove();
         });
     </script>
+{{--    <script type="text/javascript">--}}
+{{--        function format_curency(a) {--}}
+{{--            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");--}}
+{{--        }--}}
+{{--    </script>--}}
 @endsection

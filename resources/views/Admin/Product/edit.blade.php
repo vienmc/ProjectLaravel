@@ -64,7 +64,7 @@
 
                             <div class="form-group">
                                 <label for="product_price">Giá</label>
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control" onChange="format_curency(this);"
                                        placeholder="Giá" name="product_price" required
                                        value="{{$obj->product_price}} ">
                                 @if($errors -> has('product_price'))
@@ -185,4 +185,9 @@
             $(this).parent().remove();
         });
     </script>
+{{--    <script type="text/javascript">--}}
+{{--        function format_curency(a) {--}}
+{{--            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");--}}
+{{--        }--}}
+{{--    </script>--}}
 @endsection

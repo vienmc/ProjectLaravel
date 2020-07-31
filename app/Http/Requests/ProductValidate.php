@@ -35,6 +35,7 @@ class ProductValidate extends FormRequest
     {
         return [
             'required'=>'Không được để trống',
+            'numeric'=>'Phải là số',
         ];
     }
 }

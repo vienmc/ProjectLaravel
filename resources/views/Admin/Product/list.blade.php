@@ -72,7 +72,7 @@
                         <td>{{$product_list->product_name}}</td>
                         <td>{{$product_list->category->name}}</td>
                         <td>{{$product_list->brand->brand_name}}</td>
-                        <td>{{$product_list->product_price}}</td>
+                        <td>{{number_format($product_list->product_price).' VNĐ'}}</td>
                         <td>
                             @foreach($product_list->small_photos as $p)
                                 <img src="{{$p}}" alt="" class="rounded-circle">
@@ -85,12 +85,12 @@
                                 if ($product_list->product_status == 1) {
                                 ?>
                                         <a href="{{URL::to('/unactive-product/'.$product_list->id)}}"><span
-                                                class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                                                class="fa-thumb-styling fa fa-check"></span></a>
                                     <?php
                                 }else{
                                 ?>
                                     <a href="{{URL::to('/active-product/'.$product_list->id)}}"><span
-                                            class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                                            class="fa-thumb-styling fa fa-times"></span></a>
                                     <?php
                                 }
                                 ?>

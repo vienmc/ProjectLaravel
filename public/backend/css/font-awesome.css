@@ -222,6 +222,7 @@
 .fa-remove:before,
 .fa-close:before,
 .fa-times:before {
+    color: crimson;
   content: "\f00d";
 }
 .fa-search-plus:before {

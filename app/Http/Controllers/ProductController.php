@@ -6,11 +6,9 @@ use App\Brand;
 use App\Category;
 use App\Http\Requests\ProductValidate;
 use App\Product;
-use App\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Response;
 
 class ProductController extends Controller
 {
