@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 Danh sách các loại sản phẩm
             </div>
-            <div class="row w3-res-tb" style="text-align: center; margin-bottom: 5px">
+            <div class="row w3-res-tb" style="text-align: center; margin-bottom: 5px; float: left">
                 <form class="form-inline" action="{{URL::to('/find-by-name')}}" method="get">
                     {{csrf_field()}}
                     <div class="form-group mb-2">
@@ -17,6 +17,7 @@
                     <button type="submit" class="btn btn-primary mb-2">Tìm</button>
                 </form>
             </div>
+            <div style="clear: both"></div>
             <div class="table-responsive">
                 <?php
                 $message = Session::get('message');

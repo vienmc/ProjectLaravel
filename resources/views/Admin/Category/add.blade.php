@@ -24,9 +24,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="brand_product_name">Mô tả</label>
-                                <input type="text" class="form-control"
-                                       placeholder="Mô tả" name="description" required>
+                                <label for="brand_desc">Mô tả</label>
+                                <textarea style="resize: none" rows="5" class="form-control"
+                                          {{--                                          id="ckeditor1"--}}
+                                          placeholder="Mô tả" name="description"></textarea>
+                                @if($errors -> has('description'))
+                                    <span class="error" style="color: red">
+                                {{$errors -> first('description')}}
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="form-group">
