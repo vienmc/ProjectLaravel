@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 Danh sách tài khoản
             </div>
-            <div class="row w3-res-tb" style="text-align: center; margin-bottom: 5px">
+            <div class="row w3-res-tb" style="text-align: center; margin-bottom: 5px; float: left">
                 <form class="form-inline" action="{{URL::to('/find-by-email')}}" method="get">
                     {{csrf_field()}}
                     <div class="form-group mb-2">
@@ -17,11 +17,12 @@
                     <button type="submit" class="btn btn-primary mb-2">Tìm</button>
                 </form>
             </div>
+            <div style="clear: both"></div>
             <div class="table-responsive">
                 <?php
                 $message = Session::get('message');
                 if ($message) {
-                    echo '<span style="color:red;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
+                    echo '<span style="color:blue;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
                     Session::put('message', null);
                 }
                 ?>

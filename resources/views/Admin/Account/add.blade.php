@@ -38,12 +38,12 @@
                             <div class="form-group">
                                 <label for="brand_product_name">Số điện thoại</label>
                                 <input type="text" class="form-control"
-                                       placeholder="Mật khẩu" name="phone" required>
+                                       placeholder="Mật khẩu" name="phone" required style="max-width: 150px">
                             </div>
 
                             <div class="form-group">
                                 <label for="roles">Quyền</label>
-                                <select name="roles" class="form-control input-sm m-bot15">
+                                <select name="roles" class="form-control input-sm m-bot15" style="max-width: 100px">
                                     <option value="1">Admin</option>
                                     <option value="0">Người dùng</option>
                                 </select>
@@ -51,7 +51,7 @@
 
                             <div class="form-group">
                                 <label for="status">Trạng thái</label>
-                                <select name="status" class="form-control input-sm m-bot15">
+                                <select name="status" class="form-control input-sm" style="max-width: 100px">
                                     <option value="1">Kích hoạt</option>
                                     <option value="0">Khóa</option>
                                 </select>
