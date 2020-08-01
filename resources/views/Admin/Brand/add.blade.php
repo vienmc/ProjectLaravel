@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label for="brand_desc">Mô tả thương hiệu sản phẩm</label>
                                 <textarea style="resize: none" rows="5" class="form-control"
-{{--                                          id="ckeditor1"--}}
+                                          id="ckeditor1"
                                           placeholder="Mô tả thương hiệu sản phẩm" name="brand_desc"></textarea>
                                 @if($errors -> has('brand_desc'))
                                     <span class="error" style="color: red">
@@ -39,9 +39,9 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                <label for="brand_status">Trạng thái</label>
-                                <select name="brand_status" class="form-control input-sm m-bot15">
+                                <div class="form-group">
+                                <label class="" for="brand_status">Trạng thái</label>
+                                <select name="brand_status" class="form-control input-sm m-bot15 " style="max-width: 150px">
                                     <option value="1">Hiện</option>
                                     <option value="0">Ẩn</option>
                                 </select>

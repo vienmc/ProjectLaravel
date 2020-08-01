@@ -134,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <li class="sub-menu">
                         <a href="javascript:;">
-                            <i class="fa fa-book"></i>
+                            <i class="fa fa-star-half-o  "></i>
                             <span>Thương hiệu sản phẩm</span>
                         </a>
                         <ul class="sub">

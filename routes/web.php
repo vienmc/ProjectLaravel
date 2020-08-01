@@ -34,6 +34,7 @@ Route::resource('brand', 'BrandController');
 Route::get('/unactive-brand/{brand_id}', 'BrandController@Unactive_brand');
 Route::get('/active-brand/{brand_id}', 'BrandController@active_brand');
 
+
 Route::resource('categories','CategoryController');
 Route::get('/unactive-categories/{categories_id}', 'CategoryController@Unactive_categories');
 Route::get('/active-categories/{categories_id}', 'CategoryController@Active_categories');

@@ -5,23 +5,29 @@
             <div class="panel-heading">
                 Danh sách Thương hiệu sản phẩm
             </div>
-            <div class="row w3-res-tb" style="text-align: center; margin-bottom: 5px">
-                <form class="form-inline" action="{{URL::to('/find-by-name')}}" method="get">
-                    {{csrf_field()}}
-                    <div class="form-group mb-2">
-                        <label>Tìm theo tên</label>
+            <div class="row w3-res-tb" >
+                <form action="/brand" class="form-inline" method="get">
+                    @csrf
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label >TÌM THEO TÊN THƯƠNG HIỆU </label>
+                            <input  value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Search by keyword">
+                            <input type="submit" style="visibility: hidden;" />
+                        </div>
+                        <div class="form-group" >
+                            <label for="exampleFormControlSelect1" >TÌM THEO THỜI GIAN</label>
+                            <input type="text" name="dates" class="form-control">
+                            <input type="hidden" name="start">
+                            <input type="hidden" name="end">
+                        </div>
                     </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" name="keyword" class="form-control" id="inputPassword2">
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-2">Tìm</button>
                 </form>
             </div>
             <div class="table-responsive">
                 <?php
                 $message = Session::get('message');
                 if ($message) {
-                    echo '<span style="color:red;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
+                    echo '<span style=" color:red;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
                     Session::put('message', null);
                 }
                 ?>
@@ -59,38 +65,42 @@
                           <td>
                               <a href="/brand/{{$item->id}}/edit" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i>
                               </a>
-{{--                              <a href="#" class="active styling-delete" title="{{$item->id}}" ui-toggle-class="">--}}
-{{--                                  <i--}}
-{{--                                      class="fa fa-times text-danger text"></i>--}}
-{{--                              </a>--}}
                           </td>
                           </td>
                       </tr>
                     @endforeach
-                    <script>
-                        var btnDeletes = document.getElementsByClassName('active styling-delete');
-                        for(var i = 0; i < btnDeletes.length; i++){
-                            btnDeletes[i].onclick = function(){
-                                if(confirm('Are you sure?')){
-                                    var id = this.getAttribute('title');
-                                    var xhr = new XMLHttpRequest();
-                                    xhr.open('DELETE', '/brand/' + id);
-                                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{csrf_token()}}');
-                                    xhr.onreadystatechange = function(){
-                                        if(xhr.readyState == 4 && xhr.status == 200) {
-                                            alert('Delete success');
-                                            window.location.reload();
-                                        }
-                                    }
-                                    xhr.send();
-                                }
-                            }
-                        }
-                    </script>
                     </tbody>
                 </table>
             </div>
-{{--            {{$list->links()}}--}}
+
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+        $('input[name="dates"]').daterangepicker(
+            {
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }
+        );
+        $('#categorySelect').change(function () {
+            $('#product_form').submit();
+        })
+        $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+            $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
+            $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
+            $('#product_form').submit();
+        });
+    </script>
+@endsection
+

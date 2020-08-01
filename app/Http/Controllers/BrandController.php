@@ -21,10 +21,17 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = Brand::all();
-        return view('Admin.Brand.list')->with('list', $list);
+        $data['keyword'] = '';
+        $brand = Brand::all();
+        $brand1= Brand::query();
+        if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
+            $data['keyword'] = $request->get('keyword');
+            $brand1 = $brand1->where('brand_name', 'like', '%' . $request->get('keyword') . '%');
+        }
+        $data['list'] = $brand1->get();
+        return view('Admin.Brand.list')->with( $data);
     }
 
     /**
@@ -93,7 +100,7 @@ class BrandController extends Controller
         $obj->brand_desc = $request->get('brand_desc');
         $obj->brand_status = $request->get('brand_status');
         $obj->save();
-        session::put('message', 'Sửa thương hiện sản phẩm thành công');
+        session::put('message', 'Cập nhật thương hiện sản phẩm thành công');
         return redirect('/brand');
     }
 
