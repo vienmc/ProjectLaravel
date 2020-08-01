@@ -31,8 +31,8 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Tìm kiếm theo thời gian</label>
                                             <input type="text" name="dates" class="form-control">
-                                            <input type="hidden" name="start">
-                                            <input type="hidden" name="end">
+                                            <input type="hidden" name="start" >
+                                            <input type="hidden" name="end" >
                                         </div>
                                     </div>
                                 </div>
@@ -158,6 +158,8 @@
             $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
             $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
             $('#product_form').submit();
+            $('input[name="dates"]').val(setValue(picker.endDate.format('YYYY-MM-DD')));
+
         });
     </script>
 @endsection

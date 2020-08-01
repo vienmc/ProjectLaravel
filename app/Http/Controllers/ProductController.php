@@ -41,7 +41,10 @@ class ProductController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $product_list = $product_list->whereBetween('created_at', [$from, $to]);
         }
-        $data['list'] = $product_list->paginate(10);
+        $data['list'] = $product_list->paginate(2)
+            ->appends($request->only('category_id'))
+            ->appends($request->only('keyword'))
+            ->appends($request->only('dates'));
         $data['categories'] = $categories;
 
         return view('Admin.Product.list')->with($data);
@@ -54,26 +57,26 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = Category::where('status','=',1)->get();
-        $brand = Brand::where('brand_status','=',1)->get();
-        return view('Admin.Product.add')->with(compact('category','brand'));
+        $category = Category::where('status', '=', 1)->get();
+        $brand = Brand::where('brand_status', '=', 1)->get();
+        return view('Admin.Product.add')->with(compact('category', 'brand'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(ProductValidate $request)
     {
-        $request ->validated();
+        $request->validated();
         $obj = new Product();
         $obj->product_name = $request->get('product_name');
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $money = str_replace( array(',', ' ','VNĐ'), '',$request->get('product_price'));
+        $money = str_replace(array(',', ' ', 'VNĐ'), '', $request->get('product_price'));
         $obj->product_price = $money;
         $obj->product_status = $request->get('product_status');
         $thumbnails = $request->get('thumbnails');
@@ -92,7 +95,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -103,7 +106,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -114,14 +117,14 @@ class ProductController extends Controller
         if ($obj == null) {
             return 'loi';
         }
-        return view('Admin.Product.edit')->with(compact('obj','category','brand'));
+        return view('Admin.Product.edit')->with(compact('obj', 'category', 'brand'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(ProductValidate $request, $id)
@@ -132,7 +135,7 @@ class ProductController extends Controller
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $money = str_replace( array(',', ' ','VNĐ'), '',$request->get('product_price'));
+        $money = str_replace(array(',', ' ', 'VNĐ'), '', $request->get('product_price'));
         $obj->product_price = $money;
         $obj->product_status = $request->get('product_status');
         $thumbnails = $request->get('thumbnails');
@@ -148,7 +151,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -158,16 +161,20 @@ class ProductController extends Controller
         $obj->save();
         return 'Response::json([], 200)';
     }
-    public function Unactive_product($id){
-        $obj = Product::where('id','=',$id)->first();
+
+    public function Unactive_product($id)
+    {
+        $obj = Product::where('id', '=', $id)->first();
         $obj->product_status = 0;
         $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $obj->save();
         session()->flash('message', 'Ẩn sản phẩm thành công!');
         return Redirect::to('/product/');
     }
-    public function Active_product($id){
-        $obj = Product::where('id','=',$id)->first();
+
+    public function Active_product($id)
+    {
+        $obj = Product::where('id', '=', $id)->first();
         $obj->product_status = 1;
         $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $obj->save();
