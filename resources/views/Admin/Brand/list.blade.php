@@ -100,6 +100,7 @@
             $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
             $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
             $('#product_form').submit();
+
         });
     </script>
 @endsection
