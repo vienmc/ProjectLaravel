@@ -66,7 +66,7 @@
                                 <label for="product_price">Giá</label>
                                 <input type="text" class="form-control" onChange="format_curency(this);"
                                        placeholder="Giá" name="product_price" required
-                                       value="{{$obj->product_price}} ">
+                                       value="{{number_format($obj->product_price).' VNĐ'}}">
                                 @if($errors -> has('product_price'))
                                     <span class="error" style="color: red">
                                 {{$errors -> first('product_price')}}
@@ -185,9 +185,14 @@
             $(this).parent().remove();
         });
     </script>
-{{--    <script type="text/javascript">--}}
-{{--        function format_curency(a) {--}}
-{{--            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");--}}
-{{--        }--}}
-{{--    </script>--}}
+    <script type="text/javascript">
+        function format_curency(a) {
+            if (a.value.includes(' VNĐ'))
+            {
+                a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+            return;
+            }
+            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,").concat(' VNĐ');
+        }
+    </script>
 @endsection

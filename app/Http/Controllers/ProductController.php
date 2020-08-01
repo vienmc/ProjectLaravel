@@ -25,7 +25,7 @@ class ProductController extends Controller
         $data['category_id'] = 0;
         $data['keyword'] = '';
         $categories = Category::all();
-        $product_list = Product::query();
+        $product_list = Product::query()->orderby('updated_at', 'desc');
         if ($request->has('category_id') && $request->get('category_id') != 0) {
             $data['category_id'] = $request->get('category_id');
             $product_list = $product_list->where('category_id', '=', $request->get('category_id'));
@@ -41,7 +41,7 @@ class ProductController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $product_list = $product_list->whereBetween('created_at', [$from, $to]);
         }
-        $data['list'] = $product_list->get();
+        $data['list'] = $product_list->paginate(10);
         $data['categories'] = $categories;
 
         return view('Admin.Product.list')->with($data);
@@ -73,10 +73,11 @@ class ProductController extends Controller
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $obj->product_price = $request->get('product_price');
+        $money = str_replace( array(',', ' ','VNĐ'), '',$request->get('product_price'));
+        $obj->product_price = $money;
         $obj->product_status = $request->get('product_status');
         $thumbnails = $request->get('thumbnails');
-        foreach ($thumbnails as $thumbnail) {
+        foreach ((array)$thumbnails as $thumbnail) {
             $obj->thumbnail .= $thumbnail . ',';
         }
 
@@ -131,11 +132,12 @@ class ProductController extends Controller
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $obj->product_price = $request->get('product_price');
+        $money = str_replace( array(',', ' ','VNĐ'), '',$request->get('product_price'));
+        $obj->product_price = $money;
         $obj->product_status = $request->get('product_status');
         $thumbnails = $request->get('thumbnails');
         $obj->thumbnail = '';
-        foreach ($thumbnails as $thumbnail) {
+        foreach ((array)$thumbnails as $thumbnail) {
             $obj->thumbnail .= $thumbnail . ',';
         }
         $obj->save();

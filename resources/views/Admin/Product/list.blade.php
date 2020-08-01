@@ -75,7 +75,7 @@
                         <td>{{number_format($product_list->product_price).' VNĐ'}}</td>
                         <td>
                             @foreach($product_list->small_photos as $p)
-                                <img src="{{$p}}" alt="" class="rounded-circle">
+                                <img src="{{$p}}" alt="" class="rounded-circle" style="width: 100px">
                             @endforeach
                           </td>
 {{--                        <td>{!! $item->product_desc  !!}</td>--}}
@@ -111,7 +111,7 @@
                 </table>
             </div>
             <br>
-{{--                <span class="text-center">{{$list->links()}}</span>--}}
+                <span class="text-center">{{$list->links()}}</span>
         </div>
     </div>
     <script>
