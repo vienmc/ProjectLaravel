@@ -5,7 +5,6 @@
             <section class="panel">
                 <header class="panel-heading">
                     Thêm thương hiệu sản phẩm sản phẩm
-                    <mới></mới>
                 </header>
                 <div class="panel-body">
                     <?php

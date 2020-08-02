@@ -14,7 +14,7 @@
                             <input  value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Search by keyword">
                             <input type="submit" style="visibility: hidden;" />
                         </div>
-                        <div class="form-group" >
+                        <div class="form-group"  >
                             <label for="exampleFormControlSelect1" >TÌM THEO THỜI GIAN</label>
                             <input type="text" name="dates" class="form-control">
                             <input type="hidden" name="start">
@@ -43,29 +43,28 @@
                     <tbody>
                     @foreach($list as $item)
                       <tr>
-                          <td>{{$item->brand_name}}</td>
-                          <td>{{$item->brand_desc}}</td>
+                          <td style="font-size: large">{{$item->brand_name}}</td>
+                          <td style="font-size: medium"> {{$item->brand_desc}}</td>
                           <td>
-                             <span class="text-ellipsis">
-                                    <?php
-                                 /** @var TYPE_NAME $item */
-                                 if ($item->brand_status == 1) {
-                                 ?>
-                                        <a href="{{URL::to('/unactive-brand/'.$item->id)}}"><span
-                                                class="fa-thumb-styling fa fa-thumbs-up"></span></a>
-                                    <?php
-                                 }else{
-                                 ?>
-                                    <a href="{{URL::to('/active-brand/'.$item->id)}}"><span
-                                            class="fa-thumb-styling fa fa-thumbs-down"></span></a>
-                                    <?php
-                                 }
-                                 ?>
-                                </span>
+                          <form  action="/brand"  class="text-ellipsis" method="get" style="" >
+                                 @csrf
+                              @if($item->brand_status == 1)
+                                  <input  value="{{$item->id}}"  type="text" name="brand_id" class="form-control"  style="visibility: hidden;">
+                                  <label  style="color: #00a6b2" >KÍCH HOẠT <span  class="fa-thumb-styling fa fa-check" aria-hidden="true"> </span></label>
+
+                                  <input  value="{{$item->brand_status}}"  type="text" name="brand_status" class="form-control"  style="visibility: hidden;">
+                                  <input value="KHÓA" type="submit"  class="btn btn-danger">
+                                  @else
+                                  <input  value="{{$item->id}}"  type="text" name="brand_id" class="form-control"  style="visibility: hidden;">
+                                  <label style="color: red" >ĐANG KHÓA  <span  class="fa-thumb-styling fa fa-times" aria-hidden="true"></label>
+                                  <input  value="{{$item->brand_status}}"  type="text" name="brand_status" class="form-control"  style="visibility: hidden;">
+                                  <input value="KÍCH HOẠT" type="submit" class="btn btn-info" >
+                              @endif
+                             </form>
+                          </td>
                           <td>
                               <a href="/brand/{{$item->id}}/edit" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i>
                               </a>
-                          </td>
                           </td>
                       </tr>
                     @endforeach
@@ -81,15 +80,15 @@
         $('input[name="dates"]').daterangepicker(
             {
                 locale: {
-                    format: 'DD/MM/YYYY'
+                    format: 'DD-MM-YYYY'
                 },
                 ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    'Hôm nay': [moment(), moment()],
+                    'Hôm qua': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    '7 ngày trước': [moment().subtract(6, 'days'), moment()],
+                    '30 ngày trước': [moment().subtract(29, 'days'), moment()],
+                    'Tháng này': [moment().startOf('month'), moment().endOf('month')],
+                    'Tháng trước': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 }
             }
         );
@@ -97,7 +96,6 @@
             $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
             $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
             $('#brand_form').submit();
-
         });
     </script>
 @endsection

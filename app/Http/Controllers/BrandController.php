@@ -26,6 +26,18 @@ class BrandController extends Controller
         $data['keyword'] = '';
         $brand = Brand::all();
         $brand1= Brand::query();
+        if (($request->has('brand_id') && $request->has('brand_status' )) && (strlen($request->get('brand_id')) && strlen($request->get('brand_status'))) > 0) {
+            $status = Brand::where('id','=',$request->get('brand_id'))->first();
+            if ($request->get('brand_status') == 1){
+                $status->brand_status = 0;
+                session::put('message', 'Khóa thương hiệu sản phẩm thành công');
+            } if ($request->get('brand_status') == 0){
+                $status->brand_status = 1;
+                session::put('message', 'kích hoạt thương hiệu sản phẩm thành công');
+            }
+            $status->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+            $status->save();
+        }
         if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
             $data['keyword'] = $request->get('keyword');
             $brand1 = $brand1->where('brand_name', 'like', '%' . $request->get('keyword') . '%');
@@ -122,22 +134,5 @@ class BrandController extends Controller
         $obj = Brand::find($id);
         $obj->delete();
         return Response::json([], 200);
-    }
-    public function Unactive_brand($brand_id){
-        $account = Brand::where('id','=',$brand_id)->first();
-        $account->brand_status = 0;
-        $account->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-        $account->save();
-        session::put('message', 'Khóa thương hiệu sản phẩm thành công');
-        return Redirect::to('/brand');
-    }
-
-    public function Active_brand($brand_id){
-        $account = Brand::where('id','=',$brand_id)->first();
-        $account->brand_status = 1;
-        $account->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-        $account->save();
-        session::put('message', 'Kích hoạt thương hiệu sản phẩm thành công');
-        return Redirect::to('/brand');
     }
 }
