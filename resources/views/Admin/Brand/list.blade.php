@@ -6,7 +6,7 @@
                 Danh sách Thương hiệu sản phẩm
             </div>
             <div class="row w3-res-tb" >
-                <form action="/brand" class="form-inline" method="get">
+                <form action="/brand" class="form-inline" method="get" id="brand_form">
                     @csrf
                     <div class="form-body">
                         <div class="form-group">
@@ -93,13 +93,10 @@
                 }
             }
         );
-        $('#categorySelect').change(function () {
-            $('#product_form').submit();
-        })
         $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
             $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
             $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
-            $('#product_form').submit();
+            $('#brand_form').submit();
 
         });
     </script>
