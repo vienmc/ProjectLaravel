@@ -70,6 +70,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                    <span class="text-center">{{$link->links()}}</span>
             </div>
 
         </div>

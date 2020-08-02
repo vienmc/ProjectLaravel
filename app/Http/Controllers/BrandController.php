@@ -49,6 +49,7 @@ class BrandController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $brand1 = $brand1->whereBetween('created_at', [$from, $to]);
         }
+        $data['link'] = $brand1->paginate(5);
         $data['list'] = $brand1->get();
         return view('Admin.Brand.list')->with( $data);
     }
