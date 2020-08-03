@@ -274,7 +274,11 @@
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
-                                            <span class="pull-right">(50)</span>{{$brand_product->brand_name}}
+                                            <span class="pull-right">
+                                            @foreach($brand_product->product_brand as $count_brand)
+                                                    {{$count_brand->brand_id}
+                                                @endforeach
+                                            </span>{{$brand_product->brand_name}}
                                         </a></li>
                                 </ul>
                             </div>
