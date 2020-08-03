@@ -11,7 +11,9 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        if (env('DB_CONNECTION')=='mysql') {
+            \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        }
         \Illuminate\Support\Facades\DB::table('brands')->truncate();
         \Illuminate\Support\Facades\DB::table('brands')->insert([
             [
@@ -64,6 +66,8 @@ class BrandSeeder extends Seeder
             ],
 
         ]);
-        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        if (env('DB_CONNECTION')=='mysql') {
+            \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        }
     }
 }

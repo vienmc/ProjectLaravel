@@ -11,7 +11,9 @@ class CategorySeeding extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        if (env('DB_CONNECTION')=='mysql') {
+            \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        }
         \Illuminate\Support\Facades\DB::table('categories')->truncate();
         \Illuminate\Support\Facades\DB::table('categories')->insert([
             [
@@ -72,6 +74,8 @@ class CategorySeeding extends Seeder
                 'updated_at' => \Illuminate\Support\Carbon::now()->addDays(-0)->format('Y-m-d H:i:s')
             ]
         ]);
-        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        if (env('DB_CONNECTION')=='mysql') {
+            \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        }
     }
 }
