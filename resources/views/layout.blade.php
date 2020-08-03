@@ -253,6 +253,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
+
                 <div class="left-sidebar">
                     <h2>Danh mục sản phẩm</h2>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
@@ -274,7 +275,11 @@
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
-                                            <span class="pull-right">(50)</span>{{$brand_product->brand_name}}
+                                            <span class="pull-right">
+                                            @foreach($brand_product->product_brand as $count_brand)
+                                                    {{$count_brand->brand_id}}
+                                                @endforeach
+                                            </span>{{$brand_product->brand_name}}
                                         </a></li>
                                 </ul>
                             </div>
@@ -295,9 +300,10 @@
                     </div><!--/shipping-->
 
                 </div>
+
             </div>
 
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-9">
                 @yield('content')
             </div>
         </div>
