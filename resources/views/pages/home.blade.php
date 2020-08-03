@@ -27,5 +27,7 @@
                 </div>
             </div>
         @endforeach
+        <br>                <span class="text-center">{{$all_product->links()}}</span>
+
     </div><!--features_items-->
 @endsection
