@@ -6,7 +6,7 @@
             <div class="col-sm-4">
                 <div class="product-image-wrapper">
                     <div class="single-products">
-                        <div class="productinfo text-center">
+                        <div class="productinfo text-center" style="height:300px">
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$product->id)}}">
                                     <img src="{{$product->small_photo}}" alt="" class="rounded-circle" style="width: 100px;height: 120px ">
                             </a>
@@ -25,8 +25,8 @@
                 </div>
             </div>
         @endforeach
-        <br>
-        <span class="text-center">{{$all_product->links()}}</span>
 
-    </div><!--features_items-->
+            </div><!--features_items-->
+    <br>
+    <span class="text-center">{{$all_product->links()}}</span>
 @endsection
