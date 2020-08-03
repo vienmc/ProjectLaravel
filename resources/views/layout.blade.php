@@ -276,7 +276,7 @@
                                     <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
                                             <span class="pull-right">
                                             @foreach($brand_product->product_brand as $count_brand)
-                                                    {{$count_brand->brand_id}
+                                                    {{$count_brand->brand_id}}
                                                 @endforeach
                                             </span>{{$brand_product->brand_name}}
                                         </a></li>
