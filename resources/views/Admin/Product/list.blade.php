@@ -109,6 +109,7 @@
                     </tbody>
                     @endforeach
                 </table>
+
             </div>
             <br>
                 <span class="text-center">{{$list->links()}}</span>
