@@ -8,9 +8,7 @@
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$product->id)}}">
-                                @foreach($product->small_photos as $p)
-                                    <img src="{{$p}}" alt="" class="rounded-circle" style="width: 100px">
-                                @endforeach
+                                    <img src="{{$product->small_photo}}" alt="" class="rounded-circle" style="width: 100px;height: 120px ">
                             </a>
                             <h2>{{number_format($product->product_price)}} VNĐ</h2>
                             <p>{{$product->product_name}}</p>
@@ -27,7 +25,8 @@
                 </div>
             </div>
         @endforeach
-        <br>                <span class="text-center">{{$all_product->links()}}</span>
+        <br>
+        <span class="text-center">{{$all_product->links()}}</span>
 
     </div><!--features_items-->
 @endsection

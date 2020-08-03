@@ -297,7 +297,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-9 padding-right">
+            <div class="col-sm-9">
                 @yield('content')
             </div>
         </div>
