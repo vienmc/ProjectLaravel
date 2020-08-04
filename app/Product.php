@@ -43,6 +43,20 @@ class Product extends Model
         }
         return $list_photos;
     }
+    public function getSmallsPhotosAttribute()
+    {
+        if ($this->thumbnail == null || strlen($this->thumbnail) == 0) {
+            return array('https://thanhtra.com.vn/image/images/noimages.png');
+        }
+        $list_photos = array();
+        $photos = explode(',', $this->thumbnail);
+        foreach ($photos as $p) {
+            if (strlen($p) > 0 && $p != $photos[0]) {
+                array_push($list_photos, self::$cloudinary_link . 'w_100,c_scale/' . $p . '.jpg');
+            }
+        }
+        return $list_photos;
+    }
 
     public function getLargePhotosAttribute()
     {

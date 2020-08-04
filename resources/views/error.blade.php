@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to error page</h1>
+    <h1>Error page</h1>
     {{$msg}}
 </body>
 </html>

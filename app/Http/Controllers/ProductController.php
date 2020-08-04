@@ -8,6 +8,7 @@ use App\Http\Requests\ProductValidate;
 use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
@@ -18,6 +19,39 @@ class ProductController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
+
+    public function show_detail_product($id)
+    {
+//        $category_product = DB::table('categories')->where('status', 1)->orderby('id', 'desc')->get();
+//        $brand_product = DB::table('brands')->where('brand_status', 1)->orderby('id', 'desc')->get();
+//        $detail_product = DB::table('products')
+////            ->join('categories', 'categories.id', '=', 'products.category_id')
+////            ->join('brands', 'brands.id', '=', 'products.brand_id')
+//            ->where('products.id', $id)->get();
+
+//        foreach ($detail_product as $key => $value) {
+//            $category_id = $value->category_id;
+//        }
+//        echo '<pre>';
+//        print_r($category_id);
+//        echo '</pre>';
+
+//        $relate_product =
+//            ->join('categories', 'categories.id', '=', 'products.category_id')
+//            ->join('brands', 'brands.id', '=', 'products.brand_id')
+//            ->where('products.category_id', $category_id)->whereNotIn('products.id', [$id])->get();
+
+            $detail_product = Product::find($id);
+        $current_category = $detail_product->category->id;
+        $relate_product = Category::find($current_category)->product;
+
+        $category_product = Category::where('status','=',1)->orderby('updated_at', 'desc')->get();
+        $brand_product = Brand::where('brand_status', 1)->orderby('updated_at', 'desc')->get();
+        $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+        return view('pages.product.detail_product')->with('category', $category_product)
+            ->with('brand', $brand_product)->with('all_product', $all_product)->with('detail_product', $detail_product)
+            ->with('relate', $relate_product);
+    }
     public function index(Request $request)
     {
         // tạo biến data là một mảng chứa dữ liệu trả về.

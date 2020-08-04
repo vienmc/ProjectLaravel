@@ -72,7 +72,7 @@
                     <div class="btn-group pull-right">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                USA
+                                VN
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -83,7 +83,7 @@
 
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                DOLLAR
+                                VND
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -147,16 +147,8 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
-                            <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Products</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{URL::to('/')}}" class="active">Trang chủ</a></li>
+                            <li><a href="{{URL::to('/')}}" >Sản Phẩm</a></li>
                             <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="blog.html">Blog List</a></li>
@@ -198,7 +190,7 @@
                         <div class="item active">
                             <div class="col-sm-6">
                                 <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free E-Commerce Template</h2>
+                                <h2></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. </p>
                                 <button type="button" class="btn btn-default get">Get it now</button>
@@ -212,7 +204,7 @@
                         <div class="item">
                             <div class="col-sm-6">
                                 <h1><span>E</span>-SHOPPER</h1>
-                                <h2>100% Responsive Design</h2>
+                                <h2></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. </p>
                                 <button type="button" class="btn btn-default get">Get it now</button>
@@ -227,7 +219,7 @@
                         <div class="item">
                             <div class="col-sm-6">
                                 <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free Ecommerce Template</h2>
+                                <h2></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. </p>
                                 <button type="button" class="btn btn-default get">Get it now</button>
