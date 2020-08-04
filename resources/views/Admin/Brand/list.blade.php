@@ -46,8 +46,7 @@
                           <td >{{$item->brand_name}}</td>
                           <td> {{$item->brand_desc}}</td>
                           <td>
-                              <span class="text-ellipsis">
-                          <form  action="/brand"  method="get"  >
+                          <form  action="/brand" class="text-ellipsis" method="get"  >
                                  @csrf
                               @if($item->brand_status == 1)
                                   <input  value="{{$item->id}}"  type="hidden" name="brand_id" class="form-control">
@@ -59,7 +58,6 @@
                                   <input  value="{{$item->brand_status}}"  type="hidden" name="brand_status" class="form-control">
                               @endif
                              </form>
-                                  </span>
                           </td>
                           <td>
                               <a href="/brand/{{$item->id}}/edit" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i>
