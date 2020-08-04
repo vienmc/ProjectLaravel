@@ -43,24 +43,23 @@
                     <tbody>
                     @foreach($list as $item)
                       <tr>
-                          <td style="font-size: large">{{$item->brand_name}}</td>
-                          <td style="font-size: medium"> {{$item->brand_desc}}</td>
+                          <td >{{$item->brand_name}}</td>
+                          <td> {{$item->brand_desc}}</td>
                           <td>
-                          <form  action="/brand"  class="text-ellipsis" method="get" style="" >
+                              <span class="text-ellipsis">
+                          <form  action="/brand"  method="get"  >
                                  @csrf
                               @if($item->brand_status == 1)
-                                  <input  value="{{$item->id}}"  type="text" name="brand_id" class="form-control"  style="visibility: hidden;">
-                                  <label  style="color: #00a6b2" >KÍCH HOẠT <span  class="fa-thumb-styling fa fa-check" aria-hidden="true"> </span></label>
-
-                                  <input  value="{{$item->brand_status}}"  type="text" name="brand_status" class="form-control"  style="visibility: hidden;">
-                                  <input value="KHÓA" type="submit"  class="btn btn-danger">
+                                  <input  value="{{$item->id}}"  type="hidden" name="brand_id" class="form-control">
+                                  <button type="submit" class="fa-thumb-styling fa fa-check" class="btn" style=" color: #00a6b2; border: none; padding: 0; background: none;" > </button>
+                                  <input  value="{{$item->brand_status}}"  type="hidden" name="brand_status" class="form-control"  >
                                   @else
-                                  <input  value="{{$item->id}}"  type="text" name="brand_id" class="form-control"  style="visibility: hidden;">
-                                  <label style="color: red" >ĐANG KHÓA  <span  class="fa-thumb-styling fa fa-times" aria-hidden="true"></label>
-                                  <input  value="{{$item->brand_status}}"  type="text" name="brand_status" class="form-control"  style="visibility: hidden;">
-                                  <input value="KÍCH HOẠT" type="submit" class="btn btn-info" >
+                                  <input  value="{{$item->id}}"  type="hidden" name="brand_id" class="form-control"  style="visibility: hidden;">
+                                  <button type="submit" class="fa-thumb-styling fa fa-times" class="btn" style=" border: none; padding: 0; background: none;" > </button>
+                                  <input  value="{{$item->brand_status}}"  type="hidden" name="brand_status" class="form-control">
                               @endif
                              </form>
+                                  </span>
                           </td>
                           <td>
                               <a href="/brand/{{$item->id}}/edit" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i>
