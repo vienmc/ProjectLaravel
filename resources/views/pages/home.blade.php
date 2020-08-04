@@ -1,5 +1,28 @@
 @extends('layout')
 @section('content')
+    <div class="table-agile-info">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/" method="get" id="product_form">
+                            @csrf
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Tìm kiếm sản phẩm</label>
+                                            <input value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Nhập sản phẩm cần tìm">
+                                            <input type="submit" style="visibility: hidden;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="features_items"><!--features_items-->
         <h2 class="title text-center">Sản phẩm mới</h2>
         @foreach($all_product as $key =>$product)

@@ -75,7 +75,7 @@ class ProductController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $product_list = $product_list->whereBetween('created_at', [$from, $to]);
         }
-        $data['list'] = $product_list->paginate(2)
+        $data['list'] = $product_list->paginate(9)
             ->appends($request->only('category_id'))
             ->appends($request->only('keyword'))
             ->appends($request->only('dates'));

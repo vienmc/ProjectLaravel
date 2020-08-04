@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/chi-tiet-san-pham/{id}', 'ProductController@show_detail_product');
 
-
 Route::get('/', 'HomeController@index');
+
 
 Route::get('/login', 'AdminController@Index');
 Route::get('/admin-signup', 'AdminController@SignUp');
