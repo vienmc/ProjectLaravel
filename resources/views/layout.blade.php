@@ -26,6 +26,11 @@
           href="{{asset('frontend/images/apple-touch-icon-72-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed"
           href="{{asset('frontend/images/apple-touch-icon-57-precomposed.png')}}">
+    <style>
+        panel-heading:hover {
+            color: red;
+        }
+    </style>
 </head><!--/head-->
 
 <body>
@@ -275,12 +280,19 @@
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
-                                            <span class="pull-right">
+                                            <div style="display: none">
+                                            <?php
+                                                $count = 0;
+                                                ?>
                                             @foreach($brand_product->product_brand as $count_brand)
                                                     {{$count_brand->brand_id}}
+                                                    {{$count++}}
                                                 @endforeach
-                                            </span>{{$brand_product->brand_name}}
-                                        </a></li>
+                                            </div>
+                                            <span class="pull-right">{{$count}}</span>
+                                            {{$brand_product->brand_name}}
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         @endforeach
