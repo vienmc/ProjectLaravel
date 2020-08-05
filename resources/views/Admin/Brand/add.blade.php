@@ -19,13 +19,8 @@
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label for="brand_name">Tên thương hiệu sản phẩm</label>
-                                <input type="text" class="form-control"
-                                       placeholder="Tên thương hiệu sản phẩm" name="brand_name" required>
-                                @if($errors -> has('brand_name'))
-                                    <span class="error" style="color: red">
-                                {{$errors -> first('brand_name')}}
-                                    </span>
-                                @endif
+                                <input required="required"  type="text" class="form-control"
+                                       placeholder="Tên thương hiệu sản phẩm" name="brand_name" >
                             </div>
                             <div class="form-group">
                                 <label for="brand_desc">Mô tả thương hiệu sản phẩm</label>

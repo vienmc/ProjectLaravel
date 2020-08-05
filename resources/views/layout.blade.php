@@ -32,7 +32,6 @@
         }
     </style>
 </head><!--/head-->
-
 <body>
 <header id="header"><!--header-->
     <div class="header_top"><!--header_top-->
@@ -61,7 +60,6 @@
             </div>
         </div>
     </div><!--/header_top-->
-
     <div class="header-middle"><!--header-middle-->
         <div class="container">
             <div class="row">
@@ -156,7 +154,7 @@
                                 </ul>
                             </li>
                             <li><a href="">Q&A</a></li>
-                            <li><a href="contact-us.html">Liên hệ</a></li>
+                            <li><a href="/contact-us">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
