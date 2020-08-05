@@ -31,6 +31,7 @@
             color: red;
         }
     </style>
+
 </head><!--/head-->
 <body>
 <header id="header"><!--header-->
@@ -71,8 +72,7 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 VN
-                                <span class="caret"></span>
-                            </button>
+
                             <ul class="dropdown-menu">
                                 <li><a href="#">Canada</a></li>
                                 <li><a href="#">UK</a></li>
@@ -149,8 +149,8 @@
                             <li><a href="{{URL::to('/')}}" >Sản Phẩm</a></li>
                             <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                    <li><a href="{{URL::to('/blog-list-page1')}}">Blog List</a></li>
+                                    <li><a href="{{URL::to('/blog-single-1')}}">Blog Single</a></li>
                                 </ul>
                             </li>
                             <li><a href="">Q&A</a></li>

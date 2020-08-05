@@ -8,22 +8,24 @@
                     <li class="active">Thanh toán giỏ hàng</li>
                 </ol>
             </div>
+
             <div class="register-req">
                 <p>Hãy đăng ký hoặc đăng nhập để thanh toán giỏ hàng và xem lại lịch sử mua hàng</p>
             </div><!--/register-req-->
+
             <div class="shopper-informations">
                 <div class="row">
                     <div class="col-sm-12 clearfix">
                         <div class="bill-to">
                             <p>Thông tin gửi hàng</p>
                             <div class="form-one">
-                                <form role="form" action="/checkout" method="post">
+                                <form action="{{URL::to('save-checkout-customer')}}" method="post">
                                     {{csrf_field()}}
-                                    <input type="email" required="required" name="checkout_email" placeholder="Email">
-                                    <input type="text" required="required" name="checkout_name" placeholder="Họ và tên">
-                                    <input type="text" required="required" name="checkout_address" placeholder="Địa chỉ">
-                                    <input type="text" required="required" name="checkout_phone" placeholder="Số điện thoại">
-                                    <textarea required="required" name="checkout_notes" placeholder="Ghi chú đơn hàng" rows="16"></textarea>
+                                    <input type="email" name="shipping_email" placeholder="Email">
+                                    <input type="text" name="shipping_name" placeholder="Họ và tên">
+                                    <input type="text" name="shipping_address" placeholder="Địa chỉ">
+                                    <input type="text" name="shipping_phone" placeholder="Số điện thoại">
+                                    <textarea name="shipping_notes" placeholder="Ghi chú đơn hàng" rows="16"></textarea>
                                     <input type="submit" value="Gủi" name="send_order" class="btn btn-primary btn-sm">
                                 </form>
                             </div>
@@ -37,25 +39,24 @@
                 <h2>Xem lại giỏ hàng</h2>
             </div>
 
-            <div class="table-responsive cart_info">
-<!--                --><?php
-//                $content = Cart::content();
-//                $tax_rate = 10;
-//                config(['cart.tax' => $tax_rate]);
-//                ?>
-                <table class="table table-responsive">
-                    <thead>
-
-                    <tr class="cart_menu">
-                        <td class="image" style="width: 10%">Hình ảnh</td>
-                        <td class="description" style="width: 35%">Mô tả</td>
-                        <td class="price" style="width: 15%">Giá</td>
-                        <td class="quantity" style="width: 20%">Số lượng</td>
-                        <td class="total" style="width: 15%">Tổng tiền</td>
-                        <td style="width: 5%"></td>
-                    </tr>
-                    </thead>
-                    <tbody>
+{{--            <div class="table-responsive cart_info">--}}
+{{--                <?php--}}
+{{--                $content = Cart::content();--}}
+{{--                $tax_rate = 10;--}}
+{{--                config(['cart.tax' => $tax_rate]);--}}
+{{--                ?>--}}
+{{--                <table class="table table-responsive">--}}
+{{--                    <thead>--}}
+{{--                    <tr class="cart_menu">--}}
+{{--                        <td class="image" style="width: 10%">Hình ảnh</td>--}}
+{{--                        <td class="description" style="width: 35%">Mô tả</td>--}}
+{{--                        <td class="price" style="width: 15%">Giá</td>--}}
+{{--                        <td class="quantity" style="width: 20%">Số lượng</td>--}}
+{{--                        <td class="total" style="width: 15%">Tổng tiền</td>--}}
+{{--                        <td style="width: 5%"></td>--}}
+{{--                    </tr>--}}
+{{--                    </thead>--}}
+{{--                    <tbody>--}}
 {{--                    @foreach($content as $v_content)--}}
 {{--                        <tr>--}}
 {{--                            <td class="cart_product">--}}
@@ -98,20 +99,20 @@
 {{--                            </td>--}}
 {{--                        </tr>--}}
 {{--                    @endforeach--}}
-                    </tbody>
-                </table>
-            </div>
-            {{--            <div class="payment-options">--}}
-            {{--					<span>--}}
-            {{--						<label><input type="checkbox"> Direct Bank Transfer</label>--}}
-            {{--					</span>--}}
-            {{--                <span>--}}
-            {{--						<label><input type="checkbox"> Check Payment</label>--}}
-            {{--					</span>--}}
-            {{--                <span>--}}
-            {{--						<label><input type="checkbox"> Paypal</label>--}}
-            {{--					</span>--}}
-            {{--            </div>--}}
+{{--                    </tbody>--}}
+{{--                </table>--}}
+{{--            </div>--}}
+{{--            <div class="payment-options">--}}
+{{--					<span>--}}
+{{--						<label><input type="checkbox"> Direct Bank Transfer</label>--}}
+{{--					</span>--}}
+{{--                <span>--}}
+{{--						<label><input type="checkbox"> Check Payment</label>--}}
+{{--					</span>--}}
+{{--                <span>--}}
+{{--						<label><input type="checkbox"> Paypal</label>--}}
+{{--					</span>--}}
+{{--            </div>--}}
         </div>
     </section> <!--/#cart_items-->
 @endsection

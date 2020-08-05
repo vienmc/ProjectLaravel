@@ -50,3 +50,25 @@ Route::get('/find-by-name', 'CategoryController@FindByName');
 Route::resource('/product', 'ProductController');
 Route::get('/unactive-product/{id}', 'ProductController@Unactive_product');
 Route::get('/active-product/{id}', 'ProductController@Active_product');
+
+
+
+//checkout
+Route::get('/login-checkout', 'CheckoutController@login_checkout');
+Route::get('/logout-checkout', 'CheckoutController@logout_checkout');
+Route::post('/login-customer', 'CheckoutController@login_customer');
+Route::post('/order-place', 'CheckoutController@order_place');
+Route::get('/checkout', 'CheckoutController@checkout');
+Route::post('/add-customer', 'CheckoutController@add_customer');
+Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer');
+Route::get('/payment', 'CheckoutController@payment');
+
+//blog
+Route::get('/blog-list-page1','BlogController@showpage1');
+Route::get('/blog-list-page2','BlogController@showpage2');
+Route::get('/blog-list-page3','BlogController@showpage3');
+Route::get('/blog-single-1','BlogController@showsingleblog1');
+Route::get('/blog-single-2','BlogController@showsingleblog2');
+Route::get('/blog-single-3','BlogController@showsingleblog3');
+
+
