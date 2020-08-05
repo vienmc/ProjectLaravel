@@ -44,7 +44,8 @@
                     @foreach($list as $item)
                       <tr>
                           <td >{{$item->brand_name}}</td>
-                          <td> {{$item->brand_desc}}</td>
+                          <td id="description"> <?php
+                              /** @var TYPE_NAME $item */echo strip_tags($item->brand_desc) ?></td>
                           <td>
                           <form  action="/brand" class="text-ellipsis" method="get"  >
                                  @csrf
@@ -69,7 +70,6 @@
                 </table>
                     <span class="text-center">{{$link->links()}}</span>
             </div>
-
         </div>
     </div>
 @endsection
