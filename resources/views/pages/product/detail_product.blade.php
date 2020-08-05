@@ -140,6 +140,7 @@
                         </div>
                     @endforeach
                 </div>
+                @if(count($relate->chunk(3)->toArray())>1)
                 <div class="item">
                     @foreach($relate->chunk(3)[1] as $key => $item)
                         <div class="col-sm-4">
@@ -162,6 +163,8 @@
                         </div>
                     @endforeach
                 </div>
+                @endif
+                @if(count($relate->chunk(3)->toArray())>2)
                 <div class="item">
                     @foreach($relate->chunk(3)[2] as $key => $item)
                         <div class="col-sm-4">
@@ -183,7 +186,9 @@
                             </div>
                         </div>
                     @endforeach
+
                 </div>
+                @endif
 
 
 
