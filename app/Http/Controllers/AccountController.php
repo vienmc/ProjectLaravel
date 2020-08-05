@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Session;
 class AccountController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

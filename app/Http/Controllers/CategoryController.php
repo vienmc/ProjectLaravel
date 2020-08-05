@@ -12,6 +12,7 @@ use mysql_xdevapi\Session;
 
 class CategoryController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

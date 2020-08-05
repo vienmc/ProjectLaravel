@@ -252,7 +252,7 @@
                 <div class="left-sidebar">
                     <h2>Danh mục sản phẩm</h2>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-                        @foreach($category as $key => $cate)
+                        @foreach($category1 as $key => $cate)
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title"><a
@@ -261,12 +261,28 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="dropdown" >
+                            <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button" data-toggle="dropdown">Xem thêm
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu"style="width: 250px" >
+                                @foreach($category2 as $key => $cate2)
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a
+                                                href="{{URL::to('/danh-muc-san-pham/'.$cate2->id)}}">{{$cate2->name}}</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
+
                     <!--/category-products-->
 
                     <div class="brands_products"><!--brands_products-->
                         <h2>Thương hiệu sản phẩm</h2>
-                        @foreach($brand as $key => $brand_product)
+                        @foreach($brand1 as $key => $brand_product)
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
                                     <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
@@ -286,17 +302,52 @@
                                 </ul>
                             </div>
                         @endforeach
-                    </div><!--/brands_products-->
+                        <div class="dropdown" >
+                            <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button" data-toggle="dropdown">Xem thêm
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                @foreach($brand2 as $key => $brand_product)
+                                    <div class="brands-name" style="width: 250px">
+                                        <ul class="nav nav-pills nav-stacked" >
+                                            <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
+                                                    <div style="display: none">
+                                                        <?php
+                                                        $count = 0;
+                                                        ?>
+                                                        @foreach($brand_product->product_brand as $count_brand)
+                                                            {{$count_brand->brand_id}}
+                                                            {{$count++}}
+                                                        @endforeach
+                                                    </div>
+                                                    <span class="pull-right">{{$count}}</span>
+                                                    {{$brand_product->brand_name}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endforeach
+                            </ul>
+                        </div>
 
+                    </div><!--/brands_products-->
+                    <form action="/" method="get" id="product_form">
                     <div class="price-range"><!--price-range-->
                         <h2>PHẠM VI GIÁ</h2>
                         <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000000"
+
+                            <input name="search_price_submit" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000000"
                                    data-slider-step="50000" data-slider-value="[1000000,2000000]" id="sl2"><br/>
                             <b class="pull-left">0 VNĐ</b> <b class="pull-right">5,000,000 VNĐ</b>
+                            <input type="hidden" name="Min" >
+                            <input type="hidden" name="Max" >
+                            <br>
+
+                            <input type="submit" class="btn btn-sm  button-search" style="width: auto"
+                                   value="Chọn" name="search_price"/>
+
                         </div>
                     </div><!--/price-range-->
-
+                    </form>
                     <div class="shipping text-center"><!--shipping-->
                         <img src="{{asset('frontend/images/shipping.jpg')}}" alt=""/>
                     </div><!--/shipping-->
