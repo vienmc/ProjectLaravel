@@ -31,11 +31,12 @@ class BrandController extends Controller
             if ($request->get('brand_status') == 1){
                 $status->brand_status = 0;
                 session::put('message', 'Khóa thương hiệu sản phẩm thành công');
+                $status->updated_at = Carbon::now()->format('Y-m-d H:i:s');
             } if ($request->get('brand_status') == 0){
                 $status->brand_status = 1;
                 session::put('message', 'kích hoạt thương hiệu sản phẩm thành công');
+                $status->updated_at = Carbon::now()->format('Y-m-d H:i:s');
             }
-            $status->updated_at = Carbon::now()->format('Y-m-d H:i:s');
             $status->save();
         }
         if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
@@ -49,7 +50,7 @@ class BrandController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $brand1 = $brand1->whereBetween('created_at', [$from, $to]);
         }
-        $data['link'] = $brand1->paginate(5);
+        $data['link'] = $brand1->orderBy('created_at','desc')->paginate(6);
         $data['list'] = $brand1->get();
         return view('Admin.Brand.list')->with( $data);
     }
@@ -79,7 +80,7 @@ class BrandController extends Controller
         $obj->brand_status = $request->get('brand_status');
         $obj->save();
         session::put('message', 'Thêm mới sản phẩm thành công');
-        return redirect('/brand/create');
+        return redirect('/brand/');
     }
 
     /**

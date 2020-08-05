@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label for="brand_desc">Mô tả thương hiệu sản phẩm</label>
                                 <textarea style="resize: none" rows="5" class="form-control"
-{{--                                          id="ckeditor1"--}}
+                                          id="ckeditor1"
                                           placeholder="Mô tả sản phẩm" name="brand_desc"
                                           >{{$obj->brand_desc}}</textarea>
                                 @if($errors -> has('brand_desc'))
