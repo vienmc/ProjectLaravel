@@ -120,7 +120,7 @@ class ProductSeeder extends Seeder
                 'product_name' => 'ÁO THUN OWN THE RUN',
                 'product_desc' => 'ÁO THUN THOẢI MÁI DÀNH CHO MỌI CỰ LY CHẠY BỘ Với Công Nghệ Thấm Hút',
                 'product_price'=>2000000,
-                'thumbnail'=>'Ao_khoac_mau_co_Pride_lech_tam_Nhieu_mau_GD0955_gh5fi2,Ao_thun_Own_the_Run_Mau_hong_FT1430_21_model_bpbphy,Ao_thun_Own_the_Run_Mau_hong_FT1430_22_model_mouegh',
+                'thumbnail'=>'Ao_thun_Own_the_Run_Mau_hong_FT1430_saqazw,Ao_thun_Own_the_Run_Mau_hong_FT1430_21_model_bpbphy,Ao_thun_Own_the_Run_Mau_hong_FT1430_22_model_mouegh',
                 'product_status'=>1,
                 'category_id'=>6,
                 'brand_id'=>1,
