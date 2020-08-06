@@ -73,6 +73,7 @@ class CheckoutController extends Controller
         $data['shipping_address'] = $request->shipping_address;
         $data['shipping_phone'] = $request->shipping_phone;
         $data['shipping_notes'] = $request->shipping_notes;
+        $data['shipping_status'] = 1;
         $shipping_id = DB::table('shippings')->insertGetId($data);
         Session::put('shipping_id', $shipping_id);
         return Redirect('/payment');

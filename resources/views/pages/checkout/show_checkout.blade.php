@@ -21,11 +21,11 @@
                             <div class="form-one">
                                 <form action="{{URL::to('save-checkout-customer')}}" method="post">
                                     {{csrf_field()}}
-                                    <input type="email" name="shipping_email" placeholder="Email">
-                                    <input type="text" name="shipping_name" placeholder="Họ và tên">
-                                    <input type="text" name="shipping_address" placeholder="Địa chỉ">
-                                    <input type="text" name="shipping_phone" placeholder="Số điện thoại">
-                                    <textarea name="shipping_notes" placeholder="Ghi chú đơn hàng" rows="16"></textarea>
+                                    <input required="required" type="email" name="shipping_email" placeholder="Email">
+                                    <input  required="required" type="text" name="shipping_name" placeholder="Họ và tên">
+                                    <input  required="required" type="text" name="shipping_address" placeholder="Địa chỉ">
+                                    <input  required="required" type="text" name="shipping_phone" placeholder="Số điện thoại">
+                                    <textarea  name="shipping_notes" placeholder="Ghi chú đơn hàng" rows="16"></textarea>
                                     <input type="submit" value="Gủi" name="send_order" class="btn btn-primary btn-sm">
                                 </form>
                             </div>
