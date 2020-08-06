@@ -158,16 +158,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <form action="{{URL::to('/tim-kiem')}}" method="post">
-                        {{csrf_field()}}
-                        <div class="search_box pull-right">
-                            <input type="text" name="keyword_submit" placeholder="Tìm kiếm"/>
-                            <input type="submit" class="btn btn-sm btn-success button-search" style="width: auto"
-                                   value="Tìm" name="search_submit"/>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div><!--/header-bottom-->
@@ -261,6 +251,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        @if(sizeof($category2) > 0)
                         <div class="dropdown" >
                             <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button" data-toggle="dropdown">Xem thêm
                                 <span class="caret"></span></button>
@@ -276,6 +267,7 @@
                                 @endforeach
                             </ul>
                         </div>
+                        @endif
                     </div>
 
                     <!--/category-products-->
@@ -302,6 +294,7 @@
                                 </ul>
                             </div>
                         @endforeach
+                        @if(sizeof($brand2) > 0)
                         <div class="dropdown" >
                             <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button" data-toggle="dropdown">Xem thêm
                                 <span class="caret"></span></button>
@@ -328,7 +321,7 @@
                                 @endforeach
                             </ul>
                         </div>
-
+                        @endif
                     </div><!--/brands_products-->
                     <form action="/" method="get" id="product_form">
                     <div class="price-range"><!--price-range-->
