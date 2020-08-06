@@ -111,7 +111,7 @@
                             ?>
                             <li><a href="{{URL::to('/login-checkout')}}"><i class=" fa fa-lock"></i> Thanh toán</a></li>
                             <?php } ?>
-                            <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                            <li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
                             </li>
                             <?php
                             $customer_id = Session::get('customer_id');
