@@ -39,12 +39,7 @@
                                 giỏ</a>
                         </div>
                     </div>
-                    <div class="choose">
-                        <ul class="nav nav-pills nav-justified">
-                            <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào yêu thích</a></li>
-                            <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào so sánh</a></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         @endforeach

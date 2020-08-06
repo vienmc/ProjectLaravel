@@ -32,6 +32,8 @@
         }
     </style>
 
+
+
 </head><!--/head-->
 <body>
 <header id="header"><!--header-->
@@ -94,7 +96,6 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
                             <?php
                             $customer_id = Session::get('customer_id');
                             $shipping_id = Session::get('shipping_id');
