@@ -35,7 +35,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="{{asset('backend/js/jquery2.0.3.min.js')}}"></script>
     <script src="{{asset('backend/js/raphael-min.js')}}"></script>
     <script src="{{asset('backend/js/morris.js')}}"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.8.3.js"></script>
 
 </head>
 <body>
@@ -74,9 +73,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
-                        <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ sơ</a></li>
-                        <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
-                        <li><a href="{{URL::to('/logout')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
+                        <li><a href="{{URL::to('/account')}}"><i class=" fa fa-suitcase"></i>Hồ sơ</a></li>
+                        <li><a href="{{URL::to('/account')}}"><i class="fa fa-cog"></i> Cài đặt</a></li>
+                        <li><a href="{{URL::to('/login')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
