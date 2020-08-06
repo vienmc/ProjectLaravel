@@ -1,5 +1,8 @@
 <?php
 
+use App\Brand;
+use App\Category;
+use App\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +76,17 @@ Route::get('/blog-single-3','BlogController@showsingleblog3');
 
 // Sản phẩm
 Route::get('/san-pham', 'HomeController@sanpham');
+//q&a
+Route::get('q&a',function ()
+{
+    $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+    $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+    $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+    $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+    $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+    return view('pages.q&a.q&a')->with('category1', $category_product1)->with('category2', $category_product2)
+        ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);;
+});
 
 
 //giỏ hàng
