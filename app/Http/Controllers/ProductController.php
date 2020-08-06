@@ -21,6 +21,47 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function show_product_brand($id, Request $request){
+        $data = array();
+        $data['keyword'] = '';
+        $brand_check = Brand::find($id);
+        $product = Product::query()->where('product_status','=',1)->where('brand_id','=',$id)->orderby('updated_at', 'desc');
+        if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
+            $data['keyword'] = $request->get('keyword');
+            $product = $product->where('product_name', 'like', '%' . $request->get('keyword') . '%');
+        }
+        $data['all_product'] = $product->paginate(9)->appends($request->only('keyword'));
+        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+
+        return view('pages.product.list-by-brand')->with($data)
+            ->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('brand_check',$brand_check);
+    }
+
+    public function show_product_category($id, Request $request)
+    {
+        $data = array();
+        $data['keyword'] = '';
+        $category_check = Category::find($id);
+        $product = Product::query()->where('product_status','=',1)->where('category_id','=',$id)->orderby('updated_at', 'desc');
+        if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
+            $data['keyword'] = $request->get('keyword');
+            $product = $product->where('product_name', 'like', '%' . $request->get('keyword') . '%');
+        }
+        $data['all_product'] = $product->paginate(9)->appends($request->only('keyword'));
+        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+
+        return view('pages.product.list-by-category')->with($data)
+            ->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('category_check',$category_check);
+    }
+
     public function show_detail_product($id)
     {
 //        $category_product = DB::table('categories')->where('status', 1)->orderby('id', 'desc')->get();
@@ -42,20 +83,21 @@ class ProductController extends Controller
 //            ->join('brands', 'brands.id', '=', 'products.brand_id')
 //            ->where('products.category_id', $category_id)->whereNotIn('products.id', [$id])->get();
 
-            $detail_product = Product::find($id);
+        $detail_product = Product::find($id);
         $current_category = $detail_product->category->id;
         $relate_product = Category::find($current_category)->product;
 
-        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
-        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $category_product1 = Category::where('status', '=', 1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status', '=', 1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
 
-        $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+        $all_product = Product::where('product_status', '=', 1)->orderby('updated_at', 'desc')->paginate(9);
         return view('pages.product.detail_product')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('detail_product', $detail_product)
             ->with('relate', $relate_product);
     }
+
     public function index(Request $request)
     {
         // tạo biến data là một mảng chứa dữ liệu trả về.

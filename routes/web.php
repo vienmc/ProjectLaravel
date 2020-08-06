@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/chi-tiet-san-pham/{id}', 'ProductController@show_detail_product');
+Route::get('/danh-muc-san-pham/{id}', 'ProductController@show_product_category');
+Route::get('/thuong-hieu-san-pham/{id}', 'ProductController@show_product_brand');
+
 
 
 Route::get('/', 'HomeController@index');
