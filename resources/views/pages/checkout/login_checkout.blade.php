@@ -6,13 +6,6 @@
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form"><!--login form-->
                         <h2>Đăng nhập tài khoản</h2>
-                        <?php
-                         $message = Session::get('message');
-                        if ($message) {
-                            echo '<span style="color:#ff0000;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
-                            Session::put('message', null);
-                        }
-                        ?>
                         <form action="{{URL::to('/login-customer')}}" method="post">
                             {{csrf_field()}}
                             <input type="text" name="login_email" placeholder="Tài khoản"/>
@@ -31,6 +24,13 @@
                 <div class="col-sm-4">
                     <div class="signup-form"><!--sign up form-->
                         <h2>Đăng ký tài khoản</h2>
+                        <?php
+                        $message = Session::get('message');
+                        if ($message) {
+                            echo '<span style="color:#ff0000;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
+                            Session::put('message', null);
+                        }
+                        ?>
                         <form action="{{URL::to('/add-customer')}}" method="post">
                             {{csrf_field()}}
                             <input type="text" name="sign_up_name" placeholder="Tên người dùng"/>

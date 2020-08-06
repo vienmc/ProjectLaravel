@@ -4,7 +4,7 @@
         <div class="blog-post-area">
             <h2 class="title text-center">Latest From our Blog</h2>
             <div class="single-blog-post">
-                <h3>Girls Pink T Shirt arrived in store</h3>
+                <h3>Lưu ngay 2 cách phối đồ với quần yếm nữ đẹp đỉnh cao</h3>
                 <div class="post-meta">
                     <ul>
                         <li><i class="fa fa-user"></i> Mac Doe</li>
@@ -20,20 +20,30 @@
 								</span>
                 </div>
                 <a href="">
-                    <img src="https://i.pinimg.com/originals/d2/bb/72/d2bb72011b401805573550589faea721.jpg" alt="">
+                    <img src="https://bumshop.com.vn/wp-content/uploads/2019/05/cach-phoi-do-quan-yem-nu-1.jpg" alt="">
                 </a>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> <br>
+                <h3 style="color: red">1/ Áo thun – Sự chọn lựa hàng đầu tiết kiệm thời gian</h3><br>
+                <p>Dù ở bất kỳ hoàn cảnh nào thì áo thun cũng là lựa chọn đầu tiên của phái nữ trong các cách phối đồ với quần yếm.
 
-                <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> <br>
+                    Có thể nói rằng, áo thun chính là công thức mặc đẹp nhanh-gọn-lẹ, ít tốn nhiều thời gian nhất so với các loại trang phục khác.</p><br>
+                <p>Do vậy mà cách phối đồ với quần yếm này dù ra đời đã lâu nhưng “độ phủ sóng” vẫn được duy trì theo năm tháng.
 
-                <p>
-                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p> <br>
+                    Hơn thế nữa, áo thun tay lỡ vốn rất dễ chịu nên người mặc cứ thoải mái phối hợp áo cùng nhiều mẫu quần yếm mà không phải lo lắng cả hai trông có hợp gu nhau hay không.</p><br>
+                <a href="">
+                    <img src="https://bumshop.com.vn/wp-content/uploads/2019/05/cach-phoi-do-quan-yem-nu-2.jpg" alt="">
+                </a><br>
+                <h3 style="color: red">2/ Áo sơ mi – Bí quyết mix đồ với quần yếm lịch sự, kín đáo</h3><br>
+                <p>Từ lâu, áo sơ mi luôn được mọi người đánh giá cao và góp mặt trong nhiều sự kiện trang trọng nhờ tinh thần tôn lên sự lịch thiệp, nhã nhặn cho người mặc.
 
-                <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                </p>
+                    Về cơ bản áo sơ mi chia thành 2 dạng, đó là sơ mi tay dài và sơ mi tay ngắn, đồng thời còn được phân loại theo màu sắc, chất liệu,…</p>
+                <br>
+                <a href="">
+                    <img src="https://bumshop.com.vn/wp-content/uploads/2019/05/cach-phoi-do-quan-yem-nu-3.jpg" alt="">
+                </a><br>
+                <p>Và dĩ nhiên, chúng ta dễ dàng phối hợp áo sơ mi và quần yếm với nhau bởi áo sơ mi cũng có đặc tính basic tương đồng áo thun.
+
+                    Bật mí những mẫu áo sơ mi cho cách phối đồ với quần yếm cực xinh mà các bạn nên áp dụng : sơ mi trơn, sơ mi caro, sơ mi họa tiết, sơ mi cách điệu,…</p>
+
                 <div class="pager-area">
                     <ul class="pager pull-right">
                         <li><a href="{{URL::to('/blog-single-1')}}">Pre</a></li>
@@ -73,7 +83,7 @@
             </a>
             <div class="media-body">
                 <h4 class="media-heading">Annie Davis</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Lưu ngay 2 cách phối đồ với quần yếm nữ đẹp đỉnh cao.</p>
                 <div class="blog-socials">
                     <ul>
                         <li><a href=""><i class="fa fa-facebook"></i></a></li>
@@ -99,8 +109,8 @@
                             <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
                             <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                        <p>Em comment ở trên xinh quá, cho anh xin số điện thoại a rủ đi uống cafe nhé,số a đây 0123456789,xin lỗi vì comment không liên quan đến bài viết</p>
+                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Reply</a>
                     </div>
                 </li>
                 <li class="media second-media">
@@ -113,8 +123,8 @@
                             <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
                             <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                        <p>Cảm ơn shop rất nhiều, giá cả hợp lí, lại còn tư vấn cách phối đồ cho khách, quả thực không hối hận khi mua hàng ở đây</p>
+                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Reply</a>
                     </div>
                 </li>
                 <li class="media">
@@ -127,8 +137,8 @@
                             <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
                             <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                        <p>Trai hà nội tìm girl hà nội cô đơn, add zalo:0987654321</p>
+                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Reply</a>
                     </div>
                 </li>
             </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use App\Brand;
 use App\Category;
 use App\Customer;
@@ -27,24 +28,23 @@ class CheckoutController extends Controller
 
     public function add_customer(Request $request)
     {
-        $obj = array();
-        $obj['customer_name'] = $request->sign_up_name;
-        $obj['customer_phone'] = $request->sign_up_phone;
-        $obj['customer_email'] = $request->sign_up_email;
+        $obj = new Account();
+        $obj->name = $request->sign_up_name;
+        $obj->phone = $request->sign_up_phone;
+        $obj->email= $request->sign_up_email;
         $salt = $this->generateRandomString();
-        $obj['customer_salt'] = $salt;
+        $obj->salt = $salt;
         $password = ($request->sign_up_password) . $salt;
         $md5_password = md5($password);
-        $obj['customer_password'] = $md5_password;
-        $obj['customer_status'] = 1;
-        if (Customer::where('customer_email','=',$obj['customer_email'])->first()===null){
-            $customer_id = DB::table('customers')->insertGetId($obj);
-            Session::put('customer_id', $customer_id);
+        $obj->password = $md5_password;
+        $obj->status = 1;
+        if (Account::where('email','=',$obj->email)->first()===null){
             Session::put('customer_name', $request->sign_up_name);
-            return Redirect('/');
+            Session::put('message', 'Tạo tài khoản thành công');
+            return Redirect('/login-checkout');
         }
         else{
-            Session::put('message', 'Tài khoản không hợp lệ hoặc đã tồn tại!');
+            Session::put('message', 'Tài khoản đã tồn tại!');
             return Redirect('/login-checkout');
         }
     }
@@ -104,16 +104,16 @@ class CheckoutController extends Controller
     public function login_customer(Request $request)
     {
         $email = $request->login_email;
-        $result = Customer::where('customer_email','=',$email)->first();
+        $result = Account::where('email','=',$email)->first();
         if ($result) {
-            $salt = $result->customer_salt;
+            $salt = $result->salt;
         } else {
             Session::put('message', 'Không tồn tại email này');
             return Redirect('/login-checkout');
         }
         $password = ($request->login_password) . $salt;
         $passwordHash = md5($password);
-        $account= Customer::where('customer_email','=',$email)->where('customer_password','=',$passwordHash)->first();
+        $account= Account::where('email','=',$email)->where('password','=',$passwordHash)->first();
         if ($account) {
             Session::put('customer_id', $account->id);
             return Redirect('/');

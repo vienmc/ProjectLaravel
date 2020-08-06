@@ -4,7 +4,7 @@
         <div class="blog-post-area">
             <h2 class="title text-center">Latest From our Blog</h2>
             <div class="single-blog-post">
-                <h3>Girls Pink T Shirt arrived in store</h3>
+                <h3>Gợi ý 10 “bí quyết” phối đồ đi chơi mùa hè mát mẻ, thoải mái và năng động</h3>
                 <div class="post-meta">
                     <ul>
                         <li><i class="fa fa-user"></i> Mac Doe</li>
@@ -19,21 +19,49 @@
 									<i class="fa fa-star-half-o"></i>
 								</span>
                 </div>
+                <h3 style="color: red">
+                    A – Những cách phối đồ nữ mùa hè mà các bạn gái có thể tham khảo
+                </h3>
+                <h4 style="color: #080808">
+                    1/ Áo thun + Quần short nữ – Cách phối đồ đi chơi mùa hè đơn giản mà dễ mặc
+                </h4> <br>
+                <p>Phối đồ mùa hè chỉ đơn giản bằng bộ đôi áo thun và quần short nữ, tại sao lại không áp dụng ngay?</p><br>
+                <p>Đây là mẹo phối đồ mùa hè cực kì dễ mà ai cũng có thể áp dụng được, nhất là trong những dịp như đi chơi, đi biển, đi du lịch,…</p>
+                <br>
+                <a href="">
+                    <img src="https://bumshop.com.vn/wp-content/uploads/2019/03/phoi-do-mua-he-nang-dong-mat-me-1.jpg" alt="">
+                </a>
+                <p>Những chiếc áo thun tuy đơn giản nhưng lại có chức năng thấm hút mồ hôi nhanh hơn các loại trang phục khác rất nhiều.
+
+                    Và “cô bạn” quần short cũng không kém chút nào về độ mát mẻ khi đã giúp các bạn nữ khoe trọn được hình thể cân đối.</p><br>
+
                 <a href="">
                     <img src="https://i0.wp.com/www.themasculinetraveler.com/wp-content/uploads/2019/01/korean-girl2.jpg?resize=550%2C733&ssl=1" alt="">
                 </a>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p> <br>
+                <h4 style="color: #080808">
+                    2/ Áo trễ vai + quần jean ống loe – Phối đồ mùa hè thêm nổi bật và sành điệu
+                </h4> <br>
+                <p>Nghe có vẻ không ăn nhập gì nhau nhưng xu hướng trên chính xác là hot trend được phái nữ áp dụng khá nhiều trong thời gian gần đây.
 
-                <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> <br>
+                    Hình thức phối đồ mùa hè này có thể mang lại cho các bạn những trải nghiệm mới lạ và thú vị về thời trang.</p><br>
+                <a href="">
+                    <img src="https://bumshop.com.vn/wp-content/uploads/2019/03/phoi-do-mua-he-nang-dong-mat-me-3.jpg" alt="">
+                </a>
+                <p>Áo trễ vai giúp phái đẹp khoe trọn được bờ vai mỏng manh, còn quần jean ống loe lại tôn lên đôi chân dài tô điểm cho diện mạo càng thêm sành điệu.
 
-                <p>
-                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p> <br>
+                    Thay vì mãi dùng những công thức bình thường, các cô gái có thể sử dụng ngay combo kết hợp trên để cho ra kết quả thú vị hơn nhé.</p><br>
+                <h4 style="color: #080808">
+                    3/ Váy hoa + nón cói – Biểu tượng thời trang đặc trưng mỗi khi hè đến
+                </h4> <br>
+                <p>Thấy váy hoa là thấy mùa hè đến, váy hoa xứng đáng là một đại diện tiêu biểu cho các loại trang phục khi tiết trời vào hạ.
 
-                <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                </p>
+                    Chiếm trọn tình cảm của tất cả các bạn nữ, váy hoa đầm maxi phổ biến như một loại váy đi chơi mùa hè phần nào nhờ sự dịu dàng, ngọt ngào và thướt tha như một cô nàng tiểu thư đích thực.</p><br>
+                <a href="">
+                    <img src="https://bumshop.com.vn/wp-content/uploads/2019/03/phoi-do-mua-he-nang-dong-mat-me-5.jpg" alt="">
+                </a>
+                <p>Sự trở lại của các loại váy hoa cổ điển trên đường phố hay ở những bãi biển lộng gió là minh chứng cho mức độ yêu thích mà phái đẹp dành cho váy hoa trong mùa hè này.
+
+                    Gợi ý những phụ kiện xinh xắn nên sử dụng kèm với váy hoa : nón cói, túi cói, giày lolita, xăng-đan,…</p><br>
                 <div class="pager-area">
                     <ul class="pager pull-right">
                         <li><a href="{{URL::to('/blog-single-2')}}">Pre</a></li>
@@ -73,7 +101,7 @@
             </a>
             <div class="media-body">
                 <h4 class="media-heading">Annie Davis</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Gợi ý 10 “bí quyết” phối đồ đi chơi mùa hè mát mẻ, thoải mái và năng động.</p>
                 <div class="blog-socials">
                     <ul>
                         <li><a href=""><i class="fa fa-facebook"></i></a></li>
@@ -99,8 +127,8 @@
                             <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
                             <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                        <p>Em comment ở trên xinh quá, cho anh xin số điện thoại a rủ đi uống cafe nhé,số a đây 0123456789,xin lỗi vì comment không liên quan đến bài viết</p>
+                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Reply</a>
                     </div>
                 </li>
                 <li class="media second-media">
@@ -113,8 +141,8 @@
                             <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
                             <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                        <p>Cảm ơn shop rất nhiều, giá cả hợp lí, lại còn tư vấn cách phối đồ cho khách, quả thực không hối hận khi mua hàng ở đây</p>
+                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Reply</a>
                     </div>
                 </li>
                 <li class="media">
@@ -127,8 +155,8 @@
                             <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
                             <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
+                        <p>Trai hà nội tìm girl hà nội cô đơn, add zalo:0987654321</p>
+                        <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Reply</a>
                     </div>
                 </li>
             </ul>
