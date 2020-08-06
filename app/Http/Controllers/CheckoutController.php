@@ -38,9 +38,11 @@ class CheckoutController extends Controller
         $md5_password = md5($password);
         $obj->password = $md5_password;
         $obj->status = 1;
+        $obj->role =0;
         if (Account::where('email','=',$obj->email)->first()===null){
             Session::put('customer_name', $request->sign_up_name);
             Session::put('message', 'Tạo tài khoản thành công');
+            $obj->save();
             return Redirect('/login-checkout');
         }
         else{
@@ -69,25 +71,9 @@ class CheckoutController extends Controller
         }
         return $randomString;
     }
-    public function save_checkout_customer(Request $request)
-    {
-        $data = array();
-        $customer_id = session::get('customer_id');
-        $data['customer_id'] = $customer_id;
-        $data['shipping_email'] = $request->shipping_email;
-        $data['shipping_name'] = $request->shipping_name;
-        $data['shipping_address'] = $request->shipping_address;
-        $data['shipping_phone'] = $request->shipping_phone;
-        $data['shipping_notes'] = $request->shipping_notes;
-        $data['shipping_status'] = 1;
-        $shipping_id = DB::table('shippings')->insertGetId($data);
-        Session::put('shipping_id', $shipping_id);
-        return Redirect('/payment');
-    }
+
     public function payment()
     {
-        $customer_id = Session::get('customer_id');
-        $shipping_id = Session::get('shipping_id');
         $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
         $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
