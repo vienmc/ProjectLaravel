@@ -67,4 +67,7 @@ Route::get('/blog-single-1','BlogController@showsingleblog1');
 Route::get('/blog-single-2','BlogController@showsingleblog2');
 Route::get('/blog-single-3','BlogController@showsingleblog3');
 
+// Sản phẩm
+Route::get('/san-pham', 'HomeController@sanpham');
+
 

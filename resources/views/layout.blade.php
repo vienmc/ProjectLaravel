@@ -72,11 +72,11 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 VN
-
                             <ul class="dropdown-menu">
                                 <li><a href="#">Canada</a></li>
                                 <li><a href="#">UK</a></li>
                             </ul>
+                            </button>
                         </div>
 
                         <div class="btn-group">
@@ -146,7 +146,7 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{URL::to('/')}}" class="active">Trang chủ</a></li>
-                            <li><a href="{{URL::to('/')}}" >Sản Phẩm</a></li>
+                            <li><a href="{{URL::to('/san-pham')}}" >Sản Phẩm</a></li>
                             <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="{{URL::to('/blog-list-page1')}}">Blog List</a></li>
