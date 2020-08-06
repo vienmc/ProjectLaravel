@@ -6,20 +6,20 @@ use App\Brand;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class ShoppingCartController extends Controller
 {
     public function add(Request $request)
     {
-
         $id = $request->get('id');
         $quantity = $request->get('quantity');
         // kiểm tra sản phẩm theo id truyền lên.
         $product = Product::find($id);
         if ($product == null) {
             // nếu không tồn tại sản phẩm đưa về trang lỗi ko tìm thấy.
-            return "khoong cos hang";
+            return view('pages.error.404');
         }
         // lấy thông tin giỏ hàng từ trong session.
         $shoppingCart = Session::get('shoppingCart');
@@ -56,7 +56,6 @@ class ShoppingCartController extends Controller
         return redirect('/shopping-cart/show');
     }
 
-
     public function remove(Request $request)
     {
         $id = $request->get('id');
@@ -84,4 +83,5 @@ class ShoppingCartController extends Controller
             ->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2);
     }
+
 }
