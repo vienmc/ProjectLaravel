@@ -155,6 +155,7 @@
                                 </ul>
                             </li>
                             <li><a href="/cau-hoi-thuong-gap">Q&A</a></li>
+                            <li><a href="/about-us">About us</a></li>
                             <li><a href="/contact-us">Liên hệ</a></li>
                         </ul>
                     </div>
