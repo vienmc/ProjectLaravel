@@ -4,8 +4,12 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h2 class="title text-center">Liên hệ <strong>với chúng tôi</strong></h2>
-{{--                    <div id="gmap" class="contact-map">--}}
-                    </div>
+{{--                    <div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 500px">--}}
+{{--                        <iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"--}}
+{{--                                style="border:0" allowfullscreen></iframe>--}}
+{{--                    </div>--}}
+
+                </div>
                 </div>
             </div>
             <div class="row">
@@ -33,15 +37,18 @@
                         </form>
                     </div>
                 </div>
+                <div class="col-lg-4">
+
+                </div>
 
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-15">
                 <div class="contact-info">
                     <h2 class="title text-center">Thông tin liên hệ</h2>
-                    <address>
-                        <p>E-Shopper Inc.</p>
+                    <address style="text-align: center">
+                        <p >E-Shopper Inc.</p>
                         <p>Số 8 , Tôn thất Thuyết</p>
-                        <p>Hà nội</p>
+                        <p>Hà Nội</p>
                         <p>Mobile: +84 788 7243</p>
                         <p>Fax: 1-714-252-0026</p>
                         <p>Email: info@e-shopper.com</p>
