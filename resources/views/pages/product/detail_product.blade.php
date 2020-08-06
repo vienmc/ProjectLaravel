@@ -45,13 +45,13 @@
                     <h2>{{$detail_product->product_name}}</h2>
                     <p>ID sản phẩm: {{$detail_product->id}}</p>
                     <img src="https://res.cloudinary.com/hoadaica/image/upload/v1596458169/rating_t4idd3.png" alt=""/>
-                    <form method="post" action="{{URL::to('/save-cart')}}" role="form">
+                    <form method="get" action="/shopping-cart/add?id=?&quantity=?" role="form">
                         {{csrf_field()}}
                         <span>
 									<span>{{number_format($detail_product->product_price)}} VNĐ</span>
 									<label>Số lượng:</label>
 									<input type="number" name="quantity" min="1" value="1"/>
-									<input type="hidden" name="product_id_hidden" value="{{$detail_product->id}}"/>
+									<input type="hidden" name="id" value="{{$detail_product->id}}"/>
 									<button type="submit" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Thêm vào giỏ hàng
