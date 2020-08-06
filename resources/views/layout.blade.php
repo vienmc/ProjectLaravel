@@ -153,7 +153,7 @@
                                     <li><a href="{{URL::to('/blog-single-1')}}">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="">Q&A</a></li>
+                            <li><a href="/cau-hoi-thuong-gap">Q&A</a></li>
                             <li><a href="/contact-us">Liên hệ</a></li>
                         </ul>
                     </div>
