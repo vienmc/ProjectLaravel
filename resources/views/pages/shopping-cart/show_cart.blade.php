@@ -8,16 +8,15 @@
                     <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
                 </ol>
             </nav>
-
             <div class="table-responsive cart_info">
                 @php
                     $totalMoney = 0;
                 @endphp
-                <table class="table table-responsive">
+                <table class="table table-responsive ">
                     <thead>
                     <tr class="cart_menu">
                         <td class="image" style="padding-right: 50px">Hình ảnh</td>
-                        <td class="description">Mô tả</td>
+                        <td class="description" style="width: 200px">Mô tả</td>
                         <td class="price">Giá</td>
                         <td class="quantity">Số lượng</td>
                         <td class="total">Thành tiền</td>
@@ -36,15 +35,22 @@
                             <td class="cart_price">
                                 <p>{{number_format($cartItem['product_price']).' VNĐ'}}</p>
                             </td>
+                            <form action="{{URL::to('/update-cart-quantity')}}" method="post">
                             <td class="cart_quantity">
-                                {{$cartItem['quantity']}}
+                                <div style="display: inline">
+                                <a class="fa fa-minus" href="/shopping-cart/add?id={{$cartItem['id']}}&quantity=-1"></a>&nbsp;
+                                <span style="font-size: 1.5em">{{$cartItem['quantity']}}</span>&nbsp;
+                                <a class="fa fa-plus" href="/shopping-cart/add?id={{$cartItem['id']}}&quantity=1"></a>
+                                </div>
                             </td>
+
                             <td class="cart_total" style="font-size: 1.2em">
                                 {{number_format($cartItem['quantity'] * $cartItem['product_price']).' VNĐ'}}
                                 @php
                                     $totalMoney += $cartItem['quantity'] * $cartItem['product_price'];
                                 @endphp
                             </td>
+{{--                            nút xóa--}}
                             <td style="text-align: center">
                                 <a href="/shopping-cart/remove?id={{$cartItem['id']}}"><span
                                         class="fa fa-trash-o"></span></a>&nbsp;

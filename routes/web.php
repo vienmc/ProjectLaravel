@@ -95,4 +95,3 @@ Route::get('/shopping-cart/remove', 'ShoppingCartController@remove');
 Route::get('/shopping-cart/show', 'ShoppingCartController@show');
 
 
-
