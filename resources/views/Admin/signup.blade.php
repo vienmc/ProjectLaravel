@@ -32,6 +32,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="log-w3">
     <div class="w3layouts-main">
         <h2>Đăng ký tài khoản</h2>
+        @if(strlen($msgcheck)>0)
+            <div style="color: red">{{$msgcheck}}</div>
+        @endif
+
         <div style="color: red">
             <ul>
                 @foreach($errors->all() as $msg)

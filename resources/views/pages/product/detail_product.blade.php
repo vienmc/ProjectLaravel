@@ -72,7 +72,7 @@
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#details" data-toggle="tab">Mô tả sản phẩm</a></li>
-                    <li><a href="#companyprofile" data-toggle="tab">Chi tiết sản phẩm</a></li>
+
                     <li><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
                 </ul>
             </div>
@@ -81,9 +81,7 @@
                     <p>{{$detail_product->product_desc}}</p>
                 </div>
 
-                <div class="tab-pane fade" id="companyprofile">
-                    <p>Mô tả thôi</p>
-                </div>
+
 
                 <div class="tab-pane fade" id="reviews">
                     <div class="col-sm-12">

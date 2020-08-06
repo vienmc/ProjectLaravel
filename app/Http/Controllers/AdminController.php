@@ -55,7 +55,8 @@ class AdminController extends Controller
 
     public function SignUp()
     {
-        return view('Admin.signup');
+        $msgcheck='';
+        return view('Admin.signup')->with('msgcheck',$msgcheck);
     }
 
     public function DoSignUp(AccountRequest $request)
@@ -76,8 +77,14 @@ class AdminController extends Controller
         $obj->status = 1;
         $obj->created_at = Carbon::now()->format('Y-m-d H:i:s');
         $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+        if (Account::where('email','=',$obj->email)->first()===null){
         $obj->save();
         return view('Admin.login');
+        }
+        else{
+            $msgcheck= 'Tài khoản không hợp lệ hoặc đã tồn tại!';
+            return view('Admin.signup')->with('msgcheck',$msgcheck);
+        }
     }
 
     public function generateRandomString($length = 10)

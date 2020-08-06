@@ -37,10 +37,16 @@ class CheckoutController extends Controller
         $md5_password = md5($password);
         $obj['customer_password'] = $md5_password;
         $obj['customer_status'] = 1;
-        $customer_id = DB::table('customers')->insertGetId($obj);
-        Session::put('customer_id', $customer_id);
-        Session::put('customer_name', $request->sign_up_name);
-        return Redirect('/checkout');
+        if (Customer::where('customer_email','=',$obj['customer_email'])->first()===null){
+            $customer_id = DB::table('customers')->insertGetId($obj);
+            Session::put('customer_id', $customer_id);
+            Session::put('customer_name', $request->sign_up_name);
+            return Redirect('/');
+        }
+        else{
+            Session::put('message', 'Tài khoản không hợp lệ hoặc đã tồn tại!');
+            return Redirect('/login-checkout');
+        }
     }
     public function checkout()
     {
@@ -110,7 +116,7 @@ class CheckoutController extends Controller
         $account= Customer::where('customer_email','=',$email)->where('customer_password','=',$passwordHash)->first();
         if ($account) {
             Session::put('customer_id', $account->id);
-            return Redirect('/checkout');
+            return Redirect('/');
         } else {
             Session::put('message', 'Sai email hoặc mật khẩu');
             return Redirect('/login-checkout');
