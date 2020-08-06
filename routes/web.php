@@ -75,3 +75,10 @@ Route::get('/blog-single-3','BlogController@showsingleblog3');
 Route::get('/san-pham', 'HomeController@sanpham');
 
 
+//giỏ hàng
+Route::get('/shopping-cart/add', 'ShoppingCartController@add');
+Route::get('/shopping-cart/remove', 'ShoppingCartController@remove');
+Route::get('/shopping-cart/show', 'ShoppingCartController@show');
+
+
+

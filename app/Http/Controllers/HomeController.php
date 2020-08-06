@@ -6,6 +6,7 @@ use App\Brand;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -60,5 +61,19 @@ class HomeController extends Controller
         return view('pages.product.sanpham')->with($data)
             ->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2);
+    }
+    public function remove(Request $request)
+    {
+        $id = $request->get('id');
+        // lấy thông tin giỏ hàng từ trong session.
+        $shoppingCart = Session::get('shoppingCart');
+        // nếu session ko có thông tin giỏ hàng
+        if ($shoppingCart != null) {
+            if (array_key_exists($id, $shoppingCart)) {
+                unset($shoppingCart[$id]);
+            }
+        }
+        Session::put('shoppingCart', $shoppingCart);
+        return redirect('/shopping-cart/show');
     }
 }

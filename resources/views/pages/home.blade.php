@@ -35,7 +35,7 @@
                             </a>
                             <h2>{{number_format($product->product_price)}} VNĐ</h2>
                             <p>{{$product->product_name}}</p>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào
+                            <a href="/shopping-cart/add?id={{$product->id}}&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào
                                 giỏ</a>
                         </div>
                     </div>

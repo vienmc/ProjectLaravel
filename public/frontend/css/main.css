@@ -1570,7 +1570,7 @@ h2.title {
 
 
 #cart_items .cart_info .cart_menu {
-  background: #FE980F;
+  background: #6495ed;
   color: #fff;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
@@ -1777,12 +1777,15 @@ h2.title {
 }
 
 .update, .check_out {
-  background: #FE980F;
+  background: rgb(255, 66, 78);
   border-radius: 0;
   color: #FFFFFF;
   margin-top: 18px;
   border: none;
   padding: 5px 15px;
+}.update:hover, .check_out:hover {
+  background: rgb(239, 34, 46);
+     color: #FFFFFF;
 }
 .update{
     margin-left: 40px;
