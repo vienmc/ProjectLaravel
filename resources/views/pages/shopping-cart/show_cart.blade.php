@@ -35,7 +35,6 @@
                             <td class="cart_price">
                                 <p>{{number_format($cartItem['product_price']).' VNĐ'}}</p>
                             </td>
-                            <form action="{{URL::to('/update-cart-quantity')}}" method="post">
                             <td class="cart_quantity">
                                 <div style="display: inline">
                                 <a class="fa fa-minus" href="/shopping-cart/add?id={{$cartItem['id']}}&quantity=-1"></a>&nbsp;
@@ -43,7 +42,6 @@
                                 <a class="fa fa-plus" href="/shopping-cart/add?id={{$cartItem['id']}}&quantity=1"></a>
                                 </div>
                             </td>
-
                             <td class="cart_total" style="font-size: 1.2em">
                                 {{number_format($cartItem['quantity'] * $cartItem['product_price']).' VNĐ'}}
                                 @php
