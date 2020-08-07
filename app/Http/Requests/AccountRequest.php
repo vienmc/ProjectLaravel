@@ -25,11 +25,11 @@ class AccountRequest extends FormRequest
     public function rules()
     {
         return [
+            'name'=>'required',
+            'phone'=>'required',
             'email'=>'required|email',
             'password'=>'required',
             'confirm_password'=>'required',
-            'name'=>'required',
-            'phone'=>'required',
         ];
     }
 
@@ -41,5 +41,16 @@ class AccountRequest extends FormRequest
                 $validator->errors()->add('password','Mật khẩu không trùng khớp');
             }
         });
+    }
+    public function messages()
+    {
+        return [
+            'name.required'=>'Vui lòng nhập tên',
+            'phone.required'=>'Vui lòng nhập số điện thoại',
+            'email.required'=>'Vui lòng nhập email',
+            'password.required'=>'Vui lòng nhập mật khẩu',
+            'confirm_password.required'=>'Vui lòng nhập nhập lại mật khẩu',
+
+        ];
     }
 }
