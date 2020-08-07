@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Account;
 use App\Brand;
 use App\Category;
+use App\Http\Requests\AccountRequest;
 use App\Http\Requests\CheckoutValidate;
 use App\Order;
 use App\OrderDetai;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -111,31 +113,33 @@ class CheckoutController extends Controller
     }
 
     // xử lý tạo mới tài khoản người dùng
-    public function add_customer(Request $request)
+    public function add_customer(AccountRequest $request)
     {
+        $request->validated();
         $obj = new Account();
-        $obj->name = $request->sign_up_name;
-        $obj->phone = $request->sign_up_phone;
-        $obj->email= $request->sign_up_email;
+        $obj->name = $request->name;
+        $obj->phone = $request->phone;
+        $obj->email= $request->email;
         $salt = $this->generateRandomString();
         $obj->salt = $salt;
-        $password = ($request->sign_up_password) . $salt;
+        $password = ($request->password) . $salt;
         $md5_password = md5($password);
         $obj->password = $md5_password;
         $obj->status = 1;
         $obj->role =0;
+        $obj->created_at = Carbon::now()->format('Y-m-d H:i:s');
+        $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         if (Account::where('email','=',$obj->email)->first()===null){
             Session::put('customer_name', $request->sign_up_name);
-            Session::put('message', 'Tạo tài khoản thành công');
+            Session::put('message1', 'Tạo tài khoản thành công');
             $obj->save();
             return Redirect('/login-checkout');
         }
         else{
-            Session::put('message', 'Tài khoản đã tồn tại!');
+            Session::put('message1', 'Tài khoản đã tồn tại!');
             return Redirect('/login-checkout');
         }
     }
-
 
     // hiện thị view chọn hình thức thanh toán
     public function payment()
