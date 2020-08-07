@@ -159,6 +159,7 @@ class ProductController extends Controller
         $money = str_replace(array(',', ' ', 'VNĐ'), '', $request->get('product_price'));
         $obj->product_price = $money;
         $obj->product_status = $request->get('product_status');
+        $obj->thumbnail = '';
         $thumbnails = $request->get('thumbnails');
         foreach ((array)$thumbnails as $thumbnail) {
             $obj->thumbnail .= $thumbnail . ',';

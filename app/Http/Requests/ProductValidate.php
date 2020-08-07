@@ -28,7 +28,7 @@ class ProductValidate extends FormRequest
             'category_id'=>'required',
             'brand_id'=>'required',
             'product_price'=>'required',
-            'product_desc'=>'nullable',
+            'product_desc'=>'required',
         ];
     }
     public function messages()
