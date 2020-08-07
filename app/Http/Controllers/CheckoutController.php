@@ -46,6 +46,7 @@ class CheckoutController extends Controller
         $obj->shipping_address = $request ->get('shipping_address');
         $obj->shipping_phone = $request ->get('shipping_phone');
         $obj->shipping_notes = $request ->get('shipping_notes');
+        $obj->payment_option = $request ->get('payment_option');
         $obj->shipping_status = 0;
         $obj->account_id = session::get('customer_id');
 
@@ -68,15 +69,21 @@ class CheckoutController extends Controller
         }
         DB::transaction(function() use ($obj, $orderDetails) {
             $obj->save(); // có id của order.
+            Session::put('order_id',$obj->id);
             foreach ($orderDetails as $orderDetail){
                 $orderDetail->order_id = $obj->id;
                 $orderDetail->save();
             }
         });
-        Session::remove('shoppingCart');
         return Redirect('/payment');
     }
-
+    public function change_shipping(){
+        $obj = Order::find(Session::get('order_id'));
+        $obj ->shipping_status = 1; //1 đặt hàng thành công: 0 chưa thành công
+        $obj -> save();
+        Session::remove('shoppingCart');
+        return redirect('/');
+    }
     // view đăng nhập đăng kí người dùng
     public function login_checkout()
     {

@@ -9,116 +9,131 @@
                 </ol>
             </nav>
             @if(\Illuminate\Support\Facades\Session::has('shoppingCart')!=null && \Illuminate\Support\Facades\Session::get('shoppingCart') !=null)
-            <div class="review-payment">
-                <div class="table-responsive cart_info">
-                    @php
-                        $totalMoney = 0;
-                    @endphp
-                    <table class="table table-responsive ">
-                        <thead>
-                        <tr class="cart_menu">
-                            <td class="image" style="padding-right: 50px">Hình ảnh</td>
-                            <td class="description" style="width: 200px">Mô tả</td>
-                            <td class="price">Giá</td>
-                            <td class="quantity">Số lượng</td>
-                            <td class="total">Thành tiền</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach(\Illuminate\Support\Facades\Session::get('shoppingCart') as  $cartItem)
-                            <tr>
-                                <td class="cart_product">
-                                    <a href="/chi-tiet-san-pham/{{$cartItem['id']}}"><img
-                                            src="{{$cartItem['thumbnail']}}"></a>
-                                </td>
-                                <td class="cart_description">
-                                    <a href="/chi-tiet-san-pham/{{$cartItem['id']}}"> {{$cartItem['product_name']}}</a>
-                                </td>
-                                <td class="cart_price">
-                                    <p>{{number_format($cartItem['product_price']).' VNĐ'}}</p>
-                                </td>
-                                <td class="cart_quantity">
-                                    <div style="display: inline">
-                                        <span style="font-size: 1.5em">{{$cartItem['quantity']}}</span>&nbsp;
-                                    </div>
-                                </td>
-                                <td class="cart_total" style="font-size: 1.2em">
-                                    {{number_format($cartItem['quantity'] * $cartItem['product_price']).' VNĐ'}}
-                                    @php
-                                        $totalMoney += $cartItem['quantity'] * $cartItem['product_price'];
-                                    @endphp
-                                </td>
+                <div class="review-payment">
+                    <div class="table-responsive cart_info">
+                        @php
+                            $totalMoney = 0;
+                        @endphp
+                        <table class="table table-responsive ">
+                            <thead>
+                            <tr class="cart_menu">
+                                <td class="image" style="padding-right: 50px">Hình ảnh</td>
+                                <td class="description" style="width: 200px">Mô tả</td>
+                                <td class="price">Giá</td>
+                                <td class="quantity">Số lượng</td>
+                                <td class="total">Thành tiền</td>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach(\Illuminate\Support\Facades\Session::get('shoppingCart') as  $cartItem)
+                                <tr>
+                                    <td class="cart_product">
+                                        <a href="/chi-tiet-san-pham/{{$cartItem['id']}}"><img
+                                                src="{{$cartItem['thumbnail']}}"></a>
+                                    </td>
+                                    <td class="cart_description">
+                                        <a href="/chi-tiet-san-pham/{{$cartItem['id']}}"> {{$cartItem['product_name']}}</a>
+                                    </td>
+                                    <td class="cart_price">
+                                        <p>{{number_format($cartItem['product_price']).' VNĐ'}}</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div style="display: inline">
+                                            <span style="font-size: 1.5em">{{$cartItem['quantity']}}</span>&nbsp;
+                                        </div>
+                                    </td>
+                                    <td class="cart_total" style="font-size: 1.2em">
+                                        {{number_format($cartItem['quantity'] * $cartItem['product_price']).' VNĐ'}}
+                                        @php
+                                            $totalMoney += $cartItem['quantity'] * $cartItem['product_price'];
+                                        @endphp
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="shopper-informations">
-                <div class="row col-sm-12">
-                    <div>
-                        <div class="bill-to">
-                            <p>Thông tin gửi hàng</p>
-                            <div class="form-one">
-                                <form action="{{URL::to('save-checkout-customer')}}" method="post">
-                                    {{csrf_field()}}
-                                    <input required="required" type="email" name="shipping_email" placeholder="Email">
-                                    @if($errors -> has('shipping_email'))
-                                        <span class="error" style="color: red">
+                <div class="shopper-informations">
+                    <div class="row col-sm-12">
+                        <div>
+                            <div class="bill-to">
+                                <p>Thông tin gửi hàng</p>
+                                <div class="form-one">
+                                    <form action="{{URL::to('save-checkout-customer')}}" method="post">
+                                        {{csrf_field()}}
+                                        <input required="required" type="email" name="shipping_email"
+                                               placeholder="Email" value="{{old('shipping_email')}}">
+                                        @if($errors -> has('shipping_email'))
+                                            <span class="error" style="color: red">
                                 {{$errors -> first('shipping_email')}}
                                     </span>
-                                    @endif
-                                    <input required="required" type="text" name="shipping_name" placeholder="Họ và tên">
-                                    @if($errors -> has('shipping_name'))
-                                        <span class="error" style="color: red">
+                                        @endif
+                                        <input required="required" type="text" name="shipping_name"
+                                               placeholder="Họ và tên" value="{{old('shipping_name')}}">
+                                        @if($errors -> has('shipping_name'))
+                                            <span class="error" style="color: red">
                                 {{$errors -> first('shipping_name')}}
                                     </span>
-                                    @endif
-                                    <input required="required" type="text" name="shipping_address"
-                                           placeholder="Địa chỉ">
-                                    @if($errors -> has('shipping_address'))
-                                        <span class="error" style="color: red">
+                                        @endif
+                                        <input required="required" type="text" name="shipping_address"
+                                               placeholder="Địa chỉ" value="{{old('shipping_address')}}">
+                                        @if($errors -> has('shipping_address'))
+                                            <span class="error" style="color: red">
                                 {{$errors -> first('shipping_address')}}
                                     </span>
-                                    @endif
-                                    <input required="required" type="text" name="shipping_phone"
-                                           placeholder="Số điện thoại">
-                                    @if($errors -> has('shipping_phone'))
-                                        <span class="error" style="color: red">
+                                        @endif
+                                        <input required="required" type="text" name="shipping_phone"
+                                               placeholder="Số điện thoại" value="{{old('shipping_phone')}}">
+                                        @if($errors -> has('shipping_phone'))
+                                            <span class="error" style="color: red">
                                 {{$errors -> first('shipping_phone')}}
                                     </span>
-                                    @endif
-                                    <textarea name="shipping_notes" placeholder="Ghi chú đơn hàng" rows="3"></textarea>
-                                    @if($errors -> has('shipping_notes'))
-                                        <span class="error" style="color: red">
+                                        @endif
+                                        <textarea name="shipping_notes" placeholder="Ghi chú đơn hàng" rows="3"
+                                                  value="{{old('shipping_notes')}}"></textarea>
+                                        @if($errors -> has('shipping_notes'))
+                                            <span class="error" style="color: red">
                                 {{$errors -> first('shipping_notes')}}
                                     </span>
-                                    @endif
-                                    <div>
-                                        <button type="submit" class="btn btn-dark"
-                                                style="background-color: #dc3545; margin-top: 10px; font-size: 1.6em">
-                                            ĐẶT MUA
-                                        </button>
-                                    </div>
-                                </form>
+                                        @endif
+                                        <div class="payment-options" style="margin: 15px">
+                                            <h4 style="color: #428bca">Chọn hình thức thanh toán</h4>
+                                            <span class="fa fa-money " style="font-size: 3em"></span>
+                                            <label class=""><input name="payment_option" value="1" type="checkbox"
+                                                                   checked="checked"> Tiền mặt</label>
+                                            @if($errors -> has('payment_option'))
+                                                <span class="error" style="color: red">
+                                                {{$errors -> first('payment_option')}}
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div>
+                                            <button type="submit" class="btn btn-dark"
+                                                    style="background-color: #dc3545;  font-size: 1.6em">
+                                                ĐẶT MUA
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="total_area">
+                                <ul>
+                                    <li>Tạm tính <span>{{number_format($totalMoney).' VNĐ'}}</span></li>
+                                    <li>Phí vận chuyển <span>Free</span></li>
+                                    <li>Thành tiền <span
+                                            style="color: #D81B60; font-size: 1.3em">{{number_format($totalMoney).' VNĐ'}}</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="total_area">
-                            <ul>
-                                <li>Tạm tính <span>{{number_format($totalMoney).' VNĐ'}}</span></li>
-                                <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Thành tiền <span
-                                        style="color: #D81B60; font-size: 1.3em">{{number_format($totalMoney).' VNĐ'}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
-            </div>
             @else
-            <div>Không có sản phẩm nào được chọn, <a href="/">Quay lại</a></div>
+                <div>Không có sản phẩm nào được chọn, <a href="/">Quay lại</a></div>
             @endif
         </div>
     </section> <!--/#cart_items-->

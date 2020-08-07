@@ -61,7 +61,7 @@ Route::get('/active-product/{id}', 'ProductController@Active_product');
 Route::get('/login-checkout', 'CheckoutController@login_checkout'); // view đăng nhập đăng kí người dùng
 Route::get('/logout-checkout', 'CheckoutController@logout_checkout'); // logout người dùng
 Route::post('/login-customer', 'CheckoutController@login_customer');// login user
-Route::post('/order-place', 'CheckoutController@order_place');
+Route::post('/change-shipping', 'CheckoutController@change_shipping');
 Route::get('/checkout', 'CheckoutController@checkout'); // hiện thị form nhập thông tin gưi hàng và chọn đạt mua
 Route::post('/add-customer', 'CheckoutController@add_customer'); // xử lý tạo mới tài khoản người dùng
 Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); // xử lý lưu thông tin gửi hàng của người dùng
