@@ -8,6 +8,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
                 </ol>
             </nav>
+            @if($shoppingCart !=null)
             <div class="table-responsive cart_info">
                 @php
                     $totalMoney = 0;
@@ -79,4 +80,7 @@
             </div>
         </div>
     </section><!--/#do_action-->
+    @else
+    <div>Bạn chưa chọn mua sản phẩm nào. <a href="/">Quay lại</a></div>
+    @endif
 @endsection

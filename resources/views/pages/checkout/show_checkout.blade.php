@@ -8,6 +8,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Thanh toán giỏ hàng</li>
                 </ol>
             </nav>
+            @if(\Illuminate\Support\Facades\Session::has('shoppingCart')!=null)
             <div class="review-payment">
                 <div class="table-responsive cart_info">
                     @php
@@ -24,7 +25,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(\Illuminate\Support\Facades\Session::has('shoppingCart')!=null)
                         @foreach(\Illuminate\Support\Facades\Session::get('shoppingCart') as  $cartItem)
                             <tr>
                                 <td class="cart_product">
@@ -50,7 +50,6 @@
                                 </td>
                             </tr>
                         @endforeach
-                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -94,6 +93,9 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div>Không có sản phẩm nào được chọn, <a href="/">Quay lại</a></div>
+            @endif
         </div>
     </section> <!--/#cart_items-->
 @endsection
