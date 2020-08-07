@@ -38,7 +38,7 @@
                             </td>
                             <td class="cart_quantity">
                                 <div style="display: inline">
-                                <a class="fa fa-minus" href="/shopping-cart/add?id={{$cartItem['id']}}&quantity=-1"></a>&nbsp;
+                                <a class="fa fa-minus " href="/shopping-cart/add?id={{$cartItem['id']}}&quantity=-1"></a>&nbsp;
                                 <span style="font-size: 1.5em">{{$cartItem['quantity']}}</span>&nbsp;
                                 <a class="fa fa-plus" href="/shopping-cart/add?id={{$cartItem['id']}}&quantity=1"></a>
                                 </div>

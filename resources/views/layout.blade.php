@@ -13,6 +13,7 @@
     <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/jquery.toast.css')}}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -514,5 +515,24 @@
 <script src="{{asset('frontend/js/price-range.js')}}"></script>
 <script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{asset('frontend/js/main.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.toast.js')}}"></script>
+
+<script>
+    $('.add-to-cart').on('click', function (e) {
+        $.toast({
+            text: "Thêm sản phẩm vào giỏ hàng thành công!", // Text that is to be shown in the toast
+            heading: 'Chúc mừng', // Optional heading to be shown on the toast
+            icon: 'success', // Type of toast icon
+            showHideTransition: 'plain', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: 2000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: 1, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+            textAlign: 'left',  // Text alignment i.e. left, right or center
+            loader: true,  // Whether to show loader or not. True by default
+            loaderBg: '#9EC600',  // Background color of the toast loader
+        });
+    });
+</script>
 </body>
 </html>

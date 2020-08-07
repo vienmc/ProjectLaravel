@@ -47,4 +47,5 @@
             </div><!--features_items-->
     <br>
     <span class="text-center">{{$all_product->links()}}</span>
+
 @endsection

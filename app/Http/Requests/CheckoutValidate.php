@@ -27,7 +27,8 @@ class CheckoutValidate extends FormRequest
             'shipping_email'=>'required|email',
             'shipping_name'=>'required',
             'shipping_address'=>'required',
-            'shipping_phone'=>'required|numeric'
+            'shipping_phone'=>'required|numeric',
+            'shipping_notes'=>'required'
         ];
     }
     public function messages()
