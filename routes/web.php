@@ -27,7 +27,7 @@ Route::get('/thuong-hieu-san-pham/{id}', 'ProductController@show_product_brand')
 Route::get('/', 'HomeController@index');
 Route::resource('/contact-us','ContactUsController')->only(['index','store']);
 
-Route::get('/login', 'AdminController@Index')->name('login');
+Route::get('/login', 'AdminController@Index')->name('admin_login');
 Route::get('/admin-signup', 'AdminController@SignUp');
 Route::post('/do-signup', 'AdminController@DoSignUp');
 Route::post('/do-login', 'AdminController@DoLogin');
@@ -39,6 +39,7 @@ Route::get('/active-account/{account_id}', 'AccountController@Active_account');
 Route::get('/edit-account/{account_id}', 'AccountController@Edit_account');
 Route::post('/update-account/{account_id}', 'AccountController@Update_account');
 Route::get('/find-by-email', 'AccountController@FindByEmail');
+
 //brand
 Route::resource('brand', 'BrandController');
 
@@ -57,14 +58,14 @@ Route::get('/active-product/{id}', 'ProductController@Active_product');
 
 
 //checkout
-Route::get('/login-checkout', 'CheckoutController@login_checkout');
-Route::get('/logout-checkout', 'CheckoutController@logout_checkout');
-Route::post('/login-customer', 'CheckoutController@login_customer');
+Route::get('/login-checkout', 'CheckoutController@login_checkout'); // view đăng nhập đăng kí người dùng
+Route::get('/logout-checkout', 'CheckoutController@logout_checkout'); // logout người dùng
+Route::post('/login-customer', 'CheckoutController@login_customer');// login user
 Route::post('/order-place', 'CheckoutController@order_place');
-Route::get('/checkout', 'CheckoutController@checkout');
-Route::post('/add-customer', 'CheckoutController@add_customer');
+Route::get('/checkout', 'CheckoutController@checkout'); // view nhập thông tin gửi hàng và chọn thanh toán
+Route::post('/add-customer', 'CheckoutController@add_customer'); // xử lý tạo mới tài khoản người dùng
 Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer');
-Route::get('/payment', 'CheckoutController@payment');
+Route::get('/payment', 'CheckoutController@payment'); // view chọn hình thức thanh toán
 
 //blog
 Route::get('/blog-list-page1','BlogController@showpage1');
@@ -90,8 +91,8 @@ Route::get('q&a',function ()
 
 
 //giỏ hàng
-Route::get('/shopping-cart/add', 'ShoppingCartController@add');
-Route::get('/shopping-cart/remove', 'ShoppingCartController@remove');
-Route::get('/shopping-cart/show', 'ShoppingCartController@show');
+Route::get('/shopping-cart/add', 'ShoppingCartController@add'); // thêm sản phẩm
+Route::get('/shopping-cart/remove', 'ShoppingCartController@remove'); // xóa sản phẩm
+Route::get('/shopping-cart/show', 'ShoppingCartController@show'); // view giỏ hàng
 
 

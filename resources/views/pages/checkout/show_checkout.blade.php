@@ -8,7 +8,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Thanh toán giỏ hàng</li>
                 </ol>
             </nav>
-            @if(\Illuminate\Support\Facades\Session::has('shoppingCart')!=null)
+            @if(\Illuminate\Support\Facades\Session::has('shoppingCart')!=null && \Illuminate\Support\Facades\Session::get('shoppingCart') !=null)
             <div class="review-payment">
                 <div class="table-responsive cart_info">
                     @php
@@ -55,7 +55,6 @@
                 </div>
             </div>
             <div class="shopper-informations">
-
                 <div class="row col-sm-12">
                     <div>
                         <div class="bill-to">

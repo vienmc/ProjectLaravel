@@ -15,6 +15,19 @@ use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
+    // hiện thị giỏ hàng
+    public function checkout(Request $request)
+    {
+        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+        $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+        return view('pages.checkout.show_checkout')->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
+    }
+
+    // view đăng nhập đăng kí người dùng
     public function login_checkout()
     {
         $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
@@ -26,6 +39,30 @@ class CheckoutController extends Controller
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
     }
 
+    //xử lý đăng nhập user
+    public function login_customer(Request $request)
+    {
+        $email = $request->login_email;
+        $result = Account::where('email','=',$email)->first();
+        if ($result) {
+            $salt = $result->salt;
+        } else {
+            Session::put('message', 'Không tồn tại email này');
+            return Redirect('/login-checkout');
+        }
+        $password = ($request->login_password) . $salt;
+        $passwordHash = md5($password);
+        $account= Account::where('email','=',$email)->where('password','=',$passwordHash)->first();
+        if ($account) {
+            Session::put('customer_id', $account->id);
+            return Redirect('/');
+        } else {
+            Session::put('message', 'Sai email hoặc mật khẩu');
+            return Redirect('/login-checkout');
+        }
+    }
+
+    // xử lý tạo mới tài khoản người dùng
     public function add_customer(Request $request)
     {
         $obj = new Account();
@@ -50,16 +87,31 @@ class CheckoutController extends Controller
             return Redirect('/login-checkout');
         }
     }
-    public function checkout(Request $request)
+
+
+
+    // hiện thị view chọn hình thức thanh toán
+    public function payment()
     {
         $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
         $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
         $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
-        return view('pages.checkout.show_checkout')->with('category1', $category_product1)->with('category2', $category_product2)
+        return view('pages.checkout.payment')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
     }
+
+// thoát đăng nhập người dùng
+    public function logout_checkout()
+    {
+        Session::flush();
+        return Redirect('/login-checkout');
+    }
+
+
+
+
 
     function generateRandomString()
     {
@@ -71,42 +123,5 @@ class CheckoutController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
-    }
-
-    public function payment()
-    {
-        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
-        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
-        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
-        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
-        $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
-        return view('pages.checkout.payment')->with('category1', $category_product1)->with('category2', $category_product2)
-            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
-    }
-    public function logout_checkout()
-    {
-        Session::flush();
-        return Redirect('/login-checkout');
-    }
-    public function login_customer(Request $request)
-    {
-        $email = $request->login_email;
-        $result = Account::where('email','=',$email)->first();
-        if ($result) {
-            $salt = $result->salt;
-        } else {
-            Session::put('message', 'Không tồn tại email này');
-            return Redirect('/login-checkout');
-        }
-        $password = ($request->login_password) . $salt;
-        $passwordHash = md5($password);
-        $account= Account::where('email','=',$email)->where('password','=',$passwordHash)->first();
-        if ($account) {
-            Session::put('customer_id', $account->id);
-            return Redirect('/');
-        } else {
-            Session::put('message', 'Sai email hoặc mật khẩu');
-            return Redirect('/login-checkout');
-        }
     }
 }

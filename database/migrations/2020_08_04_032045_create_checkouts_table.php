@@ -16,7 +16,7 @@ class CreateCheckoutsTable extends Migration
         Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
             $table->string('checkout_name');
-            $table->integer('customer_id');
+            $table->integer('account_id');
             $table->string('checkout_address');
             $table->string('checkout_phone');
             $table->string('checkout_email');

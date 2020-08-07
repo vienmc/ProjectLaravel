@@ -24,7 +24,6 @@ class AccountController extends Controller
             ->appends($request->only('keyword'));
         return view('Admin.Account.list')->with('list', $list);
     }
-
     /**
      * Show the form for creating a new resource.
      *
