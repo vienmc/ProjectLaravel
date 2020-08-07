@@ -163,7 +163,6 @@ class ProductController extends Controller
         foreach ((array)$thumbnails as $thumbnail) {
             $obj->thumbnail .= $thumbnail . ',';
         }
-
         $obj->save();
         $request->session()->flash('message', 'Thêm mới sản phẩm thành công!');
         return redirect('/product');

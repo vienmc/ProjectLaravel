@@ -6,8 +6,10 @@ use App\Account;
 use App\Brand;
 use App\Category;
 use App\Customer;
+use App\Http\Requests\CheckoutValidate;
 use App\Http\Requests\UserRequest;
 use App\Product;
+use App\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +17,8 @@ use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
-    // hiện thị giỏ hàng
-    public function checkout(Request $request)
+    // hiện thị form nhập thông tin gưi hàng và chọn đạt mua
+    public function checkout()
     {
         $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
         $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
@@ -25,6 +27,24 @@ class CheckoutController extends Controller
         $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
         return view('pages.checkout.show_checkout')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
+    }
+
+    // xử lý lưu thông tin gửi hàng của người dùng đã đăng nhập thành công
+    public function save_checkout_customer(CheckoutValidate $request)
+    {
+        $request->validated();
+        $obj = new Shipping();
+        $obj->shipping_email = $request ->get('shipping_email');
+        $obj->shipping_name = $request ->get('shipping_name');
+        $obj->shipping_address = $request ->get('shipping_address');
+        $obj->shipping_phone = $request ->get('shipping_phone');
+        $obj->shipping_notes = $request ->get('shipping_notes');
+        $obj->shipping_status = 0;
+        $obj->customer_id = session::get('customer_id');
+        $obj->save();
+        $shipping_id = Shipping::all();
+        Session::put('shipping_id', $shipping_id);
+        return Redirect('/payment');
     }
 
     // view đăng nhập đăng kí người dùng
@@ -89,7 +109,6 @@ class CheckoutController extends Controller
     }
 
 
-
     // hiện thị view chọn hình thức thanh toán
     public function payment()
     {
@@ -108,9 +127,6 @@ class CheckoutController extends Controller
         Session::flush();
         return Redirect('/login-checkout');
     }
-
-
-
 
 
     function generateRandomString()

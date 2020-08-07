@@ -62,9 +62,9 @@ Route::get('/login-checkout', 'CheckoutController@login_checkout'); // view đă
 Route::get('/logout-checkout', 'CheckoutController@logout_checkout'); // logout người dùng
 Route::post('/login-customer', 'CheckoutController@login_customer');// login user
 Route::post('/order-place', 'CheckoutController@order_place');
-Route::get('/checkout', 'CheckoutController@checkout'); // view nhập thông tin gửi hàng và chọn thanh toán
+Route::get('/checkout', 'CheckoutController@checkout'); // hiện thị form nhập thông tin gưi hàng và chọn đạt mua
 Route::post('/add-customer', 'CheckoutController@add_customer'); // xử lý tạo mới tài khoản người dùng
-Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer');
+Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); // xử lý lưu thông tin gửi hàng của người dùng
 Route::get('/payment', 'CheckoutController@payment'); // view chọn hình thức thanh toán
 
 //blog

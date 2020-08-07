@@ -63,12 +63,37 @@
                                 <form action="{{URL::to('save-checkout-customer')}}" method="post">
                                     {{csrf_field()}}
                                     <input required="required" type="email" name="shipping_email" placeholder="Email">
+                                    @if($errors -> has('shipping_email'))
+                                        <span class="error" style="color: red">
+                                {{$errors -> first('shipping_email')}}
+                                    </span>
+                                    @endif
                                     <input required="required" type="text" name="shipping_name" placeholder="Họ và tên">
+                                    @if($errors -> has('shipping_name'))
+                                        <span class="error" style="color: red">
+                                {{$errors -> first('shipping_name')}}
+                                    </span>
+                                    @endif
                                     <input required="required" type="text" name="shipping_address"
                                            placeholder="Địa chỉ">
+                                    @if($errors -> has('shipping_address'))
+                                        <span class="error" style="color: red">
+                                {{$errors -> first('shipping_address')}}
+                                    </span>
+                                    @endif
                                     <input required="required" type="text" name="shipping_phone"
                                            placeholder="Số điện thoại">
+                                    @if($errors -> has('shipping_phone'))
+                                        <span class="error" style="color: red">
+                                {{$errors -> first('shipping_phone')}}
+                                    </span>
+                                    @endif
                                     <textarea name="shipping_notes" placeholder="Ghi chú đơn hàng" rows="3"></textarea>
+                                    @if($errors -> has('shipping_notes'))
+                                        <span class="error" style="color: red">
+                                {{$errors -> first('shipping_notes')}}
+                                    </span>
+                                    @endif
                                     <div>
                                         <button type="submit" class="btn btn-dark"
                                                 style="background-color: #dc3545; margin-top: 10px; font-size: 1.6em">
