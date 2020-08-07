@@ -94,5 +94,15 @@ Route::get('q&a',function ()
 Route::get('/shopping-cart/add', 'ShoppingCartController@add'); // thêm sản phẩm
 Route::get('/shopping-cart/remove', 'ShoppingCartController@remove'); // xóa sản phẩm
 Route::get('/shopping-cart/show', 'ShoppingCartController@show'); // view giỏ hàng
-
+//about-us
+Route::get('about-us',function ()
+{
+    $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+    $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+    $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+    $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+    $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+    return view('pages.about-us.aboutus')->with('category1', $category_product1)->with('category2', $category_product2)
+        ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);;
+});
 
