@@ -72,7 +72,7 @@
                             <li>Phí vận chuyển <span>Free</span></li>
                             <li>Thành tiền <span style="color: #D81B60; font-size: 1.3em">{{number_format($totalMoney).' VNĐ'}}</span></li>
                         </ul>
-                        <a class="btn btn-default update" href="">Tiến hành đặt hàng</a>
+                        <a class="btn btn-default update" href="/checkout">Tiến hành đặt hàng</a>
 
                     </div>
                 </div>

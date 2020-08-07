@@ -50,7 +50,7 @@ class CheckoutController extends Controller
             return Redirect('/login-checkout');
         }
     }
-    public function checkout()
+    public function checkout(Request $request)
     {
         $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
         $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
@@ -60,6 +60,7 @@ class CheckoutController extends Controller
         return view('pages.checkout.show_checkout')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
     }
+
     function generateRandomString()
     {
         $length = 5;

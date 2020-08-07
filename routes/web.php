@@ -27,7 +27,7 @@ Route::get('/thuong-hieu-san-pham/{id}', 'ProductController@show_product_brand')
 Route::get('/', 'HomeController@index');
 Route::resource('/contact-us','ContactUsController')->only(['index','store']);
 
-Route::get('/login', 'AdminController@Index');
+Route::get('/login', 'AdminController@Index')->name('login');
 Route::get('/admin-signup', 'AdminController@SignUp');
 Route::post('/do-signup', 'AdminController@DoSignUp');
 Route::post('/do-login', 'AdminController@DoLogin');

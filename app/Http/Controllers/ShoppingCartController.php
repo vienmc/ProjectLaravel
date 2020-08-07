@@ -52,7 +52,7 @@ class ShoppingCartController extends Controller
         if($cartItem['quantity'] <= 0){
             unset($shoppingCart[$product->id]);
         }
-        Session::put('shoppingCart', $shoppingCart);
+       Session::put('shoppingCart', $shoppingCart);
         return redirect('/shopping-cart/show');
     }
 
@@ -72,7 +72,7 @@ class ShoppingCartController extends Controller
     }
 
 
-    public function show()
+    public function show(Request $request)
     {
         $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
         $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
