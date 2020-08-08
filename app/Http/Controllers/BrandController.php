@@ -1,16 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Account;
-use App\Game;
 use App\Http\Requests\BrandValidate;
-use App\Product;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Session;
 use App\Brand;
-use App\Category;
 use Illuminate\Http\Request;
 
 
@@ -50,9 +45,9 @@ class BrandController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $brand1 = $brand1->whereBetween('created_at', [$from, $to]);
         }
-        $data['link'] = $brand1->orderBy('created_at','desc')->paginate(6);
+        $data['link'] = $brand1->orderBy('updated_at','desc')->paginate(5);
         $data['list'] = $brand1->get();
-        return view('Admin.Brand.list')->with( $data);
+        return view('Admin.Brand.list')->with($data);
     }
 
     /**
@@ -136,5 +131,11 @@ class BrandController extends Controller
         $obj = Brand::find($id);
         $obj->delete();
         return Response::json([], 200);
+    }
+
+    public function destroyAll(Request $request)
+    {
+
+        return 'digmrmay';
     }
 }

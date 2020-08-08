@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Account;
-use App\Apartments;
-use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 class AccountController extends Controller
@@ -19,10 +18,21 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
-        $list = Account::where('email','like','%')->orderby('created_at', 'desc')->paginate(10)
-            ->appends($request->only('account_id'))
-            ->appends($request->only('keyword'));
-        return view('Admin.Account.list')->with('list', $list);
+        $account = Account::query();
+        $account1 =Account::all();
+        if ($request->has('email') && strlen($request->get('email')) > 0) {
+            $data['email'] = $request->get('email');
+            $account = $account->where('email', 'like', '%' . $request->get('email') . '%');
+        }
+        if ($request->has('start') && strlen($request->get('start')) > 0 && $request->has('end') && strlen($request->get('end')) > 0) {
+            $data['start'] = $request->get('start');
+            $data['end'] = $request->get('end');
+            $from = date($request->get('start') . ' 00:00:00');
+            $to = date($request->get('end') . ' 23:59:00');
+            $account = $account->whereBetween('created_at', [$from, $to]);
+        }
+        $data['list'] = $account->orderBy('updated_at','desc')->paginate(10);
+        return view('Admin.Account.list')->with($data);
     }
     /**
      * Show the form for creating a new resource.

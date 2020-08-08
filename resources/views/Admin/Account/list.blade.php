@@ -5,16 +5,27 @@
             <div class="panel-heading">
                 Danh sách tài khoản
             </div>
-            <div class="row w3-res-tb" style="text-align: center; margin-bottom: 5px; float: left">
+            <div class="row w3-res-tb" style="text-align: left;">
                 <form class="form-inline" action="{{URL::to('/find-by-email')}}" method="get">
                     {{csrf_field()}}
                     <div class="form-group mb-2">
                         <label>Tìm theo email</label>
                     </div>
-                    <div class="form-group mx-sm-3 mb-2">
+                    <div class="form-group mx-sm-1 mb-2">
                         <input type="text" name="keyword" class="form-control" id="inputPassword2">
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">Tìm</button>
+                </form>
+                <form action="/account" class="form-inline" method="get" id="account_form">
+                    @csrf
+                    <div class="form-group mx-sm-1 mb-2">
+                        <label for="exampleFormControlSelect1" style=""> Tìm theo thời gian</label>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" name="dates" class="form-control">
+                        <input type="hidden" name="start">
+                        <input type="hidden" name="end">
+                    </div>
                 </form>
             </div>
             <div style="clear: both"></div>
@@ -86,7 +97,32 @@
                     </tbody>
                 </table>
             </div>
-            {{$list->links()}}
+            <span class="text-center">{{$list->links()}}</span>
         </div>
     </div>
+
+@endsection
+@section('script')
+    <script>
+        $('input[name="dates"]').daterangepicker(
+            {
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
+                ranges: {
+                    'Hôm nay': [moment(), moment()],
+                    'Hôm qua': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    '7 ngày trước': [moment().subtract(6, 'days'), moment()],
+                    '30 ngày trước': [moment().subtract(29, 'days'), moment()],
+                    'Tháng này': [moment().startOf('month'), moment().endOf('month')],
+                    'Tháng trước': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }
+        );
+        $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+            $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
+            $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
+            $('#account_form').submit();
+        });
+    </script>
 @endsection

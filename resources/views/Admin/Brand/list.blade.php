@@ -10,11 +10,11 @@
                     @csrf
                     <div class="form-body">
                         <div class="form-group">
-                            <label >TÌM THEO TÊN THƯƠNG HIỆU </label>
+                            <label for="exampleFormControlSelect1" >TÌM THEO TÊN</label>
                             <input  value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Search by keyword">
-                            <input type="submit" style="visibility: hidden;" />
+                            <input type="submit" style="display: none"/>
                         </div>
-                        <div class="form-group"  >
+                        <div class="form-group">
                             <label for="exampleFormControlSelect1" >TÌM THEO THỜI GIAN</label>
                             <input type="text" name="dates" class="form-control">
                             <input type="hidden" name="start">
@@ -33,7 +33,25 @@
                 ?>
                 <table class="table table-striped b-t b-light">
                     <thead>
+                    <div class="ml-auto">
+                        <div class="dropdown sub-dropdown">
+                            <button class="btn btn-link text-muted dropdown-toggle" type="button"
+                                    id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <i data-feather="more-vertical"></i>
+                            </button>
+                            <div class="dropdown-menu " aria-labelledby="dd1">
+                                <a class="dropdown-item" href="javascript:void(0)" id="delete-all">Delete All</a>
+                            </div>
+                        </div>
+                    </div>
                     <tr>
+                        <th class="border-0 font-14 font-weight-medium text-muted">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkAll" value="0">
+                                <label class="custom-control-label" for="checkAll"></label>
+                            </div>
+                        </th>
                         <th>Tên</th>
                         <th>Mô tả</th>
                         <th>Kích hoạt / Khóa</th>
@@ -41,8 +59,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(sizeof($list) > 0)
                     @foreach($list as $item)
                       <tr>
+                          <td class="border-top-0 px-2 py-4">
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input brand-checkbox"
+                                         value="{{$item->id}}" id="checkbox_{{$item->id}}">
+                                  <label class="custom-control-label"
+                                         for="checkbox_{{$item->id}}"></label>
+                              </div>
+                          </td>
                           <td >{{$item->brand_name}}</td>
                           <td id="description"> <?php
                               /** @var TYPE_NAME $item */echo strip_tags($item->brand_desc) ?></td>
@@ -51,7 +78,7 @@
                                  @csrf
                               @if($item->brand_status == 1)
                                   <input  value="{{$item->id}}"  type="hidden" name="brand_id" class="form-control">
-                                  <button type="submit" class="fa-thumb-styling fa fa-check" class="btn" style=" color: #00a6b2; border: none; padding: 0; background: none;" > </button>
+                                  <button type="submit" class="fa-thumb-styling fa fa-check" class="btn" style=" color: #1d75b3; border: none; padding: 0; background: none;" > </button>
                                   <input  value="{{$item->brand_status}}"  type="hidden" name="brand_status" class="form-control"  >
                                   @else
                                   <input  value="{{$item->id}}"  type="hidden" name="brand_id" class="form-control"  style="visibility: hidden;">
@@ -66,6 +93,9 @@
                           </td>
                       </tr>
                     @endforeach
+                    @else
+                        <div>Không có thương hiệu sản phẩm nào</div>
+                    @endif
                     </tbody>
                 </table>
                     <span class="text-center">{{$link->links()}}</span>
@@ -95,6 +125,43 @@
             $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
             $('#brand_form').submit();
         });
+        // bắt sự kiện vào checkbox check all.
+        $('#checkAll').click(function () {
+            // chuyển trạng thái check của tất cả checkbox có class 'product-checkbox'
+            // theo trạng thái của checkbox checkall.
+            $('.brand-checkbox').prop('checked', $(this).prop('checked'));
+        });
+        // khi click nút delete all
+        $('#delete-all').click(function () {
+            // lấy ra danh sách ids của các checkbox đã checked.
+            var deleteIds = $('input:checkbox:checked').map(function(){
+                return $(this).val();
+            }).get();
+            // trường hợp chưa sản phẩm nào được check thì return.
+            if(deleteIds.length === 0){
+                alert('dit cu may ! chon 1 cai di ');
+                return;
+            }
+            // gửi request lên server yêu cầu xoá tất cả sản phẩm được check.
+            $.ajax({
+                'url': '/brand/destroy-all',
+                'method': 'POST',
+                'data': {
+                    "_token": $('meta[name="csrf-token"]').attr('content'),
+                    'ids': deleteIds
+                },
+                'success': function () {
+                    // Thông báo thành công, reload lại trang.
+                    alert('Action success');
+                    location.reload();
+                },
+                'error': function () {
+                    alert('hj fails');
+                }
+            })
+        });
+
+
     </script>
 @endsection
 
