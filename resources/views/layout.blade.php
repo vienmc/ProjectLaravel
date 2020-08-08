@@ -522,6 +522,16 @@
             loaderBg: '#9EC600',  // Background color of the toast loader
         });
     });
+
+
+    $("img.img-small").click(function () {
+        var ele = $(this);
+        var src = ele.attr('src');
+        $("img#large-photo").attr('src',src);
+
+    })
+
+
 </script>
 </body>
 </html>

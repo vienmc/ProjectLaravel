@@ -4,26 +4,27 @@
         <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
                 <div class="view-product">
-                        <img src="{{$detail_product->large_photo}}" alt="">
+                        <img src="{{$detail_product->large_photo}}" id="large-photo" alt="1234">
                 </div>
                 <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            @foreach($detail_product->smalls_photos as $p)
-                                <a href=""> <img src="{{$p}}" alt=""></a>
+                            @foreach($detail_product->large_photos as $p)
+                                <a href="#large-photo" > <img  src="{{$p}}" class="img-small" alt="" style="width: 25%"></a>
                             @endforeach
+
 
                         </div>
                         <div class="item">
-                            @foreach($detail_product->smalls_photos as $p)
-                                <a href=""> <img src="{{$p}}" alt=""></a>
+                            @foreach($detail_product->large_photos as $p)
+                                <a href="#large-photo" id="click-img"> <img  src="{{$p}}" class="img-small" style="width: 25%" alt=""></a>
                             @endforeach
                         </div>
                         <div class="item">
-                            @foreach($detail_product->smalls_photos as $p)
-                                <a href=""> <img src="{{$p}}" alt=""></a>
+                            @foreach($detail_product->large_photos as $p)
+                                <a href="#large-photo" id="click-img"> <img src="{{$p}}" class="img-small" style="width: 25%" alt=""></a>
                             @endforeach
                         </div>
 
