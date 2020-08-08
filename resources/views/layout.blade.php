@@ -466,8 +466,16 @@
                 <div class="col-sm-3">
                     <div class="single-widget">
                         <h2>ĐĂNG KÝ NHẬN TIN TỨC TỪ CHÚNG TÔI</h2>
-                        <form action="#" class="searchform">
-                            <input type="text" placeholder="Địa chỉ email của bạn"/>
+                        <?php
+                        $message = Session::get('message');
+                        if ($message) {
+                            echo '<span style="color:#ff0000;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
+                            Session::put('message', null);
+                        }
+                        ?>
+                        <form action="{{URL::to('/a')}}" class="searchform" method="post">
+                            @csrf
+                            <input type="text" name="email_subscribers" placeholder="Địa chỉ email của bạn"/>
                             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i>
                             </button>
                             <p>Nhận các bản cập nhật mới nhất từ <br/>trang web của chúng tôi và được tự cập nhật ...</p>
