@@ -139,7 +139,7 @@
             }).get();
             // trường hợp chưa sản phẩm nào được check thì return.
             if(deleteIds.length === 0){
-                alert('dit cu may ! chon 1 cai di ');
+                alert('vui lòng chọn ít nhất một sản phẩm');
                 return;
             }
             // gửi request lên server yêu cầu xoá tất cả sản phẩm được check.
