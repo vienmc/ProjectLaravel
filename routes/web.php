@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::post('/chi-tiet-san-pham/{id}', 'ProductController@review');
 Route::get('/chi-tiet-san-pham/{id}', 'ProductController@show_detail_product');
 Route::get('/danh-muc-san-pham/{id}', 'ProductController@show_product_category');
 Route::get('/thuong-hieu-san-pham/{id}', 'ProductController@show_product_brand');

@@ -6,10 +6,12 @@ use App\Brand;
 use App\Category;
 use App\Http\Requests\ProductValidate;
 use App\Product;
+use App\Review;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use MongoDB\Driver\Session;
 
 class ProductController extends Controller
 {
@@ -20,6 +22,46 @@ class ProductController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
+
+    public function review($id,Request $request){
+        $detail_product = Product::find($id);
+        $review = new Review();
+        if (\Illuminate\Support\Facades\Session::has('customer_username')){
+            $review->username = \Illuminate\Support\Facades\Session::get('customer_username');
+            $review->content = $request->get('content');
+            $review->product_id = $id;
+            $review->save();
+
+            $detail_product = Product::find($id);
+            $current_category = $detail_product->category->id;
+            $relate_product = Category::find($current_category)->product;
+
+            $category_product1 = Category::where('status', '=', 1)->orderby('name', 'ASC')->limit(5)->get();
+            $category_product2 = Category::where('status', '=', 1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+            $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+            $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+            $review = Review::all()->where('product_id','=',$id);
+
+            $all_product = Product::where('product_status', '=', 1)->orderby('updated_at', 'desc')->paginate(9);
+            return view('pages.product.detail_product')->with('category1', $category_product1)->with('category2', $category_product2)
+                ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('detail_product', $detail_product)
+                ->with('relate', $relate_product)->with('review',$review);
+        }
+        $current_category = $detail_product->category->id;
+        $relate_product = Category::find($current_category)->product;
+
+        $category_product1 = Category::where('status', '=', 1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status', '=', 1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+
+        $all_product = Product::where('product_status', '=', 1)->orderby('updated_at', 'desc')->paginate(9);
+        return view('pages.checkout.login_checkout')->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('detail_product', $detail_product)
+            ->with('relate', $relate_product);
+
+
+    }
 
     public function show_product_brand($id, Request $request){
         $data = array();
@@ -91,11 +133,12 @@ class ProductController extends Controller
         $category_product2 = Category::where('status', '=', 1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+        $review = Review::all()->where('product_id','=',$id);
 
         $all_product = Product::where('product_status', '=', 1)->orderby('updated_at', 'desc')->paginate(9);
         return view('pages.product.detail_product')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('detail_product', $detail_product)
-            ->with('relate', $relate_product);
+            ->with('relate', $relate_product)->with('review',$review);
     }
 
     public function index(Request $request)

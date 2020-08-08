@@ -112,6 +112,7 @@ class CheckoutController extends Controller
         $account= Account::where('email','=',$email)->where('password','=',$passwordHash)->first();
         if ($account) {
             Session::put('customer_id', $account->id);
+            Session::put('customer_username',$account->name);
             return Redirect('/');
         } else {
             Session::put('message', 'Sai email hoặc mật khẩu');

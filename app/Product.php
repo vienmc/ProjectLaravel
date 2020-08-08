@@ -127,5 +127,8 @@ class Product extends Model
     public function brand(){
        return $this->belongsTo('App\Brand', 'brand_id','id');
     }
+    public function review(){
+        return $this->hasMany('App\Review', 'product_id','id');
+    }
 }
 
