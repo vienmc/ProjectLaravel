@@ -326,24 +326,7 @@
                         </div>
                         @endif
                     </div><!--/brands_products-->
-                    <form action="/" method="get" id="product_form">
-                    <div class="price-range"><!--price-range-->
-                        <h2>PHẠM VI GIÁ</h2>
-                        <div class="well text-center">
 
-                            <input name="search_price_submit" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000000"
-                                   data-slider-step="50000" data-slider-value="[1000000,2000000]" id="sl2"><br/>
-                            <b class="pull-left">0 VNĐ</b> <b class="pull-right">5,000,000 VNĐ</b>
-                            <input type="hidden" name="Min" >
-                            <input type="hidden" name="Max" >
-                            <br>
-
-                            <input type="submit" class="btn btn-sm  button-search" style="width: auto"
-                                   value="Chọn" name="search_price"/>
-
-                        </div>
-                    </div><!--/price-range-->
-                    </form>
                     <div class="shipping text-center"><!--shipping-->
                         <img src="{{asset('frontend/images/shipping.jpg')}}" alt=""/>
                     </div><!--/shipping-->
@@ -518,6 +501,12 @@
 <script src="{{asset('frontend/js/jquery.toast.js')}}"></script>
 
 <script>
+    $('#categorySelect').change(function () {
+        $('#product_form').submit();
+    })
+    $('#brandSelect').change(function () {
+        $('#product_form').submit();
+    })
     $('.add-to-cart').on('click', function (e) {
         $.toast({
             text: "Thêm sản phẩm vào giỏ hàng thành công!", // Text that is to be shown in the toast
