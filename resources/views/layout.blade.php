@@ -125,7 +125,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a href="#">Thông tin tài khoản</a></li>
-                                            <li><a href="#">Thông tin đơn hàng</a></li>
+                                            <li><a href="{{URL::to('/order-management')}}">Thông tin đơn hàng</a></li>
                                             <li><a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a></li>
                                         </ul>
                                     </div>

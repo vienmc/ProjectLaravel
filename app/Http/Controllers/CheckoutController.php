@@ -180,4 +180,15 @@ class CheckoutController extends Controller
         }
         return $randomString;
     }
+
+    public function order_management(){
+        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+
+        $obj = Order::paginate(4);
+        return view('pages.user.order_management')->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('obj',$obj);
+    }
 }

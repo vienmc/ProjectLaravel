@@ -70,6 +70,9 @@ Route::post('/add-customer', 'CheckoutController@add_customer'); // xử lý t
 Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); // xử lý lưu thông tin gửi hàng của người dùng
 Route::get('/payment', 'CheckoutController@payment'); // view chọn hình thức thanh toán
 
+// quản lý đơn hàng
+Route::get('/order-management', 'CheckoutController@order_management');
+
 //blog
 Route::get('/blog-list-page1','BlogController@showpage1');
 Route::get('/blog-list-page2','BlogController@showpage2');
