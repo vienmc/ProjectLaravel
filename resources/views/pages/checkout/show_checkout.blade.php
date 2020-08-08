@@ -101,7 +101,7 @@
                                             <h4 style="color: #428bca">Chọn hình thức thanh toán</h4>
                                             <span class="fa fa-money " style="font-size: 3em"></span>
                                             <label class=""><input name="payment_option" value="1" type="checkbox"
-                                                                   checked="checked"> Tiền mặt</label>
+                                                                   checked="checked"> Thanh toán khi nhận hàng</label>
                                             @if($errors -> has('payment_option'))
                                                 <span class="error" style="color: red">
                                                 {{$errors -> first('payment_option')}}

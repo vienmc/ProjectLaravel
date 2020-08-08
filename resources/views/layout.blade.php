@@ -32,9 +32,6 @@
             color: red;
         }
     </style>
-
-
-
 </head><!--/head-->
 <body>
 <header id="header"><!--header-->
@@ -75,10 +72,10 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 VN
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canada</a></li>
-                                <li><a href="#">UK</a></li>
-                            </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Canada</a></li>
+                                    <li><a href="#">UK</a></li>
+                                </ul>
                             </button>
                         </div>
 
@@ -112,13 +109,26 @@
                             ?>
                             <li><a href="{{URL::to('/login-checkout')}}"><i class=" fa fa-lock"></i> Thanh toán</a></li>
                             <?php } ?>
-                            <li><a href="{{URL::to('/shopping-cart/show')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                            <li><a href="{{URL::to('/shopping-cart/show')}}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                    hàng</a>
                             </li>
                             <?php
                             $customer_id = Session::get('customer_id');
                             if ($customer_id != null){
                             ?>
-                            <li><a href="{{URL::to('/logout-checkout')}}"><i class=" fa fa-user"></i> Đăng xuất</a></li>
+                                <li>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                            Chào mừng
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Thông tin tài khoản</a></li>
+                                            <li><a href="#">Thông tin đơn hàng</a></li>
+                                            <li><a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
                             <?php
                             }else{
                             ?>
@@ -148,7 +158,7 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{URL::to('/')}}" class="active">Trang chủ</a></li>
-                            <li><a href="{{URL::to('/san-pham')}}" >Sản Phẩm</a></li>
+                            <li><a href="{{URL::to('/san-pham')}}">Sản Phẩm</a></li>
                             <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="{{URL::to('/blog-list-page1')}}">Blog List</a></li>
@@ -255,21 +265,22 @@
                             </div>
                         @endforeach
                         @if(sizeof($category2) > 0)
-                        <div class="dropdown" >
-                            <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button" data-toggle="dropdown">Xem thêm
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu"style="width: 250px" >
-                                @foreach($category2 as $key => $cate2)
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"><a
-                                                href="{{URL::to('/danh-muc-san-pham/'.$cate2->id)}}">{{$cate2->name}}</a>
-                                        </h4>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </ul>
-                        </div>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button"
+                                        data-toggle="dropdown">Xem thêm
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu" style="width: 250px">
+                                    @foreach($category2 as $key => $cate2)
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title"><a
+                                                        href="{{URL::to('/danh-muc-san-pham/'.$cate2->id)}}">{{$cate2->name}}</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
                     </div>
 
@@ -282,10 +293,10 @@
                                 <ul class="nav nav-pills nav-stacked">
                                     <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
                                             <div style="display: none">
-                                            <?php
+                                                <?php
                                                 $count = 0;
                                                 ?>
-                                            @foreach($brand_product->product_brand as $count_brand)
+                                                @foreach($brand_product->product_brand as $count_brand)
                                                     {{$count_brand->brand_id}}
                                                     {{$count++}}
                                                 @endforeach
@@ -298,32 +309,33 @@
                             </div>
                         @endforeach
                         @if(sizeof($brand2) > 0)
-                        <div class="dropdown" >
-                            <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button" data-toggle="dropdown">Xem thêm
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                @foreach($brand2 as $key => $brand_product)
-                                    <div class="brands-name" style="width: 250px">
-                                        <ul class="nav nav-pills nav-stacked" >
-                                            <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
-                                                    <div style="display: none">
-                                                        <?php
-                                                        $count = 0;
-                                                        ?>
-                                                        @foreach($brand_product->product_brand as $count_brand)
-                                                            {{$count_brand->brand_id}}
-                                                            {{$count++}}
-                                                        @endforeach
-                                                    </div>
-                                                    <span class="pull-right">{{$count}}</span>
-                                                    {{$brand_product->brand_name}}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endforeach
-                            </ul>
-                        </div>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" style="width: 250px" type="button"
+                                        data-toggle="dropdown">Xem thêm
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    @foreach($brand2 as $key => $brand_product)
+                                        <div class="brands-name" style="width: 250px">
+                                            <ul class="nav nav-pills nav-stacked">
+                                                <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_product->id)}}">
+                                                        <div style="display: none">
+                                                            <?php
+                                                            $count = 0;
+                                                            ?>
+                                                            @foreach($brand_product->product_brand as $count_brand)
+                                                                {{$count_brand->brand_id}}
+                                                                {{$count++}}
+                                                            @endforeach
+                                                        </div>
+                                                        <span class="pull-right">{{$count}}</span>
+                                                        {{$brand_product->brand_name}}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
                     </div><!--/brands_products-->
 
@@ -478,7 +490,8 @@
                             <input type="text" name="email_subscribers" placeholder="Địa chỉ email của bạn"/>
                             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i>
                             </button>
-                            <p>Nhận các bản cập nhật mới nhất từ <br/>trang web của chúng tôi và được tự cập nhật ...</p>
+                            <p>Nhận các bản cập nhật mới nhất từ <br/>trang web của chúng tôi và được tự cập nhật ...
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -535,7 +548,7 @@
     $("img.img-small").click(function () {
         var ele = $(this);
         var src = ele.attr('src');
-        $("img#large-photo").attr('src',src);
+        $("img#large-photo").attr('src', src);
 
     })
 
