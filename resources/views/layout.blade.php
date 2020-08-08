@@ -97,6 +97,7 @@
                             <?php
                             $customer_id = Session::get('customer_id');
                             $shipping_id = Session::get('shipping_id');
+                            $customer_username = Session::get('customer_username');
                             if ($customer_id != null && $shipping_id == null){
                             ?>
                             <li><a href="{{URL::to('/checkout')}}"><i class=" fa fa-crosshairs"></i> Thanh toán</a></li>
@@ -119,7 +120,7 @@
                                 <li>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                            Chào mừng
+                                            {{$customer_username}}
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
