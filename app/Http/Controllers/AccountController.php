@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
-use Session;
+use Illuminate\Support\Facades\Session;
 class AccountController extends Controller
 {
 
@@ -71,9 +71,15 @@ class AccountController extends Controller
 //                echo "<pre>";
 //        print_r($obj);
 //        echo "</pre>";
-        $obj->save();
-        session::put('message', 'Tạo tài khoản thành công');
-        return Redirect::to('/account');
+        if (Account::where('email', '=', $obj->email)->first() === null) {
+            $obj->save();
+            session::put('message', 'Tạo tài khoản thành công');
+            return Redirect::to('/account');
+        } else {
+            session::put('message', 'Tài khoản không hợp lệ hoặc đã tồn tại!');
+            return Redirect::to('/account/create');
+        }
+
     }
 
     /**
@@ -127,6 +133,17 @@ class AccountController extends Controller
         $account->updated_at = Carbon::now()->format('Y-m-d H:i:s');
         $account->save();
         session::put('message', 'Khóa tài khoản thành công');
+
+        if (Session::has('customer_id') && Session::get('customer_id')==$account->id){
+            Session::remove('customer_id');
+            Session::remove('customer_username');
+        }
+        if (Session::get('admin_id')==$account->id){
+            Session::remove('admin_name');
+            Session::remove('admin_id');
+            Session::remove('admin_role');
+            return Redirect::to('/login');
+        }
         return Redirect::to('/account');
     }
 
