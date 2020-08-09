@@ -29,35 +29,38 @@ Route::get('/', 'HomeController@index');
 Route::post('/a','SubscribersController@add_email');
 Route::resource('/contact-us','ContactUsController')->only(['index','store']);
 
+
 Route::get('/login', 'AdminController@Index')->name('admin_login');
 Route::get('/admin-signup', 'AdminController@SignUp');
 Route::post('/do-signup', 'AdminController@DoSignUp');
 Route::post('/do-login', 'AdminController@DoLogin');
-Route::get('/dashboard', 'AdminController@ShowDashbord');
+Route::get('/dashboard', 'AdminController@ShowDashbord')->middleware('checkadm');
+Route::get('/logout-adm', 'AdminController@DoLogout');
 
 
-Route::resource('account', 'AccountController');
-Route::get('/unactive-account/{account_id}', 'AccountController@Unactive_account');
-Route::get('/active-account/{account_id}', 'AccountController@Active_account');
-Route::get('/edit-account/{account_id}', 'AccountController@Edit_account');
-Route::post('/update-account/{account_id}', 'AccountController@Update_account');
-Route::get('/find-by-email', 'AccountController@FindByEmail');
+
+Route::resource('account', 'AccountController')->middleware('checkadm');
+Route::get('/unactive-account/{account_id}', 'AccountController@Unactive_account')->middleware('checkadm');
+Route::get('/active-account/{account_id}', 'AccountController@Active_account')->middleware('checkadm');
+Route::get('/edit-account/{account_id}', 'AccountController@Edit_account')->middleware('checkadm');
+Route::post('/update-account/{account_id}', 'AccountController@Update_account')->middleware('checkadm');
+Route::get('/find-by-email', 'AccountController@FindByEmail')->middleware('checkadm');
 
 
 //brand
-Route::resource('brand', 'BrandController');
+Route::resource('brand', 'BrandController')->middleware('checkadm');
 
-Route::resource('categories','CategoryController');
-Route::get('/unactive-categories/{categories_id}', 'CategoryController@Unactive_categories');
-Route::get('/active-categories/{categories_id}', 'CategoryController@Active_categories');
-Route::get('/edit-categories/{categories_id}', 'CategoryController@Edit_categories');
-Route::post('/update-categories/{categories_id}', 'CategoryController@Update_categories');
-Route::get('/find-by-name', 'CategoryController@FindByName');
+Route::resource('categories','CategoryController')->middleware('checkadm');
+Route::get('/unactive-categories/{categories_id}', 'CategoryController@Unactive_categories')->middleware('checkadm');
+Route::get('/active-categories/{categories_id}', 'CategoryController@Active_categories')->middleware('checkadm');
+Route::get('/edit-categories/{categories_id}', 'CategoryController@Edit_categories')->middleware('checkadm');
+Route::post('/update-categories/{categories_id}', 'CategoryController@Update_categories')->middleware('checkadm');
+Route::get('/find-by-name', 'CategoryController@FindByName')->middleware('checkadm');
 
 //product
-Route::resource('/product', 'ProductController');
-Route::get('/unactive-product/{id}', 'ProductController@Unactive_product');
-Route::get('/active-product/{id}', 'ProductController@Active_product');
+Route::resource('/product', 'ProductController')->middleware('checkadm');
+Route::get('/unactive-product/{id}', 'ProductController@Unactive_product')->middleware('checkadm');
+Route::get('/active-product/{id}', 'ProductController@Active_product')->middleware('checkadm');
 
 
 
@@ -115,4 +118,4 @@ Route::get('about-us',function ()
 });
 
 // quan ly ddown hang admin
-Route::resource('order-admin','OrderController');
+Route::resource('order-admin','OrderController')->middleware('checkadm');

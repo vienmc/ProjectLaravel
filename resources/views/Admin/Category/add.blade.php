@@ -27,7 +27,7 @@
                                 <label for="brand_desc">Mô tả</label>
                                 <textarea style="resize: none" rows="5" class="form-control"
                                           {{--                                          id="ckeditor1"--}}
-                                          placeholder="Mô tả" name="description"></textarea>
+                                          placeholder="Mô tả" id="ckeditor1" name="description" required></textarea>
                                 @if($errors -> has('description'))
                                     <span class="error" style="color: red">
                                 {{$errors -> first('description')}}

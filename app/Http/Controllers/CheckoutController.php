@@ -168,10 +168,11 @@ class CheckoutController extends Controller
 // thoát đăng nhập người dùng
     public function logout_checkout()
     {
-        if (Session::has('customer_id') && Session::has('customer_username')){
+        if (Session::has('customer_id')){
             Session::remove('customer_id');
+        }
+        if (Session::has('customer_username')){
             Session::remove('customer_username');
-            return Redirect('/login-checkout');
         }
 
         return Redirect('/login-checkout');

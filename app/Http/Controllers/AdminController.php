@@ -6,7 +6,7 @@ use App\Account;
 use App\Http\Requests\AccountRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -21,9 +21,22 @@ class AdminController extends Controller
         return view('Admin.layout');
     }
 
+    public function DoLogout(){
+        if (\Illuminate\Support\Facades\Session::has('admin_name')){
+            Session::remove('admin_name');
+        }
+        if (\Illuminate\Support\Facades\Session::has('admin_id')){
+            Session::remove('admin_id');
+        }
+        if (\Illuminate\Support\Facades\Session::has('admin_role')){
+            Session::remove('admin_role');
+        }
+        return Redirect::to('/login');
+    }
+
     public function DoLogin(Request $request)
     {
-        $email = $request->email;
+        $email = $request->get('email');
         $account = Account::where('email', '=', $email)->where('status', '=', '1')->first();
 //        echo "<pre>";
 //        print_r($account->password);
@@ -35,9 +48,10 @@ class AdminController extends Controller
         if ($account) {
             $passwordHash = $account->password;
             $salt = $account->salt;
-            $password = $request->password;
+            $role = $account->role;
+            $password = $request->get('password');
             $md5Password = md5($password . $salt);
-            if ($passwordHash == $md5Password) {
+            if ($passwordHash == $md5Password && $role == 1) {
                 Session::put('admin_name', $account->name);
                 Session::put('admin_id', $account->id);
                 Session::put('admin_role', $account->role);
@@ -47,7 +61,7 @@ class AdminController extends Controller
                 return Redirect::to('/login');
             }
         } else {
-            Session::put('message', 'Tài khoản không tồn tại');
+            Session::put('message', 'Tài khoản không tồn tại hoặc đã bị khóa!');
             return Redirect::to('/login');
         }
     }
