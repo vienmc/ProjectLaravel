@@ -24,7 +24,7 @@ class AdminController extends Controller
     public function DoLogin(Request $request)
     {
         $email = $request->email;
-      $account = Account::where('email','=',$email)->first();
+        $account = Account::where('email', '=', $email)->where('status', '=', '1')->first();
 //        echo "<pre>";
 //        print_r($account->password);
 //        print_r('|||||');
@@ -36,27 +36,26 @@ class AdminController extends Controller
             $passwordHash = $account->password;
             $salt = $account->salt;
             $password = $request->password;
-            $md5Password = md5($salt.$password);
-            if ($passwordHash == $md5Password){
+            $md5Password = md5($password . $salt);
+            if ($passwordHash == $md5Password) {
                 Session::put('admin_name', $account->name);
                 Session::put('admin_id', $account->id);
                 Session::put('admin_role', $account->role);
-            return Redirect::to('/dashboard');
-            }
-            else{
+                return Redirect::to('/dashboard');
+            } else {
                 Session::put('message', 'Mật khẩu không đúng');
                 return Redirect::to('/login');
             }
         } else {
-            Session::put('message', 'Email không tồn tại');
+            Session::put('message', 'Tài khoản không tồn tại');
             return Redirect::to('/login');
         }
     }
 
     public function SignUp()
     {
-        $msgcheck='';
-        return view('Admin.signup')->with('msgcheck',$msgcheck);
+        $msgcheck = '';
+        return view('Admin.signup')->with('msgcheck', $msgcheck);
     }
 
     public function DoSignUp(AccountRequest $request)
@@ -69,7 +68,7 @@ class AdminController extends Controller
 
         $salt = $this->generateRandomString(5);
         $password = $request->password;
-        $passwordHash = md5($salt . $password);
+        $passwordHash = md5($password . $salt);
 
         $obj->salt = $salt;
         $obj->password = $passwordHash;
@@ -77,13 +76,12 @@ class AdminController extends Controller
         $obj->status = 1;
         $obj->created_at = Carbon::now()->format('Y-m-d H:i:s');
         $obj->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-        if (Account::where('email','=',$obj->email)->first()===null){
-        $obj->save();
-        return view('Admin.login');
-        }
-        else{
-            $msgcheck= 'Tài khoản không hợp lệ hoặc đã tồn tại!';
-            return view('Admin.signup')->with('msgcheck',$msgcheck);
+        if (Account::where('email', '=', $obj->email)->first() === null) {
+            $obj->save();
+            return view('Admin.login');
+        } else {
+            $msgcheck = 'Tài khoản không hợp lệ hoặc đã tồn tại!';
+            return view('Admin.signup')->with('msgcheck', $msgcheck);
         }
     }
 

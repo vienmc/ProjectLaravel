@@ -35,7 +35,7 @@
                         $message = Session::get('message1');
                         if ($message) {
                             echo '<span style="color:#ff0000;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
-                            Session::put('message', null);
+                            Session::put('message1', null);
                         }
                         ?>
 

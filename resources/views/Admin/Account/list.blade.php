@@ -48,6 +48,7 @@
                         <th>Email</th>
                         <th>Tên</th>
                         <th>Số điện thoại</th>
+                        <th>Quyền</th>
                         <th>Kích hoạt / Khóa</th>
                         <th style="width:30px;">Sửa</th>
                     </tr>
@@ -62,6 +63,10 @@
                             <td>{{$item->name}}
                             </td>
                             <td>{{$item->phone}}
+                                <td>@if($item->role ==0)
+                                    Người dùng @elseif($item->role ==1) Admin
+                                    @endif
+                                </td>
                             </td>
                             <td><span class="text-ellipsis">
                                     <?php

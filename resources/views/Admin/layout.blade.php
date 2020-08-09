@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="dropdown-menu extended logout">
                         <li><a href="{{URL::to('/account')}}"><i class=" fa fa-suitcase"></i>Hồ sơ</a></li>
                         <li><a href="{{URL::to('/account')}}"><i class="fa fa-cog"></i> Cài đặt</a></li>
-                        <li><a href="{{URL::to('/login')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
+                        <li><a href="{{URL::to('/logout-adm')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->

@@ -35,6 +35,7 @@ Route::post('/do-signup', 'AdminController@DoSignUp');
 Route::post('/do-login', 'AdminController@DoLogin');
 Route::get('/dashboard', 'AdminController@ShowDashbord');
 
+
 Route::resource('account', 'AccountController');
 Route::get('/unactive-account/{account_id}', 'AccountController@Unactive_account');
 Route::get('/active-account/{account_id}', 'AccountController@Active_account');

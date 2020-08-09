@@ -90,6 +90,7 @@ class CheckoutController extends Controller
     // view đăng nhập đăng kí người dùng
     public function login_checkout()
     {
+
         $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
         $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
@@ -103,7 +104,7 @@ class CheckoutController extends Controller
     public function login_customer(Request $request)
     {
         $email = $request->login_email;
-        $result = Account::where('email','=',$email)->first();
+        $result = Account::where('email','=',$email)->where('status','=',1)->first();
         if ($result) {
             $salt = $result->salt;
         } else {
@@ -167,7 +168,12 @@ class CheckoutController extends Controller
 // thoát đăng nhập người dùng
     public function logout_checkout()
     {
-        Session::flush();
+        if (Session::has('customer_id') && Session::has('customer_username')){
+            Session::remove('customer_id');
+            Session::remove('customer_username');
+            return Redirect('/login-checkout');
+        }
+
         return Redirect('/login-checkout');
     }
 

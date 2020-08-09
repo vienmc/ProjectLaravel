@@ -59,7 +59,7 @@ class AccountController extends Controller
 
         $salt = $this->generateRandomString(5);
         $password = $request->password;
-        $passwordHash = md5($salt . $password);
+        $passwordHash = md5( $password . $salt);
 
         $obj->salt = $salt;
         $obj->password = $passwordHash;
