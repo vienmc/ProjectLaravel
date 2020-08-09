@@ -27,7 +27,7 @@ class ProductValidate extends FormRequest
             'product_name'=>'required',
             'category_id'=>'required',
             'brand_id'=>'required',
-            'product_price'=>'required',
+            'product_price'=>'required|numeric',
             'product_desc'=>'required',
         ];
     }
@@ -35,6 +35,7 @@ class ProductValidate extends FormRequest
     {
         return [
             'required'=>'Không được để trống',
+            'numeric'=>'Phải là số nguyên',
         ];
     }
 }

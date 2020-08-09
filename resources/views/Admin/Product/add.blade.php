@@ -141,14 +141,4 @@
             $('input[data-cloudinary-public-id="' + imgName + '"]').remove();
         });
     </script>
-    <script type="text/javascript">
-        function format_curency(a) {
-            if (a.value.includes(' VNĐ'))
-            {
-                a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-                return;
-            }
-            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,").concat(' VNĐ');
-        }
-    </script>
 @endsection

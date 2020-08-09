@@ -199,8 +199,7 @@ class ProductController extends Controller
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $money = str_replace(array(',', ' ', 'VNĐ'), '', $request->get('product_price'));
-        $obj->product_price = $money;
+        $obj->product_price = $request->get('product_price');
         $obj->product_status = $request->get('product_status');
         $obj->thumbnail = '';
         $thumbnails = $request->get('thumbnails');
@@ -258,8 +257,7 @@ class ProductController extends Controller
         $obj->category_id = $request->get('category_id');
         $obj->brand_id = $request->get('brand_id');
         $obj->product_desc = $request->get('product_desc');
-        $money = str_replace(array(',', ' ', 'VNĐ'), '', $request->get('product_price'));
-        $obj->product_price = $money;
+        $obj->product_price = $request->get('product_price');
         $obj->product_status = $request->get('product_status');
         $thumbnails = $request->get('thumbnails');
         $obj->thumbnail = '';
