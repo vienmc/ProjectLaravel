@@ -25,6 +25,9 @@ class ProductController extends Controller
 
     public function review($id,Request $request){
         $detail_product = Product::find($id);
+        if ($detail_product->product_status !=1){
+            return view('error')->with('msg','Sản phẩm không tồn tại!');
+        }
         $review = new Review();
         if (\Illuminate\Support\Facades\Session::has('customer_username')){
             $review->username = \Illuminate\Support\Facades\Session::get('customer_username');
@@ -67,6 +70,9 @@ class ProductController extends Controller
         $data = array();
         $data['keyword'] = '';
         $brand_check = Brand::find($id);
+        if ($brand_check->brand_status !=1){
+            return view('error')->with('msg','Thương hiệu không tồn tại!');
+        }
         $product = Product::query()->where('product_status','=',1)->where('brand_id','=',$id)->orderby('updated_at', 'desc');
         if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
             $data['keyword'] = $request->get('keyword');
@@ -88,6 +94,9 @@ class ProductController extends Controller
         $data = array();
         $data['keyword'] = '';
         $category_check = Category::find($id);
+        if ($category_check->status !=1){
+            return view('error')->with('msg','Category không tồn tại!');
+        }
         $product = Product::query()->where('product_status','=',1)->where('category_id','=',$id)->orderby('updated_at', 'desc');
         if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
             $data['keyword'] = $request->get('keyword');
@@ -126,6 +135,9 @@ class ProductController extends Controller
 //            ->where('products.category_id', $category_id)->whereNotIn('products.id', [$id])->get();
 
         $detail_product = Product::find($id);
+        if ($detail_product->product_status !=1){
+            return view('error')->with('msg','Sản phẩm không tồn tại!');
+        }
         $current_category = $detail_product->category->id;
         $relate_product = Category::find($current_category)->product;
 

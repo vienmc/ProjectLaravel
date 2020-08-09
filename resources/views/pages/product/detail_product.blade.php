@@ -83,7 +83,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane fade active in" id="details">
-                <p>{!!$detail_product->product_desc!!}</p>
+                <p>{!!  $detail_product->product_desc!!}</p>
             </div>
 
 
@@ -108,7 +108,7 @@
                             <b>Rating: </b> <img
                                 src="https://res.cloudinary.com/hoadaica/image/upload/v1596458169/rating_t4idd3.png"
                                 alt=""/>
-                            <input type="submit">
+                            <input class="btn btn-default btn-warning" style="position: absolute;right: 10%;margin-top: -10px" type="submit">
                         </form>
                 </div>
             </div>

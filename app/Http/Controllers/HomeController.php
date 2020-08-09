@@ -103,15 +103,15 @@ class HomeController extends Controller
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
 
 
-        $categories = Category::all();
-        $brands  = Brand::all();
+        $categories = Category::where('status','=',1)->orderby('name', 'ASC')->get();
+        $brands  =  Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->get();
 
-        $data['categories'] = $categories;
-        $data['brands'] = $brands;
 
         return view('pages.product.sanpham')->with($data)
             ->with('category1', $category_product1)->with('category2', $category_product2)
-            ->with('brand1', $brand_product1)->with('brand2', $brand_product2);
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)
+            ->with('categories',$categories)
+            ->with('brands',$brands);
     }
     public function remove(Request $request)
     {
