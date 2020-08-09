@@ -12,15 +12,11 @@
                                     <div class="col-md-2">
                                         <div class="form-group mb-3">
                                             <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>
-                                            <select name="order_status" class="form-control" id="categorySelect">
+                                            <select name="order_status" class="form-control" id="order_status">
                                                 <option value="0">Tất cả</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
-
-{{--                                                @foreach($list as $status)--}}
-{{--                                                    <option value="{{$status->order_status}}" {{$status->order_status == $order_status ? 'selected':''}}>{{$status->order_status}}</option>--}}
-{{--                                                @endforeach--}}
                                             </select>
                                         </div>
                                     </div>
@@ -93,7 +89,7 @@
                                 <div>{{$detail ->product_name}}</div>
                             @endforeach</td>
                         <td>{{$item -> shipping_phone}}</td>
-                        <td>{{$item -> shipping_status}}</td>
+                        <td>{{$item -> order_status}}</td>
                         <td>
                             <a href="{{URL::to('/order-admin/'.$item->id.'/edit')}}"
                                class="active styling-edit" ui-toggle-class=""><i
@@ -109,26 +105,13 @@
             <span class="text-center">{{$list->links()}}</span>
         </div>
     </div>
-    <script>
-        var btnDeletes = document.getElementsByClassName('active styling-delete');
-        for(var i = 0; i < btnDeletes.length; i++){
-            btnDeletes[i].onclick = function(){
-                if(confirm('Bạn có chắc muốn xóa sản phẩm này?')){
-                    var id = this.getAttribute('title');
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('DELETE', '/product/' + id);
-                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{csrf_token()}}');
-                    xhr.onreadystatechange = function(){
-                        if(xhr.readyState == 4 && xhr.status == 200) {
-                            alert('Xóa thành công');
-                            window.location.reload();
-                        }
-                    }
-                    xhr.send();
-                }
-            }
-        }
-    </script>
+{{--    <script type="text/javascript">--}}
+{{--        $("#order_status").on('change',function (e){--}}
+{{--            console.log(e);--}}
+{{--            var order_status= e.target.value;--}}
+{{--            alert(order_status);--}}
+{{--        })--}}
+{{--    </script>--}}
 @section('script')
     <script>
         $('input[name="dates"]').daterangepicker(
@@ -146,7 +129,7 @@
                 }
             }
         );
-        $('#categorySelect').change(function () {
+        $('#order_status').change(function () {
             $('#order_form').submit();
         })
         $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
