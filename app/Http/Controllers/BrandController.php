@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\BrandValidate;
+use App\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Response;
 use Session;
@@ -45,7 +46,7 @@ class BrandController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $brand1 = $brand1->whereBetween('created_at', [$from, $to]);
         }
-        $data['link'] = $brand1->orderBy('updated_at','desc')->paginate(5);
+        $data['link'] = $brand1->orderBy('updated_at','desc')->paginate(10);
         $data['list'] = $brand1->get();
         return view('Admin.Brand.list')->with($data);
     }
@@ -133,8 +134,5 @@ class BrandController extends Controller
         return Response::json([], 200);
     }
 
-    public function destroyAll(Request $request)
-    {
-        return 'digmrmay';
-    }
+
 }

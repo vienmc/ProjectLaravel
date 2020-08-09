@@ -42,9 +42,9 @@ Route::get('/edit-account/{account_id}', 'AccountController@Edit_account');
 Route::post('/update-account/{account_id}', 'AccountController@Update_account');
 Route::get('/find-by-email', 'AccountController@FindByEmail');
 
+
 //brand
 Route::resource('brand', 'BrandController');
-Route::post('/brand/destroy-all', 'BrandController@destroyAll');
 
 Route::resource('categories','CategoryController');
 Route::get('/unactive-categories/{categories_id}', 'CategoryController@Unactive_categories');
