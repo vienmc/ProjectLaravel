@@ -20,28 +20,29 @@ class OrderController extends Controller
         // tạo biến data là một mảng chứa dữ liệu trả về.
         $data = array();
 //        $data['category_id'] = 0;
-//        $data['keyword'] = '';
+        $data['keyword'] = '';
 //        $categories = Category::all();
         $order_list = Order::query()->orderby('updated_at', 'desc');
 //        if ($request->has('category_id') && $request->get('category_id') != 0) {
 //            $data['category_id'] = $request->get('category_id');
 //            $product_list = $product_list->where('category_id', '=', $request->get('category_id'));
 //        }
-//        if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
-//            $data['keyword'] = $request->get('keyword');
-//            $product_list = $product_list->where('product_name', 'like', '%' . $request->get('keyword') . '%');
-//        }
-//        if ($request->has('start') && strlen($request->get('start')) > 0 && $request->has('end') && strlen($request->get('end')) > 0) {
-//            $data['start'] = $request->get('start');
-//            $data['end'] = $request->get('end');
-//            $from = date($request->get('start') . ' 00:00:00');
-//            $to = date($request->get('end') . ' 23:59:00');
-//            $product_list = $product_list->whereBetween('created_at', [$from, $to]);
-//        }
-        $data['list'] = $order_list->paginate(9);
+        if ($request->has('keyword') && strlen($request->get('keyword')) > 0) {
+            $data['keyword'] = $request->get('keyword');
+            $order_list = $order_list->where('id', 'like', '%' . $request->get('keyword') . '%');
+        }
+        if ($request->has('start') && strlen($request->get('start')) > 0 && $request->has('end') && strlen($request->get('end')) > 0) {
+            $data['start'] = $request->get('start');
+            $data['end'] = $request->get('end');
+            $from = date($request->get('start') . ' 00:00:00');
+            $to = date($request->get('end') . ' 23:59:00');
+            $order_list = $order_list->whereBetween('created_at', [$from, $to]);
+        }
+        $data['list'] = $order_list->paginate(9)
+            ->appends($request->only('dates'));
+
 //            ->appends($request->only('category_id'))
 //            ->appends($request->only('keyword'))
-//            ->appends($request->only('dates'));
 //        $data['categories'] = $categories;
 
         return view('Admin.Order.manage_order')->with($data);

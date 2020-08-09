@@ -5,25 +5,25 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/manage-order" method="get" id="product_form">
+                        <form action="/order-admin" method="get" id="order_form">
                             @csrf
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group mb-3">
-                                            <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>
-                                            <select name="category_id" class="form-control" id="categorySelect">
-                                                <option value="0">Tất cả</option>
+{{--                                    <div class="col-md-4">--}}
+{{--                                        <div class="form-group mb-3">--}}
+{{--                                            <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>--}}
+{{--                                            <select name="category_id" class="form-control" id="categorySelect">--}}
+{{--                                                <option value="0">Tất cả</option>--}}
 {{--                                                @foreach($categories as $cate)--}}
 {{--                                                    <option value="{{$cate->id}}" {{$cate->id == $category_id ? 'selected':''}}>{{$cate->name}}</option>--}}
 {{--                                                @endforeach--}}
-                                            </select>
-                                        </div>
-                                    </div>
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Tìm kiếm theo tên sản phẩm</label>
-{{--                                            <input value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Search by keyword">--}}
+                                            <label for="exampleFormControlSelect1">Tìm kiếm theo mã đơn hàng</label>
+                                            <input value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Search by keyword">
                                             <input type="submit" style="visibility: hidden;" />
                                         </div>
                                     </div>
@@ -127,12 +127,12 @@
             }
         );
         $('#categorySelect').change(function () {
-            $('#product_form').submit();
+            $('#order_form').submit();
         })
         $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
             $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
             $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));
-            $('#product_form').submit();
+            $('#order_form').submit();
             $('input[name="dates"]').val(setValue(picker.endDate.format('YYYY-MM-DD')));
 
         });
