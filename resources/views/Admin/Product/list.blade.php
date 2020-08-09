@@ -9,7 +9,7 @@
                             @csrf
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group mb-3">
                                             <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>
                                             <select name="category_id" class="form-control" id="categorySelect">
@@ -57,12 +57,12 @@
                     <table class="table table-striped b-t b-light" >
                     <thead>
                     <tr>
-                        <th style="width:200px">Tên sản phẩm</th>
-                        <th style="width:150px">Danh mục sản phẩm</th>
-                        <th style="width:100px">Thương hiệu sản phẩm</th>
+                        <th style="width:150px">Tên sản phẩm</th>
+                        <th style="width:100px">Danh mục</th>
+                        <th style="width:120px">Thương hiệu</th>
                         <th>Giá</th>
-                        <th>Ảnh</th>
-{{--                        <th>Mô tả sản phẩm</th>--}}
+                        <th style="width:240px">Ảnh</th>
+                        <th>Mô tả sản phẩm</th>
                         <th>Trạng thái</th>
                         <th>Quản lý</th>
                     </tr>
@@ -78,7 +78,7 @@
                                 <img src="{{$p}}" alt="" class="rounded-circle" style="width: 100px">
                             @endforeach
                           </td>
-{{--                        <td>{!! $item->product_desc  !!}</td>--}}
+                        <td>{!! $product_list->product_desc  !!}</td>
                         <td><span class="text-ellipsis">
                                     <?php
                                 /** @var TYPE_NAME $product_list */
