@@ -13,6 +13,7 @@ use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
@@ -196,10 +197,12 @@ class CheckoutController extends Controller
         $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+        if (Session::has('customer_id')) {
+            $obj = Order::where('account_id', '=', Session::get('customer_id'))->orderby('updated_at', 'desc')->paginate(4);
 
-        $obj = Order::where('account_id','=',Session::get('customer_id'))->orderby('updated_at', 'desc')->paginate(4);
-
-        return view('pages.user.order_management')->with('category1', $category_product1)->with('category2', $category_product2)
-            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('obj',$obj);
+            return view('pages.user.order_management')->with('category1', $category_product1)->with('category2', $category_product2)
+                ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('obj', $obj);
+        }
+        return Redirect::to('/login-checkout');
     }
 }
