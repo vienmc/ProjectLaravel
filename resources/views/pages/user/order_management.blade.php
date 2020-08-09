@@ -24,7 +24,11 @@
             <tr>
                 <th scope="row">{{$item->id}}</th>
                 <td>{{$item->created_at}}</td>
-                <td></td>
+                <td>
+                @foreach($item->order_detail as $detail    )
+                        <div>{{$detail ->product_name}}</div>
+                    @endforeach
+                </td>
                 <td>{{$item->total_money}}</td>
                 <td>
                     @if($item->shipping_status == 0)

@@ -11,4 +11,7 @@ class OrderDetai extends Model
     public function order(){
         return $this->belongsTo('App\Order', 'order_id','id');
     }
+    public function product_order_detail(){
+        return $this->hasOne('App\Product', 'product_id','id');
+    }
 }

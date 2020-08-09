@@ -23,6 +23,7 @@
                     </div>
                 </form>
             </div>
+            @if(sizeof($list) > 0)
             <div class="table-responsive">
                 <?php
                 $message = Session::get('message');
@@ -59,7 +60,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if(sizeof($list) > 0)
+
                     @foreach($list as $item)
                       <tr>
                           <td class="border-top-0 px-2 py-4">
@@ -93,18 +94,25 @@
                           </td>
                       </tr>
                     @endforeach
-                    @else
-                        <div>Không có thương hiệu sản phẩm nào</div>
-                    @endif
                     </tbody>
                 </table>
                     <span class="text-center">{{$link->links()}}</span>
             </div>
         </div>
+        @else
+            <div>Không có thương hiệu sản phẩm nào</div>
+        @endif
     </div>
 @endsection
 @section('script')
-    <script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script type="text/javascript">
         $('input[name="dates"]').daterangepicker(
             {
                 locale: {
@@ -160,8 +168,6 @@
                 }
             })
         });
-
-
     </script>
 @endsection
 

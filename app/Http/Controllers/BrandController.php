@@ -135,7 +135,6 @@ class BrandController extends Controller
 
     public function destroyAll(Request $request)
     {
-
         return 'digmrmay';
     }
 }

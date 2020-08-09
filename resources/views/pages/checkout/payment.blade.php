@@ -8,6 +8,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Xác nhận Đơn hàng</li>
                 </ol>
             </nav>
+            @if(\Illuminate\Support\Facades\Session::has('shoppingCart')!=null)
             <div>
                 <div class="review-payment">
                     <div class="table-responsive cart_info">
@@ -78,6 +79,7 @@
                             <p>Thanh toán tiền mặt khi nhận hàng</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -100,5 +102,8 @@
                     <input type="submit" value="XÁC NHẬN" name="change_shipping" style="padding:10px 20px; background-color: #dd4444">
                 </form>
             </div>
+        @else
+            <div>Không có đơn hàng nào</div>
+        @endif
     </section> <!--/#cart_items-->
 @endsection

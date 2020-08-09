@@ -9,4 +9,5 @@ class Order extends Model
     public function order_detail(){
         return $this->hasMany('App\OrderDetai', 'order_id','id');
     }
+
 }

@@ -19,6 +19,7 @@ class CreateOrderDetaisTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id')->on('products');
             $table->primary(['order_id', 'product_id']);
+            $table->string('product_name');
             $table->integer('quantity');
             $table->string('unit_price');
         });

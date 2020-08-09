@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
+
     // hiện thị form nhập thông tin gưi hàng và chọn đạt mua
     public function checkout()
     {
@@ -54,6 +55,7 @@ class CheckoutController extends Controller
         $orderDetails = array();
         foreach ($shoppingCart as $key => $cartItem){
             $id = $cartItem['id'];
+            $name = $cartItem['product_name'];
             $product = Product::find($id);
             if($product == null){
                 continue;
@@ -61,6 +63,7 @@ class CheckoutController extends Controller
             $quantity = $cartItem['quantity'];
             $orderDetail = new OrderDetai();
             $orderDetail->product_id = $id;
+            $orderDetail->product_name = $name;
             // $orderDetail->order_id = ? chờ lưu đơn hàng mới có.
             $orderDetail->quantity = $quantity;
             $orderDetail->unit_price = $product->product_price;
@@ -187,7 +190,8 @@ class CheckoutController extends Controller
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
 
-        $obj = Order::paginate(4);
+        $obj = Order::orderby('updated_at', 'desc')->paginate(4);
+
         return view('pages.user.order_management')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('obj',$obj);
     }
