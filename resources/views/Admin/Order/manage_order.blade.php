@@ -20,10 +20,24 @@
 {{--                                            </select>--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Tìm kiếm theo mã đơn hàng</label>
-                                            <input value="{{$keyword}}" type="text" name="keyword" class="form-control" placeholder="Search by keyword">
+                                            <input value="{{$keyword_madonhang}}" type="text" name="keyword_madonhang" class="form-control" placeholder="Search by keyword">
+                                            <input type="submit" style="visibility: hidden;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Tìm kiếm theo tên khách hàng</label>
+                                            <input value="{{$keyword_tenkhachhang}}" type="text" name="keyword_tenkhachhang" class="form-control" placeholder="Search by keyword">
+                                            <input type="submit" style="visibility: hidden;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Tìm kiếm theo số điện thoại</label>
+                                            <input value="{{$keyword_sodienthoai}}" type="text" name="keyword_sodienthoai" class="form-control" placeholder="Search by keyword">
                                             <input type="submit" style="visibility: hidden;" />
                                         </div>
                                     </div>
