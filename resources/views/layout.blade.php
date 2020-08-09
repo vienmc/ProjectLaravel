@@ -193,9 +193,8 @@
                             <div class="col-sm-6">
                                 <h1><span>E</span>-SHOPPER</h1>
                                 <h2></h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <p>Lấy cảm hứng từ sự lãng mạn và tình yêu của người phụ nữ - SHOPPER tạo nên một bộ sưu tập đậm nét cổ điển nhưng không thiếu phần hiện đại và thời thượng</p>
+                                <button type="button" class="btn btn-default get">Mua ngay</button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="{{asset('frontend/images/girl1.jpg')}}" class="girl img-responsive"
@@ -207,9 +206,8 @@
                             <div class="col-sm-6">
                                 <h1><span>E</span>-SHOPPER</h1>
                                 <h2></h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <p>Qua rồi mùa hè với sắc màu rực rỡ của những buổi tiệc, Thu là khi sự nhẹ nhàng tinh tế lên ngôi. Mùa thu năm nay, SHOPPER mang về giai đoạn thời trang phồn thịnh nhất của Sài Gòn năm xưa với chất liệu ren và vài thô sọc.</p>
+                                <button type="button" class="btn btn-default get">Mua ngay</button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="{{asset('frontend/images/girl2.jpg')}}" class="girl img-responsive"
@@ -222,9 +220,8 @@
                             <div class="col-sm-6">
                                 <h1><span>E</span>-SHOPPER</h1>
                                 <h2></h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <p>Vẫn những kiểu dáng được ưa chuộng như áo croptop, culottes, đầm chiết eo, etc. nhưng nay thay đổi chất liệu và chi tiết; tất cả đều mang đến sự mới mẻ và thời thượng.</p>
+                                <button type="button" class="btn btn-default get">Mua ngay</button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="{{asset('frontend/images/girl3.jpg')}}" class="girl img-responsive"
