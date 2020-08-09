@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
-use mysql_xdevapi\Session;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -48,8 +48,14 @@ class CategoryController extends Controller
         $obj->name = $request->get('name');
         $obj->description = $request->get('description');
         $obj->status = 1;
-        $obj->save();
-        return redirect('/categories/');
+        if (Category::where('name', '=', $obj->name)->first() === null) {
+            $obj->save();
+            \Illuminate\Support\Facades\Session::put('message', 'Thêm Category thành công!');
+        } else {
+            session::put('message', 'Category đã tồn tại!');
+            return Redirect::to('/categories/create');
+        }
+        return redirect('/categories');
     }
 
     /**

@@ -43,7 +43,7 @@
                             </td>
                             <td>{{$item->name}}
                             </td>
-                            <td>{{$item->description}}
+                            <td>{!!  $item->description!!}
                             </td>
                             <td><span class="text-ellipsis">
                                     <?php

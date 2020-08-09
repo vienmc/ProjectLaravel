@@ -83,7 +83,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane fade active in" id="details">
-                <p>{{$detail_product->product_desc}}</p>
+                <p>{!!$detail_product->product_desc!!}</p>
             </div>
 
 

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Category;
 use App\Http\Requests\BrandValidate;
 use App\Product;
 use Carbon\Carbon;
@@ -8,6 +10,7 @@ use Illuminate\Support\Facades\Response;
 use Session;
 use App\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 
 class BrandController extends Controller
@@ -21,14 +24,15 @@ class BrandController extends Controller
     {
         $data['keyword'] = '';
         $brand = Brand::all();
-        $brand1= Brand::query();
-        if (($request->has('brand_id') && $request->has('brand_status' )) && (strlen($request->get('brand_id')) && strlen($request->get('brand_status'))) > 0) {
-            $status = Brand::where('id','=',$request->get('brand_id'))->first();
-            if ($request->get('brand_status') == 1){
+        $brand1 = Brand::query();
+        if (($request->has('brand_id') && $request->has('brand_status')) && (strlen($request->get('brand_id')) && strlen($request->get('brand_status'))) > 0) {
+            $status = Brand::where('id', '=', $request->get('brand_id'))->first();
+            if ($request->get('brand_status') == 1) {
                 $status->brand_status = 0;
                 session::put('message', 'Khóa thương hiệu sản phẩm thành công');
                 $status->updated_at = Carbon::now()->format('Y-m-d H:i:s');
-            } if ($request->get('brand_status') == 0){
+            }
+            if ($request->get('brand_status') == 0) {
                 $status->brand_status = 1;
                 session::put('message', 'kích hoạt thương hiệu sản phẩm thành công');
                 $status->updated_at = Carbon::now()->format('Y-m-d H:i:s');
@@ -46,7 +50,7 @@ class BrandController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $brand1 = $brand1->whereBetween('created_at', [$from, $to]);
         }
-        $data['link'] = $brand1->orderBy('updated_at','desc')->paginate(10);
+        $data['link'] = $brand1->orderBy('updated_at', 'desc')->paginate(10);
         $data['list'] = $brand1->get();
         return view('Admin.Brand.list')->with($data);
     }
@@ -74,9 +78,14 @@ class BrandController extends Controller
         $obj->brand_name = $request->get('brand_name');
         $obj->brand_desc = $request->get('brand_desc');
         $obj->brand_status = $request->get('brand_status');
-        $obj->save();
-        session::put('message', 'Thêm mới sản phẩm thành công');
-        return redirect('/brand/');
+        if (Brand::where('brand_name', '=', $obj->brand_name)->first() === null) {
+            $obj->save();
+            \Illuminate\Support\Facades\Session::put('message', 'Thêm thương hiệu thành công!');
+        } else {
+            session::put('message', 'Thương hiệu đã tồn tại!');
+            return Redirect::to('/brand/create');
+        }
+        return Redirect::to('/brand/');
     }
 
     /**
