@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('total_money');
             $table->integer('shipping_status');
             $table->text('shipping_notes');
-            $table->integer('payment_option');
+            $table->integer('order_status');
             $table->timestamps();
         });
     }

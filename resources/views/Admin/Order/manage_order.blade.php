@@ -9,17 +9,21 @@
                             @csrf
                             <div class="form-body">
                                 <div class="row">
-{{--                                    <div class="col-md-4">--}}
-{{--                                        <div class="form-group mb-3">--}}
-{{--                                            <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>--}}
-{{--                                            <select name="category_id" class="form-control" id="categorySelect">--}}
-{{--                                                <option value="0">Tất cả</option>--}}
-{{--                                                @foreach($categories as $cate)--}}
-{{--                                                    <option value="{{$cate->id}}" {{$cate->id == $category_id ? 'selected':''}}>{{$cate->name}}</option>--}}
+                                    <div class="col-md-2">
+                                        <div class="form-group mb-3">
+                                            <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>
+                                            <select name="order_status" class="form-control" id="categorySelect">
+                                                <option value="0">Tất cả</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+
+{{--                                                @foreach($list as $status)--}}
+{{--                                                    <option value="{{$status->order_status}}" {{$status->order_status == $order_status ? 'selected':''}}>{{$status->order_status}}</option>--}}
 {{--                                                @endforeach--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Tìm kiếm theo mã đơn hàng</label>
@@ -85,7 +89,9 @@
                         <td>{{$item -> id}}</td>
                         <td>{{$item -> account_id}}</td>
                         <td>{{$item -> shipping_name}}</td>
-                        <td>{{$item -> shipping_name}}</td>
+                        <td>@foreach($item->order_detail as $detail)
+                                <div>{{$detail ->product_name}}</div>
+                            @endforeach</td>
                         <td>{{$item -> shipping_phone}}</td>
                         <td>{{$item -> shipping_status}}</td>
                         <td>

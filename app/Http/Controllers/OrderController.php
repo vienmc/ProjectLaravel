@@ -19,16 +19,15 @@ class OrderController extends Controller
 
         // tạo biến data là một mảng chứa dữ liệu trả về.
         $data = array();
-//        $data['category_id'] = 0;
+        $data['order_status']=0;
         $data['keyword_madonhang'] = '';
         $data['keyword_tenkhachhang'] = '';
         $data['keyword_sodienthoai'] = '';
-//        $categories = Category::all();
         $order_list = Order::query()->orderby('updated_at', 'desc');
-//        if ($request->has('category_id') && $request->get('category_id') != 0) {
-//            $data['category_id'] = $request->get('category_id');
-//            $product_list = $product_list->where('category_id', '=', $request->get('category_id'));
-//        }
+        if ($request->has('order_status')&& $request->get('order_status') != 0) {
+            $data['order_status'] = $request->get('order_status');
+            $order_list = $order_list->where('order_status', '=', $request->get('order_status'));
+        }
         if ($request->has('keyword_madonhang') && strlen($request->get('keyword_madonhang')) > 0) {
             $data['keyword_madonhang'] = $request->get('keyword_madonhang');
             $order_list = $order_list->where('id', 'like', '%' . $request->get('keyword_madonhang') . '%');
@@ -49,12 +48,10 @@ class OrderController extends Controller
         }
         $data['list'] = $order_list->paginate(9)
             ->appends($request->only('dates'))
-
-//            ->appends($request->only('category_id'))
+            ->appends($request->only('order_status'))
             ->appends($request->only('keyword'))
             ->appends($request->only('keyword_tenkhachhang'))
             ->appends($request->only('keyword_sodienthoai'));
-//        $data['categories'] = $categories;
 
         return view('Admin.Order.manage_order')->with($data);
     }
