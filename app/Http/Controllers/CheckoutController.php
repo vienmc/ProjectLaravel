@@ -85,7 +85,7 @@ class CheckoutController extends Controller
         $obj ->shipping_status = 1; //1 đặt hàng thành công: 0 chưa thành công
         $obj -> save();
         Session::remove('shoppingCart');
-        return redirect('/');
+        return redirect('order-management');
     }
     // view đăng nhập đăng kí người dùng
     public function login_checkout()
@@ -190,7 +190,7 @@ class CheckoutController extends Controller
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
 
-        $obj = Order::orderby('updated_at', 'desc')->paginate(4);
+        $obj = Order::where('account_id','=',Session::get('customer_id'))->orderby('updated_at', 'desc')->paginate(4);
 
         return view('pages.user.order_management')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('obj',$obj);
