@@ -71,7 +71,7 @@ Route::post('/add-customer', 'CheckoutController@add_customer'); // xử lý t
 Route::post('/save-checkout-customer', 'CheckoutController@save_checkout_customer'); // xử lý lưu thông tin gửi hàng của người dùng
 Route::get('/payment', 'CheckoutController@payment'); // view chọn hình thức thanh toán
 
-// quản lý đơn hàng
+// quản lý đơn hàng cua user
 Route::get('/order-management', 'CheckoutController@order_management');
 
 //blog
@@ -101,6 +101,7 @@ Route::get('q&a',function ()
 Route::get('/shopping-cart/add', 'ShoppingCartController@add'); // thêm sản phẩm
 Route::get('/shopping-cart/remove', 'ShoppingCartController@remove'); // xóa sản phẩm
 Route::get('/shopping-cart/show', 'ShoppingCartController@show'); // view giỏ hàng
+
 //about-us
 Route::get('about-us',function ()
 {
@@ -113,3 +114,5 @@ Route::get('about-us',function ()
         ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);;
 });
 
+// quan ly ddown hang admin
+Route::resource('order-admin','OrderController');

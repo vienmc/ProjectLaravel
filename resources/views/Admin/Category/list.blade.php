@@ -29,11 +29,6 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
-                        {{--                        <th style="width:20px;">--}}
-                        {{--                            <label class="i-checks m-b-none">--}}
-                        {{--                                <input type="checkbox"><i></i>--}}
-                        {{--                            </label>--}}
-                        {{--                        </th>--}}
                         <th>Id</th>
                         <th>Tên</th>
                         <th>Mô tả</th>
