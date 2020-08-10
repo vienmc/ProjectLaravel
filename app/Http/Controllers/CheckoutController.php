@@ -162,6 +162,12 @@ class CheckoutController extends Controller
         $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
         $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
         $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+        if (Session::has('customer_id')) {
+            $obj = Order::find(Session::get('order_id'));
+            return view('pages.checkout.payment')->with('category1', $category_product1)->with('category2', $category_product2)
+                ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('obj', $obj);
+        }
+        return Redirect::to('/login-checkout');
         return view('pages.checkout.payment')->with('category1', $category_product1)->with('category2', $category_product2)
             ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
     }
@@ -205,4 +211,5 @@ class CheckoutController extends Controller
         }
         return Redirect::to('/login-checkout');
     }
+
 }

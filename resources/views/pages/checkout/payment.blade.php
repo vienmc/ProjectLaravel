@@ -59,16 +59,14 @@
                     <div class="col-sm-4">
                         <div class="title" style="background-color: #90C9DC;padding: 10px">Địa chỉ người nhận</div>
                         <div class="content" style="margin-top: 10px; ">
-                            <p class="name">Lê Hoàng Trình</p>
-                            <p><span>Địa chỉ: </span>Chung Cư Sinh Viên Vinh Trung, Phường Trung Đô,
-                                Thành phố Vinh, Nghệ An, Việt Nam</p>
-                            <p class="phone"><span>Điện thoại: </span>0911549898</p>
+                            <p class="name">{{$obj->shipping_name}}</p>
+                            <p><span>Địa chỉ: </span>{{$obj->shipping_address}}</p>
+                            <p class="phone"><span>Điện thoại: </span>{{$obj->shipping_phone}}</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="title" style="background-color: #90C9DC;padding: 10px">Hình thức giao hàng</div>
                         <div class="content" style="margin-top: 10px">
-                            <p>Giao hàng vào thứ 3</p>
                             <p>Miễn phí vận chuyển</p>
                         </div>
                     </div>
@@ -79,7 +77,6 @@
                             <p>Thanh toán tiền mặt khi nhận hàng</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
