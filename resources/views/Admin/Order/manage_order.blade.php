@@ -14,7 +14,7 @@
                                             <label for="exampleFormControlSelect1">Chọn theo trạng thái đơn hàng</label>
                                             <select name="order_status" class="form-control" id="order">
                                                 <option value="0">Tất cả</option>
-                                                <option value="">Đang xử lý</option>
+                                                <option value="1">Đang xử lý</option>
                                                 <option value="2">Đã gửi</option>
                                                 <option value="3">Đã hủy</option>
                                             </select>
