@@ -32,9 +32,9 @@
                 <td>{{$item->total_money}}</td>
                 <td>
                     @if($item->shipping_status == 0)
-                        <span>Chưa xác nhận đơn hàng</span>
+                        <span>Chờ xác nhận</span>
                     @elseif($item->shipping_status ==1)
-                        <span>Đã xác nhận, đang đợi ship</span>
+                        <span>Đã xác nhận, Đang vận chuyển</span>
                     @endif
                 </td>
             </tr>

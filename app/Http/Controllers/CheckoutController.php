@@ -153,8 +153,6 @@ class CheckoutController extends Controller
     }
     public function change_shipping(){
         $obj = Order::find(Session::get('order_id'));
-        $obj ->shipping_status = 1; //1 đặt hàng thành công: 0 chưa thành công
-        $obj -> save();
         Session::remove('shoppingCart');
         return redirect('order-management');
     }

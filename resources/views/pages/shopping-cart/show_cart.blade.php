@@ -61,6 +61,7 @@
             </div>
         </div>
     </section> <!--/#cart_items-->
+    <div class="text-center" style="padding: 30px"><a href="/san-pham"><button class="btn btn-success">Thêm sản phẩm</button></a></div>
     <section id="do_action">
         <div class="container col-sm-12">
             <div class="row">
