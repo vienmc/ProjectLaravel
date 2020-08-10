@@ -17,7 +17,6 @@
                                                 <option value="">Đang xử lý</option>
                                                 <option value="2">Đã gửi</option>
                                                 <option value="3">Đã hủy</option>
-
                                             </select>
                                         </div>
                                     </div>
@@ -90,7 +89,15 @@
                                 <div>{{$detail ->product_name}}</div>
                             @endforeach</td>
                         <td>{{$item -> shipping_phone}}</td>
-                        <td>{{$item -> order_status}}</td>
+                        <td>@if($item -> order_status==1)
+                                Đang xử lý
+                                @elseif($item -> order_status==2)
+                                    Đã gửi
+                                    @elseif($item -> order_status==3)
+                                        Đã hủy
+                            @endif
+                        </td>
+
                         <td>
                             <a href="{{URL::to('/order-admin/'.$item->id.'/edit')}}"
                                class="active styling-edit" ui-toggle-class=""><i
