@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Category;
 use App\Order;
 use App\Product;
@@ -46,6 +47,7 @@ class OrderController extends Controller
             $to = date($request->get('end') . ' 23:59:00');
             $order_list = $order_list->whereBetween('created_at', [$from, $to]);
         }
+        $orders = Order::all();
         $data['list'] = $order_list->paginate(9)
             ->appends($request->only('dates'))
             ->appends($request->only('order_status'))
@@ -53,7 +55,7 @@ class OrderController extends Controller
             ->appends($request->only('keyword_tenkhachhang'))
             ->appends($request->only('keyword_sodienthoai'));
 
-        return view('Admin.Order.manage_order')->with($data);
+        return view('Admin.Order.manage_order')->with($data)->with(compact('orders'));
     }
 
     /**
