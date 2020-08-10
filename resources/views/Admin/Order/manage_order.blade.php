@@ -112,8 +112,8 @@
                             <td>
                                 <form action={{URL::to('/change-status/'.$item->id)}} method="get" id="changestatus" style="width: 170px">
                                     @csrf
-                                <select name="ship_status" class="form-control" id="status">
-                                    <option value="1" {{$item->shipping_status ==1 ? 'selected':''}}>Chờ xác
+                                <select  onchange='this.form.submit()' name="ship_status" class="form-control" id="status">
+                                    <option  value="1" {{$item->shipping_status ==1 ? 'selected':''}}>Chờ xác
                                         nhận
                                     </option>
                                     <option value="2" {{$item->shipping_status ==2 ? 'selected':''}}>Đang vận
