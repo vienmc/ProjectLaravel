@@ -119,7 +119,7 @@ class CheckoutController extends Controller
         $obj->shipping_phone = $request ->get('shipping_phone');
         $obj->shipping_notes = $request ->get('shipping_notes');
         $obj->order_status = $request ->get('order_status');
-        $obj->shipping_status = 0;
+        $obj->shipping_status = 1;
         $obj->account_id = session::get('customer_id');
 
 
