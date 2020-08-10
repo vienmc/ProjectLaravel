@@ -238,8 +238,6 @@ class CheckoutController extends Controller
                 ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('obj', $obj);
         }
         return Redirect::to('/login-checkout');
-        return view('pages.checkout.payment')->with('category1', $category_product1)->with('category2', $category_product2)
-            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
     }
 
 // thoát đăng nhập người dùng

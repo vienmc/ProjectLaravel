@@ -11,12 +11,13 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group mb-3">
-                                            <label for="exampleFormControlSelect1">Chọn theo danh mục sản phẩm</label>
-                                            <select name="order_status" class="form-control" id="order_status">
+                                            <label for="exampleFormControlSelect1">Chọn theo trạng thái đơn hàng</label>
+                                            <select name="order_status" class="form-control" id="order">
                                                 <option value="0">Tất cả</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
+                                                <option value="">Đang xử lý</option>
+                                                <option value="2">Đã gửi</option>
+                                                <option value="3">Đã hủy</option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -129,7 +130,7 @@
                 }
             }
         );
-        $('#order_status').change(function () {
+        $('#order').change(function () {
             $('#order_form').submit();
         })
         $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
