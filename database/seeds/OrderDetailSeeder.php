@@ -65,6 +65,12 @@ class OrderDetailSeeder extends Seeder
                 'quantity' => 1,
                 'unit_price' =>1999000,
 
+            ],[
+                'order_id' => 8,
+                'product_id' => 16,
+                'product_name' => 'ÁO SƠ MI PHỐI MÀU COLOR BLOCK',
+                'quantity' => 1,
+                'unit_price' =>1199000,
             ]
 
 
