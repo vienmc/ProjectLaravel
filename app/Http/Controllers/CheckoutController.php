@@ -15,9 +15,79 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Validator;
 
 class CheckoutController extends Controller
 {
+
+    public function show_edit(){
+        $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+        if (Session::has('customer_id')){
+            $account=Account::where('id','=',Session::get('customer_id'))->where('status','=','1')->first();
+            return view('pages.checkout.edit-information')->with('category1', $category_product1)->with('category2', $category_product2)
+                ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('account',$account);
+        }
+
+        return view('pages.checkout.login_checkout')->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
+    }
+    public function edit_information(Request $request){
+        $validatedData = $request->validate([
+            'phone' => 'numeric',
+        ]);
+        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+        $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+        if (Session::has('customer_id')){
+        $account=Account::where('id','=',Session::get('customer_id'))->where('status','=','1')->first();
+        $account->name = $request->name;
+        $account->phone = $request->phone;
+        $salt = $account->salt;
+        $passwordHash = $account->password;
+        $account->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+        if (md5($request->old_password .$salt ) != $passwordHash){
+            Session::put('message','Sai mật khẩu hiện tại!');
+            return Redirect('/edit-information');
+        }
+        else{
+            if ($request->new_password != $request->confirm_password){
+                Session::put('message','Mật khẩu mới không trùng khớp!');
+                return Redirect('/edit-information');
+            }
+            $account->password = md5($request->new_password.$salt);
+            $account->save();
+        }
+            Session::put('message','Thay đổi thông tin thành công!');
+        return view('pages.checkout.information')->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('account',$account);
+    }
+    return Redirect::to('/login-checkout')->with('category1', $category_product1)->with('category2', $category_product2)
+        ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
+    }
+
+
+    public function show_information(){
+        $category_product1 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(5)->get();
+        $category_product2 = Category::where('status','=',1)->orderby('name', 'ASC')->limit(100)->OFFSET(5)->get();
+        $brand_product1 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(3)->get();
+        $brand_product2 = Brand::where('brand_status', 1)->orderby('brand_name', 'ASC')->limit(100)->OFFSET(3)->get();
+        $all_product = Product::where('product_status','=',1)->orderby('updated_at', 'desc')->paginate(9);
+
+        if (Session::has('customer_id')){
+            $account=Account::where('id','=',Session::get('customer_id'))->where('status','=','1')->first();
+        return view('pages.checkout.information')->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product)->with('account',$account);
+    }
+
+        return Redirect::to('/login-checkout')->with('category1', $category_product1)->with('category2', $category_product2)
+            ->with('brand1', $brand_product1)->with('brand2', $brand_product2)->with('all_product', $all_product);
+    }
 
     // hiện thị form nhập thông tin gưi hàng và chọn đạt mua
     public function checkout()

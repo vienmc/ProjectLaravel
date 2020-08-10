@@ -124,7 +124,7 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Thông tin tài khoản</a></li>
+                                            <li><a href="/information">Thông tin tài khoản</a></li>
                                             <li><a href="{{URL::to('/order-management')}}">Thông tin đơn hàng</a></li>
                                             <li><a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a></li>
                                         </ul>
@@ -133,7 +133,7 @@
                             <?php
                             }else{
                             ?>
-                            <li><a href="{{URL::to('/login-checkout')}}"><i class=" fa fa-lock"></i> Đăng nhập</a></li>
+                            <li><a href="{{URL::to('/information')}}"><i class=" fa fa-lock"></i> Đăng nhập</a></li>
                             <?php } ?>
 
                         </ul>

@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/information','CheckoutController@show_information');
+Route::get('/edit-information','CheckoutController@show_edit');
+Route::post('/edit-information','CheckoutController@edit_information');
 
 Route::post('/chi-tiet-san-pham/{id}', 'ProductController@review');
 Route::get('/chi-tiet-san-pham/{id}', 'ProductController@show_detail_product');
