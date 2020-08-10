@@ -48,7 +48,7 @@ class CheckoutController extends Controller
         $obj->shipping_address = $request ->get('shipping_address');
         $obj->shipping_phone = $request ->get('shipping_phone');
         $obj->shipping_notes = $request ->get('shipping_notes');
-        $obj->payment_option = $request ->get('payment_option');
+        $obj->order_status = $request ->get('order_status');
         $obj->shipping_status = 0;
         $obj->account_id = session::get('customer_id');
 

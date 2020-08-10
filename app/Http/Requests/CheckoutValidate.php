@@ -29,7 +29,7 @@ class CheckoutValidate extends FormRequest
             'shipping_address'=>'required',
             'shipping_phone'=>'required|numeric',
             'shipping_notes'=>'required',
-            'payment_option'=>'required',
+            'order_status'=>'required',
 
         ];
     }

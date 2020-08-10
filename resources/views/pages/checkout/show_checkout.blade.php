@@ -100,11 +100,11 @@
                                         <div class="payment-options" style="margin: 15px">
                                             <h4 style="color: #428bca">Chọn hình thức thanh toán</h4>
                                             <span class="fa fa-money " style="font-size: 3em"></span>
-                                            <label class=""><input name="payment_option" value="1" type="checkbox"
+                                            <label class=""><input name="order_status" value="1" type="checkbox"
                                                                    checked="checked"> Thanh toán khi nhận hàng</label>
-                                            @if($errors -> has('payment_option'))
+                                            @if($errors -> has('order_status'))
                                                 <span class="error" style="color: red">
-                                                {{$errors -> first('payment_option')}}
+                                                {{$errors -> first('order_status')}}
                                                 </span>
                                             @endif
                                         </div>
