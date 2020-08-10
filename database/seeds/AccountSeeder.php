@@ -74,6 +74,95 @@ class AccountSeeder extends Seeder
                 'status' => 1,
                 'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
                 'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ], [
+                'id' => 6,
+                'email' => 'phamhoa@gmail.com',
+                'salt' => 'zxczxc',
+                'password' => md5(self::$password.'zxczxc'),
+                'name' => 'Pham hoa',
+                'phone' => '0123456789',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ],[
+                'id' => 7,
+                'email' => 'hoangtrinh@gmail.com',
+                'salt' => 'asdasd',
+                'password' => md5(self::$password.'asdasd'),
+                'name' => 'Hoang Trinh',
+                'phone' => '0123456789',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ],[
+                'id' => 8,
+                'email' => 'vanloc@gmail.com',
+                'salt' => 'zxczxc',
+                'password' => md5(self::$password.'zxczxc'),
+                'name' => 'Van Loc',
+                'phone' => '0123456789',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ],[
+                'id' => 9,
+                'email' => 'congvien@gmail.com',
+                'salt' => 'zxczxc',
+                'password' => md5(self::$password.'zxczxc'),
+                'name' => 'Cong Vien',
+                'phone' => '0123456789',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ],[
+                'id' => 10,
+                'email' => 'trongphu@gmail.com',
+                'salt' => 'zxczxc',
+                'password' => md5(self::$password.'zxczxc'),
+                'name' => 'Trong Phu',
+                'phone' => '0123456789',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ],[
+                'id' => 11,
+                'email' => 'sontung@gmail.com',
+                'salt' => 'tyu',
+                'password' => md5(self::$password.'tyu'),
+                'name' => 'Son Tung',
+                'phone' => '0123456782',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ],[
+                'id' => 12,
+                'email' => 'vanmaihuong@gmail.com',
+                'salt' => 'tyu',
+                'password' => md5(self::$password.'tyu'),
+                'name' => 'Van Mai Huong',
+                'phone' => '0123456282',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 13,
+                'email' => 'hongson@gmail.com',
+                'salt' => 'tyu',
+                'password' => md5(self::$password.'tyu'),
+                'name' => 'Hong Son',
+                'phone' => '0123416282',
+                'role' => 0,
+                'status' => 1,
+                'created_at' => \Illuminate\Support\Carbon::now()->addDays(-5)->format('Y-m-d H:i:s'),
+                'updated_at' => \Illuminate\Support\Carbon::now()->addDays(0)->format('Y-m-d H:i:s')
             ]
 
         ]);
