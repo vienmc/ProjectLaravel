@@ -6,6 +6,7 @@ use App\Brand;
 use App\Category;
 use App\Order;
 use App\Product;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -29,7 +30,6 @@ class OrderController extends Controller
 }
     public function index(Request $request)
     {
-
         // tạo biến data là một mảng chứa dữ liệu trả về.
         $data = array();
         $data['shipping_status']=0;
@@ -103,7 +103,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $obj = Order::find($id);
+        return view('Admin.Order.detail_order')->with('obj', $obj);
     }
 
     /**
