@@ -76,11 +76,12 @@
             <div class="panel-heading">
                 Danh sách đơn hàng
             </div>
+
             <div class="table-responsive">
                 <?php
                 $message = Session::get('message');
                 if ($message) {
-                    echo '<span style="color:#1b6d85;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
+                    echo '<span style="color: green;font-size:17px;width: 100%;text-align: center;font-weight: bold;">' . $message . '</span>';
                     Session::put('message', null);
                 }
                 ?>
@@ -92,6 +93,7 @@
                         <th>Tên khách hàng</th>
                         <th>Tên sản phẩm</th>
                         <th>Số điện thoại</th>
+                        <th>Thành tiền</th>
                         <th>Trạng thái</th>
                         <th>Chi Tiết</th>
                     </tr>
@@ -105,17 +107,29 @@
                                 <div>{{$detail ->product_name}}</div>
                             @endforeach</td>
                         <td>{{$item -> shipping_phone}}</td>
-                        @if($item->shipping_status ==1)
-                            <td>Chờ xác nhận</td>
-                        @elseif($item->shipping_status ==2)
-                            <td>Đang vận chuyển</td>
-                        @elseif($item->shipping_status ==3)
-                            <td>Hoàn thành</td>
-                        @elseif($item->shipping_status ==4)
-                            <td>Đã hủy</td>
-                        @else
-                            <td></td>
-                        @endif
+                        <td>{{number_format($item-> total_money).' VNĐ'}}</td>
+
+                            <td>
+                                <form action={{URL::to('/change-status/'.$item->id)}} method="get" id="changestatus" style="width: 170px">
+                                    @csrf
+                                <select name="ship_status" class="form-control" id="status">
+                                    <option value="1" {{$item->shipping_status ==1 ? 'selected':''}}>Chờ xác
+                                        nhận
+                                    </option>
+                                    <option value="2" {{$item->shipping_status ==2 ? 'selected':''}}>Đang vận
+                                        chuyển
+                                    </option>
+                                    <option value="3" {{$item->shipping_status ==3 ? 'selected':''}}>Hoàn thành
+                                    </option>
+                                    <option value="4" {{$item->shipping_status ==4 ? 'selected':''}}>Đã hủy
+                                    </option>
+
+                                </select>
+                                </form>
+
+
+                            </td>
+
 
                         <td>
                             <a href="{{URL::to('/order-admin/'.$item->id)}}"
@@ -159,6 +173,13 @@
         $('#order').change(function () {
             $('#order_form').submit();
         })
+
+
+        $('#status').change(function () {
+            $(this).parents('#changestatus').submit();
+        })
+
+
         $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
             $('input[name="start"]').val(picker.startDate.format('YYYY-MM-DD'));
             $('input[name="end"]').val(picker.endDate.format('YYYY-MM-DD'));

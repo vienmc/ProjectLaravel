@@ -6,7 +6,10 @@ use App\Brand;
 use App\Category;
 use App\Order;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
@@ -15,6 +18,15 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function change_status($id,Request $request){
+    $order = Order::find($id);
+    $order->shipping_status = $request->ship_status;
+    $order->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+    $order->save();
+    Session::put('message','Cập nhật thành công!');
+    return Redirect::to('/order-admin');
+}
     public function index(Request $request)
     {
 
