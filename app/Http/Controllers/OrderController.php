@@ -6,7 +6,10 @@ use App\Brand;
 use App\Category;
 use App\Order;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
@@ -15,19 +18,31 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function change_status($id,Request $request){
+    $order = Order::find($id);
+    $order->shipping_status = $request->ship_status;
+    $order->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+    $order->save();
+    Session::put('message','Cập nhật thành công!');
+    return Redirect::to('/order-admin');
+}
     public function index(Request $request)
     {
 
         // tạo biến data là một mảng chứa dữ liệu trả về.
         $data = array();
-        $data['order_status']=0;
+        $data['shipping_status']=0;
         $data['keyword_madonhang'] = '';
         $data['keyword_tenkhachhang'] = '';
         $data['keyword_sodienthoai'] = '';
         $order_list = Order::query()->orderby('updated_at', 'desc');
-        if ($request->has('order_status')&& $request->get('order_status') != 0) {
-            $data['order_status'] = $request->get('order_status');
-            $order_list = $order_list->where('order_status', '=', $request->get('order_status'));
+        if ($request->has('shipping_status') && $request->get('shipping_status') > 0) {
+            $data['shipping_status'] = $request->get('shipping_status');
+            $order_list = $order_list->where('shipping_status', '=', $request->get('shipping_status'));
+        }
+        if ($request->has('shipping_status') && $request->get('shipping_status') ==0) {
+            $data['shipping_status'] = $request->get('shipping_status');
         }
         if ($request->has('keyword_madonhang') && strlen($request->get('keyword_madonhang')) > 0) {
             $data['keyword_madonhang'] = $request->get('keyword_madonhang');
@@ -48,6 +63,7 @@ class OrderController extends Controller
             $order_list = $order_list->whereBetween('created_at', [$from, $to]);
         }
         $orders = Order::all();
+
         $data['list'] = $order_list->paginate(9)
             ->appends($request->only('dates'))
             ->appends($request->only('order_status'))

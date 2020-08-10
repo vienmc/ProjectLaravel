@@ -31,11 +31,16 @@
                 </td>
                 <td>{{$item->total_money}}</td>
                 <td>
-                    @if($item->shipping_status == 0)
+                    @if($item->shipping_status == 1)
                         <span>Chờ xác nhận</span>
-                    @elseif($item->shipping_status ==1)
+                    @elseif($item->shipping_status == 2)
                         <span>Đã xác nhận, Đang vận chuyển</span>
+                    @elseif($item->shipping_status == 3)
+                        <span>Hoàn thành</span>
+                    @elseif($item->shipping_status == 4)
+                        <span>Đã hủy</span>
                     @endif
+
                 </td>
             </tr>
             </tbody>

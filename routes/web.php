@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/change-status/{id}','OrderController@change_status');
+
+
 
 Route::get('/information','CheckoutController@show_information');
 Route::get('/edit-information','CheckoutController@show_edit');
