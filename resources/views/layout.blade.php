@@ -96,7 +96,7 @@
                         <ul class="nav navbar-nav">
                             <?php
                             $customer_id = Session::get('customer_id');
-                            $shipping_id = Session::get('shipping_id');
+
                             $customer_username = Session::get('customer_username');
                             if ($customer_id != null && $shipping_id == null){
                             ?>

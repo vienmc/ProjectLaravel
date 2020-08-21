@@ -45,7 +45,7 @@ class HomeController extends Controller
 
     public function sanpham(Request $request){
 
-        $data = array();
+            $data = array();
         $data['category_id'] = 0;
         $data['brand_id'] = 0;
         $data['keyword'] = '';
